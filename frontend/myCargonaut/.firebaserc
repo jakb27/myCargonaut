@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "mycargonaut-2e064": {
+      "hosting": {
+        "myCargonaut": [
+          "mycargonaut-2e064"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "mycargonaut-2e064"
+  }
+}
