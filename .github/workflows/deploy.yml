@@ -9,13 +9,13 @@ on:
 
 jobs:
   build:
+    defaults:
+      run:
+        working-directory: myCargonaut
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-      - name: Setup Workdir
-          working-directory: myCargonaut
-        working-directory: ./myCargonaut
       - name: Deploy to firebase
         uses: w9jds/firebase-action@master
         with:
