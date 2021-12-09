@@ -112,9 +112,21 @@
             "firebaseProject": "mycargonaut-2e064",
             "firebaseHostingSite": "mycargonaut-2e064"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "myCargonaut"
+  "defaultProject": "myCargonaut",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

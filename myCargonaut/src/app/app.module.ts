@@ -41,15 +41,15 @@ import { MyCasesComponent } from './components/my-cases/my-cases.component';
     MyCasesComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     NgbDatepickerModule,
-    NgbModule
+    NgbModule,
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [
     ScreenTrackingService, UserTrackingService, AuthService, CaseService

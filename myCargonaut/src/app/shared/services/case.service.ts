@@ -1,14 +1,7 @@
-import { Injectable } from '@angular/core';
-import {AngularFireDatabase, AngularFireList, AngularFireObject} from "@angular/fire/compat/database";
+import {Injectable} from '@angular/core';
 import {Case} from "../models/case";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {collection, DocumentData,
-  getDocs,
-  onSnapshot,
-  query,
-  QueryDocumentSnapshot,
-  where
-} from "@angular/fire/firestore";
+import {collection, query, where} from "@angular/fire/firestore";
 
 @Injectable({
   providedIn: 'root'

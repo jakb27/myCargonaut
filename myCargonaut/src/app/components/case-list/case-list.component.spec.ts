@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CaseListComponent } from './case-list.component';
+import {AngularFireDatabase} from "@angular/fire/compat/database";
 
 describe('OffersListComponent', () => {
   let component: CaseListComponent;
@@ -8,7 +9,8 @@ describe('OffersListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CaseListComponent ]
+      declarations: [ CaseListComponent ],
+      // providers:[{provide: AngularFireDatabase, useValue: mockDB}]
     })
     .compileComponents();
   });
