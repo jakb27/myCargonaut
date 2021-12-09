@@ -13,6 +13,7 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
+      - run: npm install -g firebase-tools
       - name: Deploy to firebase
         uses: w9jds/firebase-action@master
         with:
