@@ -23,6 +23,7 @@ import {FormsModule} from "@angular/forms";
 import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { MyCasesComponent } from './components/my-cases/my-cases.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     NewCaseModalComponent,
     HeaderComponent,
     FooterComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    MyCasesComponent
   ],
   imports: [
     BrowserModule,

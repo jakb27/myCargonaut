@@ -11,18 +11,18 @@ export class CaseService {
   constructor(private fs: AngularFirestore) { }
 
   createCase(c: Case){
-    return this.fs.collection('case-list').add(c);
+    return this.fs.collection('cases').add(c);
   }
 
   readCases() {
-    return this.fs.collection('case-list').snapshotChanges();
+    return this.fs.collection('cases').snapshotChanges();
   }
 
   updateCase(c: Case) {
-    return this.fs.doc('case-list/' + c.id).update(c);
+    return this.fs.doc('cases/' + c.id).update(c);
   }
 
   deleteCase(c: Case) {
-    return this.fs.doc('case-list/' + c.id).delete();
+    return this.fs.doc('cases/' + c.id).delete();
   }
 }
