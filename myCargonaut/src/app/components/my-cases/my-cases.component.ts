@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CaseService} from "../../shared/services/case.service";
 import {Case} from "../../shared/models/case";
 import {AuthService} from "../../shared/services/auth.service";
@@ -16,7 +16,8 @@ export class MyCasesComponent implements OnInit {
   myCasesP: Case[] = [];
   myCasesA: Case[] = [];
 
-  constructor(public caseService: CaseService, public authService: AuthService, public modalService: NgbModal) { }
+  constructor(public caseService: CaseService, public authService: AuthService, public modalService: NgbModal) {
+  }
 
   ngOnInit(): void {
     const queryPublished = this.caseService.readCasesByIDP(this.authService.userData.uid);
@@ -57,7 +58,7 @@ export class MyCasesComponent implements OnInit {
     try {
       const resultCase: Case = await modalReference.result;
       await this.caseService.createCase(resultCase);
-    } catch(error) {
+    } catch (error) {
       console.log(error);
     }
   }
@@ -80,7 +81,12 @@ export class MyCasesComponent implements OnInit {
 
   public async unaccept(c: Case) {
     c.accepter_uid = "";
+    c.status = "open";
     await this.caseService.updateCase(c);
+  }
+
+  public async cancel(c: Case) {
+
   }
 
 }

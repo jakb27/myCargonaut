@@ -40,6 +40,7 @@ export class CaseListComponent implements OnInit {
 
   public async accept(c: Case){
     c.accepter_uid = this.authService.userData.uid;
+    c.status = "booked"
     await this.caseService.updateCase(c);
   }
 
