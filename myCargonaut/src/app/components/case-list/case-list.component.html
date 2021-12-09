@@ -1,0 +1,33 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h2 class="h2">Case List</h2>
+  <button (click)="create()">Add</button>
+</div>
+
+<div class="pricing-header mx-auto">
+
+  <div class="table-responsive" >
+    <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
+      <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">User</th>
+        <th scope="col">Start</th>
+        <th scope="col">End</th>
+        <th scope="col">Date</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr *ngFor="let c of this.cases; let i = index;">
+        <td>{{c.type}}</td>
+        <td>{{c.uid}}</td>
+        <td>{{c.start}}</td>
+        <td>{{c.end}}</td>
+        <td>{{c.date}}</td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
