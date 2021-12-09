@@ -12,8 +12,8 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
+      - run: cd myCargonaut && npm ci && npm run build
       - name: Deploy to firebase
-        run: cd myCargonaut && npm ci && npm run build
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
