@@ -15,7 +15,7 @@ export class MyCasesComponent implements OnInit {
 
   myCases: Case[] = [];
 
-  constructor(public caseService: CaseService, private authService: AuthService, public modalService: NgbModal) { }
+  constructor(public caseService: CaseService, public authService: AuthService, public modalService: NgbModal) { }
 
   ngOnInit(): void {
     const q = this.caseService.readCasesByID(this.authService.userData.uid);
