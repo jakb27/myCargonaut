@@ -21,6 +21,7 @@
               <th scope="col">Start</th>
               <th scope="col">End</th>
               <th scope="col">Date</th>
+              <th scope="col">Edit</th>
             </tr>
             </thead>
             <tbody>
@@ -31,6 +32,10 @@
               <td>{{c.start}}</td>
               <td>{{c.end}}</td>
               <td>{{c.date}}</td>
+              <td>
+                <button type="button" class="btn btn-primary" (click)="edit(c)">Edit</button>
+                <button type="button" class="btn btn-primary" (click)="delete(c)">Delete</button>
+              </td>
             </tr>
 
             </tbody>
