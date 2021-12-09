@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   workflow_run:
-    workflows: ["Node.js CI"]
+    workflows: ["Production CI"]
     branches: [main]
     types:
       - completed
