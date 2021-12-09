@@ -13,9 +13,7 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-      - run: cd myCargonaut
-      - run: cd myCargonaut
-      - run: ls
+      - working-directory: ./myCargonaut
       - name: Deploy to firebase
         uses: w9jds/firebase-action@master
         with:
