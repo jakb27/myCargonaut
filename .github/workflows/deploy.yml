@@ -15,7 +15,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
       - name: Deploy to firebase
-        run: cd myCargonaut
+        working-directory: /myCargonaut
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
