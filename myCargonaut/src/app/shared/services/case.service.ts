@@ -12,7 +12,8 @@ export class CaseService {
   }
 
   createCase(c: Case) {
-    return this.fs.collection('cases').add(c);
+    c.id = this.fs.createId();
+    return this.fs.collection('cases').doc(c.id).set(c);
   }
 
   readCases() {
@@ -28,6 +29,7 @@ export class CaseService {
   }
 
   deleteCase(c: Case) {
+    console.log(c.id)
     return this.fs.doc('cases/' + c.id).delete();
   }
 }

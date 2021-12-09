@@ -38,4 +38,20 @@ export class MyCasesComponent implements OnInit {
     }
   }
 
+  public async edit(c: Case) {
+    const modalReference = this.modalService.open(null); // TODO EditCaseModalComponent
+    modalReference.componentInstance.c = c;
+
+    try {
+      const resultCase: Case = await modalReference.result;
+      await this.caseService.updateCase(resultCase);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  public async delete(c: Case) {
+    await this.caseService.deleteCase(c);
+  }
+
 }
