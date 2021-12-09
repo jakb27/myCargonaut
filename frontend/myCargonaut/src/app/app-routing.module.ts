@@ -8,13 +8,15 @@ import {ForgotPasswordComponent} from "./components/forgot-password/forgot-passw
 import {VerifyEmailComponent} from "./components/verify-email/verify-email.component";
 import { AuthGuard } from "./shared/guard/auth.guard";
 import {UserProfileComponent} from "./components/user-profile/user-profile.component";
+import {MyCasesComponent} from "./components/my-cases/my-cases.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full'},
   { path: 'sign-in', component: SignInComponent},
   { path: 'register-user', component: SignUpComponent},
-  {path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard]},
+  { path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard]},
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'my-cases', component: MyCasesComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email-address', component: VerifyEmailComponent }
 ];
