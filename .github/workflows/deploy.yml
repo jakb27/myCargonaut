@@ -13,7 +13,9 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-      - run:
+      - name: Setup Workdir
+          working-directory: ./app
+          run: cp .env.dev .env
         working-directory: ./myCargonaut
       - name: Deploy to firebase
         uses: w9jds/firebase-action@master
