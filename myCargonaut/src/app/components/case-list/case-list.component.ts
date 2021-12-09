@@ -3,6 +3,8 @@ import {Case} from "../../shared/models/case";
 import {CaseService} from "../../shared/services/case.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NewCaseModalComponent} from "../new-case-modal/new-case-modal.component";
+import {AuthService} from "../../shared/services/auth.service";
+import {onSnapshot} from "@angular/fire/firestore";
 
 @Component({
   selector: 'app-case-list',
@@ -13,15 +15,16 @@ export class CaseListComponent implements OnInit {
 
   cases: Case[] = [];
 
-  constructor(public caseService: CaseService, public modalService: NgbModal) { }
+  constructor(public caseService: CaseService, public modalService: NgbModal, public authService: AuthService) { }
 
   ngOnInit(): void {
-    this.caseService.readCases().subscribe(data => {
+    const q = this.caseService.readCasesDashboard();
+
+    onSnapshot(q, (querySnapshot) => {
       this.cases = [];
-      data.forEach(item => {
-        let a = item.payload.doc.data();
-        this.cases.push(a as Case);
-      })
+      querySnapshot.forEach((doc) => {
+        this.cases.push(doc.data() as Case);
+      });
     });
   }
 
@@ -35,12 +38,9 @@ export class CaseListComponent implements OnInit {
     }
   }
 
-  update(c: Case) {
-    this.caseService.updateCase(c);
-  }
-
-  delete(c: Case) {
-    this.caseService.deleteCase(c);
+  public async accept(c: Case){
+    c.accepter_uid = this.authService.userData.uid;
+    await this.caseService.updateCase(c);
   }
 
 }
