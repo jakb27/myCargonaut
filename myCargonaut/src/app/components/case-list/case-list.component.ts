@@ -14,6 +14,7 @@ import {onSnapshot} from "@angular/fire/firestore";
 export class CaseListComponent implements OnInit {
 
   cases: Case[] = [];
+  showOwn: boolean = true;
 
   constructor(public caseService: CaseService, public modalService: NgbModal, public authService: AuthService) { }
 
@@ -42,6 +43,10 @@ export class CaseListComponent implements OnInit {
     c.accepter_uid = this.authService.userData.uid;
     c.status = "booked"
     await this.caseService.updateCase(c);
+  }
+
+  public toggleShowOwn (){
+    this.showOwn = !this.showOwn;
   }
 
 }
