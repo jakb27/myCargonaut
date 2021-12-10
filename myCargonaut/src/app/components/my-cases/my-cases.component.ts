@@ -5,6 +5,7 @@ import {AuthService} from "../../shared/services/auth.service";
 import {onSnapshot} from "@angular/fire/firestore";
 import {NewCaseModalComponent} from "../new-case-modal/new-case-modal.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {EditCaseModalComponent} from "../edit-case-modal/edit-case-modal.component";
 
 @Component({
   selector: 'app-my-cases',
@@ -20,25 +21,30 @@ export class MyCasesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const queryPublished = this.caseService.readCasesByIDP(this.authService.userData.uid);
-    const queryAccepted = this.caseService.readCasesByIDA(this.authService.userData.uid);
+    //TODO race condition?
 
-    onSnapshot(queryPublished, (querySnapshot) => {
-      this.myCasesP = [];
-      querySnapshot.forEach((doc) => {
-        this.myCasesP.push(doc.data() as Case);
+    if(this.authService.userData) {
+      const queryPublished = this.caseService.readCasesByIDP(this.authService.userData.uid);
+      const queryAccepted = this.caseService.readCasesByIDA(this.authService.userData.uid);
+
+      onSnapshot(queryPublished, (querySnapshot) => {
+        this.myCasesP = [];
+        querySnapshot.forEach((doc) => {
+          this.myCasesP.push(doc.data() as Case);
+        });
       });
-    });
-    onSnapshot(queryAccepted, (querySnapshot) => {
-      this.myCasesA = [];
-      querySnapshot.forEach((doc) => {
-        this.myCasesA.push(doc.data() as Case);
+      onSnapshot(queryAccepted, (querySnapshot) => {
+        this.myCasesA = [];
+        querySnapshot.forEach((doc) => {
+          this.myCasesA.push(doc.data() as Case);
+        });
       });
-    });
+    }
+
 
     //TODO 2 queries as 1 with where(uid in published/accepted)
 
-    // const q = this.caseService.readCasesByIDA(this.authService.userData.uid);
+    // const q = this.caseService.readCasesByID(this.authService.userData.uid);
     // onSnapshot(q, (querySnapshot) => {
     //   this.myCasesP = [];
     //   this.myCasesA = [];
@@ -64,11 +70,12 @@ export class MyCasesComponent implements OnInit {
   }
 
   public async edit(c: Case) {
-    const modalReference = this.modalService.open(null); // TODO EditCaseModalComponent
+    const modalReference = this.modalService.open(EditCaseModalComponent);
     modalReference.componentInstance.c = c;
 
     try {
       const resultCase: Case = await modalReference.result;
+      console.log(resultCase)
       await this.caseService.updateCase(resultCase);
     } catch (error) {
       console.log(error);

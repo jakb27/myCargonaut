@@ -24,6 +24,7 @@ import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { MyCasesComponent } from './components/my-cases/my-cases.component';
+import { EditCaseModalComponent } from './components/edit-case-modal/edit-case-modal.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { MyCasesComponent } from './components/my-cases/my-cases.component';
     HeaderComponent,
     FooterComponent,
     UserProfileComponent,
-    MyCasesComponent
+    MyCasesComponent,
+    EditCaseModalComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

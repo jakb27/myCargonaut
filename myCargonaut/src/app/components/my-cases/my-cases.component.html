@@ -7,7 +7,7 @@
 
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h2 class="h2">My published Case List</h2>
-        <button (click)="create()">Add</button>
+        <button type="button" class="btn btn-primary" (click)="create()">Add</button>
       </div>
 
       <div class="pricing-header mx-auto">
@@ -35,9 +35,9 @@
               <td>{{c.date}}</td>
               <td>{{c.status}}</td>
               <td>
-                <button *ngIf="c.status == 'booked'" type="button" class="btn btn-primary" (click)="cancel(c)">Cancel</button>
-                <button *ngIf="c.status == 'open'" type="button" class="btn btn-primary" (click)="edit(c)">Edit</button>
-                <button *ngIf="c.status == 'open'" type="button" class="btn btn-primary" (click)="delete(c)">Delete</button>
+                <button *ngIf="c.status == 'booked'" type="button" class="btn btn-warning" (click)="cancel(c)">Cancel</button>
+                <button *ngIf="c.status == 'open'" type="button" class="btn btn-dark" (click)="edit(c)">Edit</button>
+                <button *ngIf="c.status == 'open'" type="button" class="btn btn-danger" (click)="delete(c)">Delete</button>
               </td>
             </tr>
 
@@ -77,7 +77,7 @@
               <td>{{c.date}}</td>
               <td>{{c.status}}</td>
               <td>
-                <button type="button" class="btn btn-warning" (click)="unaccept(c)">Unaccept</button>
+                <button type="button" class="btn btn-warning" (click)="unaccept(c)">Cancel</button>
               </td>
             </tr>
 
