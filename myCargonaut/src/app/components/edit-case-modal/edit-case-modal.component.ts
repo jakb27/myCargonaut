@@ -16,7 +16,16 @@ export class EditCaseModalComponent implements OnInit {
   public type = "query";
 
   constructor(public activeModal: NgbActiveModal, private authService: AuthService) {
-    this.case = {publisher_uid: authService.userData.uid, type: "", status: "open", start: "", end: "", date: Date.now(), id: "", accepter_uid: ""}
+    this.case = {
+      publisher_uid: authService.userData.uid,
+      type: "",
+      status: "open",
+      start: "",
+      end: "",
+      date: Date.now(),
+      id: "",
+      accepter_uid: ""
+    }
   }
 
   ngOnInit(): void {
@@ -26,14 +35,14 @@ export class EditCaseModalComponent implements OnInit {
   }
 
   save(): void {
-    if(EditCaseModalComponent.isNotEmpty(this.case.start) && EditCaseModalComponent.isNotEmpty(this.case.end)) {
+    if (EditCaseModalComponent.isNotEmpty(this.case.start) && EditCaseModalComponent.isNotEmpty(this.case.end)) {
       this.case.type = this.type;
       this.activeModal.close(this.case);
     }
   }
 
   private static isNotEmpty(str?: string) {
-    if(str != undefined) {
+    if (str != undefined) {
       return str.trim().length > 0;
     }
     return false;

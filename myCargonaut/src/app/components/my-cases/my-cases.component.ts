@@ -75,7 +75,6 @@ export class MyCasesComponent implements OnInit {
 
     try {
       const resultCase: Case = await modalReference.result;
-      console.log(resultCase)
       await this.caseService.updateCase(resultCase);
     } catch (error) {
       console.log(error);
