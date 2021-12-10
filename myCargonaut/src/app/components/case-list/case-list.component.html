@@ -14,16 +14,23 @@
         <th scope="col">Start</th>
         <th scope="col">End</th>
         <th scope="col">Date</th>
+        <th scope="col">Status</th>
+        <th scope="col">Accept</th>
       </tr>
       </thead>
       <tbody>
 
       <tr *ngFor="let c of this.cases; let i = index;">
         <td>{{c.type}}</td>
-        <td>{{c.uid}}</td>
+        <td>{{c.publisher_uid}}</td>
         <td>{{c.start}}</td>
         <td>{{c.end}}</td>
         <td>{{c.date}}</td>
+        <td>{{c.status}}</td>
+        <td>
+          <button *ngIf="this.authService.userData.uid != c.publisher_uid" type="button" class="btn btn-primary" (click)="accept(c)">Book</button>
+          <button *ngIf="this.authService.userData.uid == c.publisher_uid" type="button" class="btn btn-danger" disabled>Your Own</button>
+        </td>
       </tr>
 
       </tbody>

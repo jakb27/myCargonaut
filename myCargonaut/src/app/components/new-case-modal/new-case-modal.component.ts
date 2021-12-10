@@ -14,7 +14,7 @@ export class NewCaseModalComponent implements OnInit {
   public type = "query";
 
   constructor(public activeModal: NgbActiveModal, private authService: AuthService) {
-    this.case = {uid: authService.userData.uid, type: this.type, start: "", end: "", date: Date.now(), id: ""}
+    this.case = {publisher_uid: authService.userData.uid, type: this.type, status: "open", start: "", end: "", date: Date.now(), id: "", accepter_uid: ""}
   }
 
   ngOnInit(): void {

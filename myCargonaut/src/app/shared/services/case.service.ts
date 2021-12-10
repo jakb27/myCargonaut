@@ -12,15 +12,24 @@ export class CaseService {
   }
 
   createCase(c: Case) {
-    return this.fs.collection('cases').add(c);
+    c.id = this.fs.createId();
+    return this.fs.collection('cases').doc(c.id).set(c);
   }
 
-  readCases() {
-    return this.fs.collection('cases').snapshotChanges();
+  readCasesDashboard() {
+    return query(collection(this.fs.firestore, 'cases'), where("accepter_uid", "==", ""));
   }
 
-  readCasesByID(uid: string) {
-    return query(collection(this.fs.firestore, 'cases'), where("uid", "==", uid));
+  // readCasesByID(uid: string) {
+  //   return query(collection(this.fs.firestore, 'cases'), where(uid, "in", ["publisher_uid", "accepter_uid"]));
+  // }
+
+  readCasesByIDP(uid: string) {
+    return query(collection(this.fs.firestore, 'cases'), where("publisher_uid", "==", uid));
+  }
+
+  readCasesByIDA(uid: string) {
+    return query(collection(this.fs.firestore, 'cases'), where("accepter_uid", "==", uid));
   }
 
   updateCase(c: Case) {
@@ -28,6 +37,7 @@ export class CaseService {
   }
 
   deleteCase(c: Case) {
+    console.log(c.id)
     return this.fs.doc('cases/' + c.id).delete();
   }
 }
