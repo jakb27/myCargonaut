@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CaseService} from "../../shared/services/case.service";
 import {Case} from "../../shared/models/case";
 import {AuthService} from "../../shared/services/auth.service";
@@ -13,19 +13,44 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 })
 export class MyCasesComponent implements OnInit {
 
-  myCases: Case[] = [];
+  myCasesP: Case[] = [];
+  myCasesA: Case[] = [];
 
-  constructor(public caseService: CaseService, public authService: AuthService, public modalService: NgbModal) { }
+  constructor(public caseService: CaseService, public authService: AuthService, public modalService: NgbModal) {
+  }
 
   ngOnInit(): void {
-    const q = this.caseService.readCasesByID(this.authService.userData.uid);
+    const queryPublished = this.caseService.readCasesByIDP(this.authService.userData.uid);
+    const queryAccepted = this.caseService.readCasesByIDA(this.authService.userData.uid);
 
-    onSnapshot(q, (querySnapshot) => {
-      this.myCases = [];
+    onSnapshot(queryPublished, (querySnapshot) => {
+      this.myCasesP = [];
       querySnapshot.forEach((doc) => {
-        this.myCases.push(doc.data() as Case);
+        this.myCasesP.push(doc.data() as Case);
       });
     });
+    onSnapshot(queryAccepted, (querySnapshot) => {
+      this.myCasesA = [];
+      querySnapshot.forEach((doc) => {
+        this.myCasesA.push(doc.data() as Case);
+      });
+    });
+
+    //TODO 2 queries as 1 with where(uid in published/accepted)
+
+    // const q = this.caseService.readCasesByIDA(this.authService.userData.uid);
+    // onSnapshot(q, (querySnapshot) => {
+    //   this.myCasesP = [];
+    //   this.myCasesA = [];
+    //   querySnapshot.forEach((doc) => {
+    //     let d = doc.data() as Case;
+    //     if(d.accepter_uid != "") {
+    //       this.myCasesA.push(d);
+    //     } else {
+    //       this.myCasesP.push(d);
+    //     }
+    //   });
+    // });
   }
 
   public async create() {
@@ -33,9 +58,35 @@ export class MyCasesComponent implements OnInit {
     try {
       const resultCase: Case = await modalReference.result;
       await this.caseService.createCase(resultCase);
-    } catch(error) {
+    } catch (error) {
       console.log(error);
     }
+  }
+
+  public async edit(c: Case) {
+    const modalReference = this.modalService.open(null); // TODO EditCaseModalComponent
+    modalReference.componentInstance.c = c;
+
+    try {
+      const resultCase: Case = await modalReference.result;
+      await this.caseService.updateCase(resultCase);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  public async delete(c: Case) {
+    await this.caseService.deleteCase(c);
+  }
+
+  public async unaccept(c: Case) {
+    c.accepter_uid = "";
+    c.status = "open";
+    await this.caseService.updateCase(c);
+  }
+
+  public async cancel(c: Case) {
+
   }
 
 }
