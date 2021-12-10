@@ -1,6 +1,11 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
   <h2 class="h2">Case List</h2>
-  <button (click)="create()">Add</button>
+  <div class="btn-group-toggle" data-toggle="buttons">
+    <label class="btn btn-secondary active">
+      <input type="checkbox" checked autocomplete="off" (click)="toggleShowOwn()"> Show Own
+    </label>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="create()">Add</button>
 </div>
 
 <div class="pricing-header mx-auto">
@@ -21,16 +26,19 @@
       <tbody>
 
       <tr *ngFor="let c of this.cases; let i = index;">
-        <td>{{c.type}}</td>
-        <td>{{c.publisher_uid}}</td>
-        <td>{{c.start}}</td>
-        <td>{{c.end}}</td>
-        <td>{{c.date}}</td>
-        <td>{{c.status}}</td>
-        <td>
-          <button *ngIf="this.authService.userData.uid != c.publisher_uid" type="button" class="btn btn-primary" (click)="accept(c)">Book</button>
-          <button *ngIf="this.authService.userData.uid == c.publisher_uid" type="button" class="btn btn-danger" disabled>Your Own</button>
-        </td>
+        <ng-container *ngIf="showOwn || c.publisher_uid != this.authService.userData.uid">
+          <td>{{c.type}}</td>
+          <td>{{c.publisher_uid}}</td>
+          <td>{{c.start}}</td>
+          <td>{{c.end}}</td>
+          <td>{{c.date}}</td>
+          <td>{{c.status}}</td>
+          <td>
+            <button *ngIf="this.authService.userData.uid != c.publisher_uid" type="button" class="btn btn-primary" (click)="accept(c)">Book</button>
+            <button *ngIf="this.authService.userData.uid == c.publisher_uid" type="button" class="btn btn-danger" disabled>Your Own</button>
+          </td>
+        </ng-container>
+
       </tr>
 
       </tbody>
