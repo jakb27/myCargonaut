@@ -1,0 +1,43 @@
+.app-header {
+  background: #373F68;
+
+}
+.navbar-toggler {
+  background: #ad1fea;
+  border-color: transparent;
+}
+.navbar-toggler:focus{
+  border-color: transparent;
+  box-shadow: none;
+}
+.app-name {
+  flex: 0 0 10%;
+  margin-left: 20px;
+}
+.navItems {
+  flex: 0 0 80%;
+}
+.navbar-brand, .nav-link {
+  color: white !important;
+  margin-left: 1em;
+}
+.nav-link:hover {
+  color: #ad1fea !important;
+}
+.nav-action {
+  display: flex;
+  flex-flow: row;
+  margin-left: 1em;
+}
+.btn-search {
+  margin-left: 10px;
+  background: #ad1fea;
+  color: white;
+}
+
+
+@media only screen and (min-width: 100px) {
+  .nav-action {
+
+  }
+}
