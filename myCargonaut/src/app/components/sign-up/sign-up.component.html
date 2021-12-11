@@ -1,31 +1,36 @@
+<div>
+  <nav class="navbar sign-in-nav">
+    <span class="navbar-brand mb-0 h1 app-name">MyCargonaut</span>
+  </nav>
+</div>
 <div class="displayTable">
   <div class="displayTableCell">
 
     <div class="authBlock">
       <h3>Sign Up</h3>
 
-      <div class="formGroup">
-        <input type="text" class="formControl" placeholder="Firstname" #firstName required>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Firstname" #firstName required>
       </div>
 
-      <div class="formGroup">
-        <input type="text" class="formControl" placeholder="Lastname" #lastName required>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Lastname" #lastName required>
       </div>
 
-      <div class="formGroup">
-        <input type="date" class="formControl" placeholder="Birthday" #birthday required>
+      <div class="form-group">
+        <input type="date" class="form-control" placeholder="Birthday" #birthday required>
       </div>
 
-      <div class="formGroup">
-        <input type="email" class="formControl" placeholder="Email Address" #userEmail required>
+      <div class="form-group">
+        <input type="email" class="form-control" placeholder="Email Address" #userEmail required>
       </div>
 
-      <div class="formGroup">
-        <input type="password" class="formControl" placeholder="Password" #userPwd required>
+      <div class="form-group">
+        <input type="password" class="form-control" placeholder="Password" #userPwd required>
       </div>
 
-      <div class="formGroup">
-        <input type="button" class="btn btnPrimary" value="Sign Up" (click)="authService.SignUp(firstName.value, lastName.value, birthday.value, userEmail.value, userPwd.value)">
+      <div class="form-group">
+        <input type="button" class="btn btn-sign-up" value="Sign Up" (click)="authService.SignUp(firstName.value, lastName.value, birthday.value, userEmail.value, userPwd.value)">
       </div>
 
       <div class="formGroup">
@@ -34,7 +39,7 @@
     </div>
 
     <div class="redirectToLogin">
-      <span>Already have an account? <span class="redirect" routerLink="/sign-in">Log In</span></span>
+      <span>Already have an account? <a class="redirect link-sign-in" routerLink="/sign-in">Log In</a></span>
     </div>
   </div>
 
