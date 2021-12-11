@@ -1,34 +1,39 @@
+<div>
+  <nav class="navbar sign-in-nav">
+    <span class="navbar-brand mb-0 h1 app-name">MyCargonaut</span>
+  </nav>
+</div>
 <div class="displayTable">
   <div class="displayTableCell">
-
     <div class="authBlock">
       <h3>Sign In</h3>
-      <div class="formGroup">
-        <input type="text" class="formControl" placeholder="Username" #userName required>
+      <div class="form-group">
+        <input type="text" id="username" class="form-control" placeholder="Username" #userName required>
       </div>
 
-      <div class="formGroup">
-        <input type="password" class="formControl" placeholder="Password" #userPassword required>
+      <div class="form-group">
+        <input type="password" class="form-control" placeholder="Password" #userPassword required>
       </div>
 
-      <div class="formGroup">
-        <input type="button" class="btn btnPrimary" value="Log in"
+      <div class="form-group">
+        <input type="button" class="btn btn-log-in" value="Log in"
                (click)="authService.SignIn(userName.value, userPassword.value)">
       </div>
 
-      <div class="formGroup">
+      <div class="form-group">
         <span class="or"><span class="orInner">Or</span></span>
       </div>
 
-      <div class="forgotPassword">
-        <span routerLink="/forgot-password">Forgot Password?</span>
+      <div class="forgotPassword sign-in-link">
+        <a routerLink="/forgot-password" class="sign-in-link">Forgot Password?</a>
       </div>
     </div>
 
     <div class="redirectToLogin">
-      <span>Don't have an account?<span class="redirect" routerLink="/register-user"> Sign Up</span></span>
+      <span>Don't have an account?<a class="redirect sign-in-link" routerLink="/register-user"> Sign Up</a></span>
     </div>
 
   </div>
 </div>
+
 
