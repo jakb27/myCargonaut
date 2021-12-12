@@ -27,8 +27,6 @@ jobs:
       name: Firebase_Deploy
       url: mycargonaut-2e064.web.app
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2
       - name: Deploy to firebase
         uses: w9jds/firebase-action@master
         with:
