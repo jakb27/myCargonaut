@@ -5,10 +5,8 @@ on:
     branches: [ main ]
 
 jobs:
-  build_and_test:
-
+  test_and_linter:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -19,9 +17,9 @@ jobs:
       - run: (cd myCargonaut && npm run lint)
       - run: (cd myCargonaut && npm run test:ci)
   
-  deploy:
+  build_and_deploy:
     runs-on: ubuntu-latest
-    needs: build_and_test
+    needs: test_and_linter
     environment: 
       name: Firebase
       url: https://mycargonaut-2e064.web.app
