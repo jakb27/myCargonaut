@@ -12,14 +12,14 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - name: Install Dependencies
-        run: (cd myCargonaut && npm ci)
-      - name: Install Angular-CLI
-        run: (cd myCargonaut && npm i -g @angular/cli)
-      - name: Run Linter
-        run: (cd myCargonaut && npm run lint)
-      - name: Run Tests
-        run: (cd myCargonaut && npm run test:ci)
+     # - name: Install Dependencies
+     #   run: (cd myCargonaut && npm ci)
+     # - name: Install Angular-CLI
+     #   run: (cd myCargonaut && npm i -g @angular/cli)
+     # - name: Run Linter
+     #   run: (cd myCargonaut && npm run lint)
+     # - name: Run Tests
+     #   run: (cd myCargonaut && npm run test:ci)
   
   build_and_deploy:
     runs-on: ubuntu-latest
