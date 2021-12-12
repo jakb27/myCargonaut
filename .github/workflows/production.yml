@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-  testing_and_linter:
+  test_and_linter:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -19,7 +19,7 @@ jobs:
   
   build_and_deploy:
     runs-on: ubuntu-latest
-    needs: testing_and_linter
+    needs: test_and_linter
     environment: 
       name: Firebase
       url: https://mycargonaut-2e064.web.app
