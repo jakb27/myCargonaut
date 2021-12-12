@@ -36,7 +36,7 @@ jobs:
         run: (cd myCargonaut && npm ci)
       - name: Run Build 
         run: (cd myCargonaut && npm run build)
-      - name: Deploy to firebase
+      - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
