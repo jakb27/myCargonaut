@@ -20,6 +20,5 @@ jobs:
           node-version: '14'
       - run: (cd myCargonaut && npm ci)
       - run: (cd myCargonaut && npm i -g @angular/cli)
-      - run: (cd myCargonaut && npm run build)
       - run: (cd myCargonaut && npm run lint)
       - run: (cd myCargonaut && npm run test:ci)
