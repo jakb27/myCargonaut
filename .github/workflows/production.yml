@@ -14,8 +14,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - run: (cd myCargonaut && npm ci)
-      - run: (cd myCargonaut && npm i -g @angular/cli)
+     # - run: (cd myCargonaut && npm ci)
+     # - run: (cd myCargonaut && npm i -g @angular/cli)
      # - run: (cd myCargonaut && npm run lint)
      # - run: (cd myCargonaut && npm run test:ci)
   
@@ -24,7 +24,7 @@ jobs:
     needs: build_and_test
     environment: 
       name: Firebase_Deploy
-      url: mycargonaut-2e064.web.app
+      url: https://mycargonaut-2e064.web.app
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
