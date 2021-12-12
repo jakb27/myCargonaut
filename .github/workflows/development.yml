@@ -9,7 +9,7 @@ on:
 
 
 jobs:
-  build_and_test:
+  test_and_linter:
 
     runs-on: ubuntu-latest
 
