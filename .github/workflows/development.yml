@@ -8,7 +8,7 @@ on:
     branches: [ main, dev ]
 
 jobs:
-  testing_and_linter:
+  build_test_and_linter:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -17,5 +17,6 @@ jobs:
           node-version: '14'
       - run: (cd myCargonaut && npm ci)
       - run: (cd myCargonaut && npm i -g @angular/cli)
+      - run: (cd myCargonaut && npm run build)
       - run: (cd myCargonaut && npm run lint)
       - run: (cd myCargonaut && npm run test:ci)
