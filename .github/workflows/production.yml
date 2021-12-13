@@ -53,10 +53,13 @@ jobs:
      - uses: actions/setup-node@v2
        with:
           node-version: '14'
-     - run: (cd myCargonaut && npm ci)
-     - run: (cd myCargonaut && npm install -g @compodoc/compodoc)   
-     - run: (cd myCargonaut && npm run compodoc)
-     - name: Deploy
+     - name: Install Dependencies
+       run: (cd myCargonaut && npm ci)
+     - name: Install Compodoc
+       run: (cd myCargonaut && npm install -g @compodoc/compodoc) 
+     - name: Run Compodoc
+       run: (cd myCargonaut && npm run compodoc)
+     - name: Deploy Documentation to Github-Pages
        uses: peaceiris/actions-gh-pages@v3
        with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
