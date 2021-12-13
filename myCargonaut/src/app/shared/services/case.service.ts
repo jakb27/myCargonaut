@@ -21,7 +21,7 @@ export class CaseService {
   }
 
   // readCasesByID(uid: string) {
-  //   return query(collection(this.fs.firestore, 'cases'), where(uid, "in", ["publisher_uid", "accepter_uid"]));
+  //   return query(collection(this.fs.firestore, 'cases'), where("publisher_uid", "==", uid), where("accepter_uid", "==", uid));
   // }
 
   readCasesByIDP(uid: string) {
