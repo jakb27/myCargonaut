@@ -13,7 +13,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AuthService} from "./shared/services/auth.service";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
-import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import {AngularFirestoreModule, SETTINGS} from "@angular/fire/compat/firestore";
 import {CaseService} from "./shared/services/case.service";
 import {CaseListComponent} from './components/case-list/case-list.component';
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
@@ -54,7 +54,14 @@ import { EditCaseModalComponent } from './components/edit-case-modal/edit-case-m
     FormsModule,
   ],
   providers: [
-    ScreenTrackingService, UserTrackingService, AuthService, CaseService
+    ScreenTrackingService, UserTrackingService, AuthService, CaseService,
+    {
+      provide: SETTINGS,
+      useValue: environment.production? undefined : {
+        host: 'localhost:8080',
+        ssl: false
+      }
+    }
   ],
   bootstrap: [AppComponent]
 })
