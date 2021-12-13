@@ -19,6 +19,7 @@ export class AuthService {
     public router: Router,
     public ngZone: NgZone
   ) {
+    
     if(!environment.production){
       afAuth.useEmulator("http://localhost:9099");
     }
