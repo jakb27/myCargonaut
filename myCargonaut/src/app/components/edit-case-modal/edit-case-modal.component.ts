@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Case} from "../../shared/models/case";
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {NgbActiveModal, NgbDate} from "@ng-bootstrap/ng-bootstrap";
 import {AuthService} from "../../shared/services/auth.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-edit-case-modal',
@@ -15,6 +16,10 @@ export class EditCaseModalComponent implements OnInit {
   public case!: Case;
   public type = "request";
 
+  form = new FormGroup({
+    control: new FormControl(new Date(),Validators.required)
+  });
+
   constructor(public activeModal: NgbActiveModal, private authService: AuthService) {
     this.case = {
       publisher_uid: authService.userData.uid,
@@ -22,7 +27,7 @@ export class EditCaseModalComponent implements OnInit {
       status: "open",
       start: "",
       end: "",
-      date: Date.now(),
+      dateTime: null,
       id: "",
       accepter_uid: "",
       price: 0
@@ -34,6 +39,7 @@ export class EditCaseModalComponent implements OnInit {
     this.case.end = this.c.end;
     this.case.id = this.c.id;
     this.case.price = this.c.price;
+    this.case.dateTime = this.c.dateTime; // TODO
   }
 
   save(): void {

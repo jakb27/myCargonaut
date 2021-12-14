@@ -30,15 +30,14 @@
     <label for="endInput">Price</label>
     <input type="number" class="form-control" id="price" min="0" [(ngModel)]="case.price">
   </div>
+
   <div class="form-group">
-    <label for="dateOfOffer">Date of Offer</label>
-    <div class="input-group">
-      <input id="dateOfOffer" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
-      </div>
-    </div>
+    <label>Pick Date and Time</label>
+    <form [formGroup]="form">
+      <ngbDateTimePicker formControlName="control" [meridian]="true" [hourStep]="1" [minuteStep]="5"></ngbDateTimePicker>
+    </form>
   </div>
+
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark"
