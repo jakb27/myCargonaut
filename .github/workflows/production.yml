@@ -1,0 +1,66 @@
+name: Production
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test_and_linter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install Dependencies
+        run: (cd myCargonaut && npm ci)
+      - name: Install Angular-CLI
+        run: (cd myCargonaut && npm i -g @angular/cli)
+      - name: Run Linter
+        run: (cd myCargonaut && npm run lint)
+      - name: Run Tests
+        run: (cd myCargonaut && npm run test:ci)
+  
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    needs: test_and_linter
+    environment: 
+      name: Firebase
+      url: https://mycargonaut-2e064.web.app
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install Dependencies
+        run: (cd myCargonaut && npm ci)
+      - name: Run Build 
+        run: (cd myCargonaut && npm run build)
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          PROJECT_PATH: myCargonaut
+          
+  deploy_documentation:
+
+    runs-on: ubuntu-latest
+    needs: build_and_deploy
+    steps:
+     - uses: actions/checkout@v2
+     - uses: actions/setup-node@v2
+       with:
+          node-version: '14'
+     - name: Install Dependencies
+       run: (cd myCargonaut && npm ci)
+     - name: Install Compodoc
+       run: (cd myCargonaut && npm install -g @compodoc/compodoc) 
+     - name: Run Compodoc
+       run: (cd myCargonaut && npm run compodoc)
+     - name: Deploy Documentation to Github-Pages
+       uses: peaceiris/actions-gh-pages@v3
+       with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: myCargonaut/documentation
