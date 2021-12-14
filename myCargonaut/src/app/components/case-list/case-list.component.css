@@ -3,7 +3,7 @@
 }
 .case-display {
   min-height: 100px;
-  background: white;
+  background:white ;
   min-width: 200px;
   margin-top: 1.5em;
   color: #373F68;
@@ -11,7 +11,12 @@
   display: flex;
   flex-font: row;
   transition: transfrom .2s ease-in;
-  box-shadow: 1px 1px black;
+}
+.case-offer {
+  border:2px solid #005B52;
+}
+.case-request {
+  border:2px solid #506ae7;
 }
 .case-display:hover {
   transform: scale(1.04);

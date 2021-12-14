@@ -1,4 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  background: #f2f4ff;
+  background: white;
+}
+
+.noUnderline {
+  text-decoration: none !important
+}
+
+
+.bg-darkgreen {
+  background-color: #005B52;
+}
+
+.bg-light {
+  background-color: #f2f4ff;
 }
