@@ -11,7 +11,7 @@
   display: flex;
   flex-font: row;
   transition: transfrom .2s ease-in;
-  box-shadow: 1px 1px #888888;
+  box-shadow: 1px 1px black;
 }
 .case-display:hover {
   transform: scale(1.04);
@@ -62,11 +62,15 @@
 .your-case {
   background: #373F68;
 }
-.ours-case {
-
+.others-case {
+background: #005B52;
 }
 .btn-add-case {
   color: white;
+  background: #005B52;
+}
+.btn {
+  box-shadow: none;
 }
 .form-check-input {
   background: #373F68;

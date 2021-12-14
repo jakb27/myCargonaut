@@ -1,10 +1,12 @@
 .app-header {
-  background: #373F68;
-
+  background: #005B52;
 }
 .navbar-toggler {
   background: #ad1fea;
   border-color: transparent;
+}
+.btn {
+  box-shadow: none;
 }
 .navbar-toggler:focus{
   border-color: transparent;

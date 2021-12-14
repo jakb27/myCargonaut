@@ -1,7 +1,7 @@
 <div class="case-list">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h2 class="h2">Case List</h2>
-    <button type="button" class="btn btn-success btn-add-case" (click)="create()">Add Case</button>
+    <button type="button" class="btn  btn-add-case" (click)="create()">Add Case</button>
     <div class="form-check">
       <input type="checkbox" class="form-check-input" checked autocomplete="off" (click)="toggleShowOwn()">
       <label class="form-check-label active">Show Own</label>
@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="case-action">
-          <button class="btn btn-success btn-action ours-case" type="button" *ngIf="this.authService.userData.uid != c.publisher_uid" (click)="accept(c)">Book</button>
+          <button class="btn btn-action others-case" type="button" *ngIf="this.authService.userData.uid != c.publisher_uid" (click)="accept(c)">Book</button>
           <button class="btn btn-action  your-case" type="button" *ngIf="this.authService.userData.uid == c.publisher_uid" >Own</button>
         </div>
       </div>
