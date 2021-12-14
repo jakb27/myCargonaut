@@ -1,6 +1,9 @@
 .form-group {
   margin-top: 2em;
 }
+.bg-darkgreen {
+  background: #005B52;
+}
 
 .sign-in-link {
   color: black;
