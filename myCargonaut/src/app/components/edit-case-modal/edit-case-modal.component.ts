@@ -24,7 +24,8 @@ export class EditCaseModalComponent implements OnInit {
       end: "",
       date: Date.now(),
       id: "",
-      accepter_uid: ""
+      accepter_uid: "",
+      price: 0
     }
   }
 
@@ -32,6 +33,7 @@ export class EditCaseModalComponent implements OnInit {
     this.case.start = this.c.start;
     this.case.end = this.c.end;
     this.case.id = this.c.id;
+    this.case.price = this.c.price;
   }
 
   save(): void {
