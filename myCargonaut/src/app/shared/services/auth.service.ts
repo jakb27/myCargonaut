@@ -4,6 +4,7 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Router} from "@angular/router";
 import {User} from "../models/user";
 import firebase from 'firebase/compat';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,11 @@ export class AuthService {
     public router: Router,
     public ngZone: NgZone
   ) {
+    
+    if(!environment.production){
+      afAuth.useEmulator("http://localhost:9099");
+    }
+
     /* Saving user data in localstorage when
     logged in and setting up empty when logged out */
     this.afAuth.authState.subscribe(user => {
