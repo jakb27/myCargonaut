@@ -24,7 +24,7 @@
   margin-left: 1em;
 }
 .nav-link:hover {
-  color: #ad1fea !important;
+  color: black !important;
 }
 .nav-action {
   display: flex;
@@ -33,7 +33,7 @@
 }
 .btn-search {
   margin-left: 10px;
-  background: #ad1fea;
+  background: lightslategrey;
   color: white;
 }
 
