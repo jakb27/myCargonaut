@@ -15,7 +15,7 @@ export class CaseListComponent implements OnInit {
 
   cases: Case[] = [];
   showOwn: boolean = true;
-  type: string = "offer";
+  type_offer: string = "offer";
 
   constructor(public caseService: CaseService, public modalService: NgbModal, public authService: AuthService) { }
 

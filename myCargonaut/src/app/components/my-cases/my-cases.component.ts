@@ -16,7 +16,7 @@ export class MyCasesComponent implements OnInit {
 
   myCasesP: Case[] = [];
   myCasesA: Case[] = [];
-  type: string = "offer";
+  type_offer: string = "offer";
 
   constructor(public caseService: CaseService, public authService: AuthService, public modalService: NgbModal) {
   }
