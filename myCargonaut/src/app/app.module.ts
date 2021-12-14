@@ -26,7 +26,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { MyCasesComponent } from './components/my-cases/my-cases.component';
 import { EditCaseModalComponent } from './components/edit-case-modal/edit-case-modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {DateTimePickerComponent} from "./shared/custom/datetime-picker.component";
+import {DateTimePickerComponent} from "./components/custom/datetime-picker.component";
 
 @NgModule({
   declarations: [
