@@ -28,6 +28,7 @@ export class NewCaseModalComponent implements OnInit {
   save(): void {
     if(NewCaseModalComponent.isNotEmpty(this.case.start) && NewCaseModalComponent.isNotEmpty(this.case.end)) {
       this.case.type = this.type;
+      this.case.dateTime = this.form.value.control;
       this.activeModal.close(this.case);
     }
   }
