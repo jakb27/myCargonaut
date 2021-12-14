@@ -1,1 +1,17 @@
+.footer-element {
+  text-decoration: none;
+}
 
+footer {
+  background-color:  #005B52 !important;
+  margin-top: 5%;
+
+}
+
+li {
+  margin-bottom:8%;
+}
+
+.footer-git {
+  border-top: 5px;
+}

@@ -9,6 +9,7 @@ import {VerifyEmailComponent} from "./components/verify-email/verify-email.compo
 import { AuthGuard } from "./shared/guard/auth.guard";
 import {UserProfileComponent} from "./components/user-profile/user-profile.component";
 import {MyCasesComponent} from "./components/my-cases/my-cases.component";
+import {PrivacyPolicyComponent} from "./components/privacy-policy/privacy-policy.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full'},
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'my-cases', component: MyCasesComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'verify-email-address', component: VerifyEmailComponent }
+  { path: 'verify-email-address', component: VerifyEmailComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent }
 ];
 
 @NgModule({
