@@ -11,7 +11,7 @@ import {AuthService} from "../../shared/services/auth.service";
 export class NewCaseModalComponent implements OnInit {
 
   public case!: Case;
-  public type = "query";
+  public type = "request";
 
   constructor(public activeModal: NgbActiveModal, private authService: AuthService) {
     this.case = {publisher_uid: authService.userData.uid, type: this.type, status: "open", start: "", end: "", date: Date.now(), id: "", accepter_uid: ""}

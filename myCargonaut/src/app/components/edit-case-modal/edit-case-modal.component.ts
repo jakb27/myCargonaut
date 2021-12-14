@@ -13,7 +13,7 @@ export class EditCaseModalComponent implements OnInit {
   @Input() c!: Case;
 
   public case!: Case;
-  public type = "query";
+  public type = "request";
 
   constructor(public activeModal: NgbActiveModal, private authService: AuthService) {
     this.case = {
