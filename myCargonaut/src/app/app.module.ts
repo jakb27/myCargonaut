@@ -19,12 +19,15 @@ import {CaseListComponent} from './components/case-list/case-list.component';
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import {NewCaseModalComponent} from './components/new-case-modal/new-case-modal.component';
 import {NgbDatepickerModule, NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { MyCasesComponent } from './components/my-cases/my-cases.component';
 import { EditCaseModalComponent } from './components/edit-case-modal/edit-case-modal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {DateTimePickerComponent} from "./components/custom/datetime-picker.component";
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 
 @NgModule({
   declarations: [
@@ -40,19 +43,23 @@ import { EditCaseModalComponent } from './components/edit-case-modal/edit-case-m
     FooterComponent,
     UserProfileComponent,
     MyCasesComponent,
-    EditCaseModalComponent
+    EditCaseModalComponent,
+    DateTimePickerComponent,
+    PrivacyPolicyComponent
   ],
-  imports: [
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
-    AngularFirestoreModule,
-    AngularFireDatabaseModule,
-    NgbDatepickerModule,
-    NgbModule,
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-  ],
+    imports: [
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFireAuthModule,
+        AngularFirestoreModule,
+        AngularFireDatabaseModule,
+        NgbDatepickerModule,
+        NgbModule,
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+    ],
   providers: [
     ScreenTrackingService, UserTrackingService, AuthService, CaseService,
     {

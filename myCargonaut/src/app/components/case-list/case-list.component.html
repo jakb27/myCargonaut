@@ -1,48 +1,41 @@
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h2 class="h2">Case List</h2>
-  <div class="btn-group-toggle" data-toggle="buttons">
-    <label class="btn btn-secondary active">
-      <input type="checkbox" checked autocomplete="off" (click)="toggleShowOwn()"> Show Own
-    </label>
-  </div>
-  <button type="button" class="btn btn-primary" (click)="create()">Add</button>
-</div>
-
-<div class="pricing-header mx-auto">
-
-  <div class="table-responsive" >
-    <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
-      <thead>
-      <tr>
-        <th scope="col">Type</th>
-        <th scope="col">User</th>
-        <th scope="col">Start</th>
-        <th scope="col">End</th>
-        <th scope="col">Date</th>
-        <th scope="col">Status</th>
-        <th scope="col">Accept</th>
-      </tr>
-      </thead>
-      <tbody>
-
-      <tr *ngFor="let c of this.cases; let i = index;">
-        <ng-container *ngIf="showOwn || c.publisher_uid != this.authService.userData.uid">
-          <td>{{c.type}}</td>
-          <td>{{c.publisher_uid}}</td>
-          <td>{{c.start}}</td>
-          <td>{{c.end}}</td>
-          <td>{{c.date}}</td>
-          <td>{{c.status}}</td>
-          <td>
-            <button *ngIf="this.authService.userData.uid != c.publisher_uid" type="button" class="btn btn-success" (click)="accept(c)">Book</button>
-            <button *ngIf="this.authService.userData.uid == c.publisher_uid" type="button" class="btn btn-danger" disabled>Your Own</button>
-          </td>
-        </ng-container>
-
-      </tr>
-
-      </tbody>
-    </table>
+<div class="case-list">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h2 class="h2">Case List</h2>
+    <button type="button" class="btn  btn-add-case" (click)="create()">Add Case</button>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" checked autocomplete="off" (click)="toggleShowOwn()">
+      <label class="form-check-label active">Show Own</label>
+    </div>
   </div>
 
+  <div class="pricing-header mx-auto">
+    <div *ngFor="let c of this.cases; let i = index;">
+      <ng-container *ngIf="showOwn || c.publisher_uid != this.authService.userData.uid">
+      <div [ngClass]="c.type == this.type_offer ? 'case-display case-offer' : 'case-display case-request'">
+        <div class="case-start-end">
+          <p>{{c.start}}</p>
+          <p> to </p>
+          <p>{{c.end}}</p>
+        </div>
+        <div class="case-info">
+          <div class="case-date">
+            <p>Date: {{timeConverter(c.dateTime)}}</p>
+          </div>
+          <div class="case-user">User: {{c.publisher_uid}}</div>
+          <div class="case-category-status">
+            <span class="btn case-category">{{c.type}}</span>
+            <span class="btn case-status">{{c.status}}</span>
+            <span class="btn case-status">{{c.price}}€</span>
+          </div>
+        </div>
+        <div class="case-action">
+          <button class="btn btn-action others-case" type="button" *ngIf="this.authService.userData.uid != c.publisher_uid" (click)="accept(c)">Book</button>
+          <button class="btn btn-action  your-case" type="button" *ngIf="this.authService.userData.uid == c.publisher_uid" >Own</button>
+        </div>
+      </div>
+      </ng-container>
+    </div>
+
+  </div>
 </div>
+

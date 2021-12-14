@@ -1,10 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" >myCargonaut</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light app-header">
+  <a class="navbar-brand app-name" >MyCargonaut</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse navItems" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" routerLink="/dashboard">Dashboard</a>
@@ -17,16 +17,19 @@
       <li class="nav-item active">
         <a class="nav-link" routerLink="/user-profile">Profile</a>
       </li>
-
+    </ul>
+    <form class="form-inline my-2 my-lg-0 nav-action">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn  btn-search my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" (click)="authService.SignOut()">
-          <i class="fas fa-sign-out-alt"></i>Log out
+        <a class="nav-link log-out" (click)="authService.SignOut()">
+          <i class="fa fa-sign-out-alt"></i>Log out
         </a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+
   </div>
 </nav>
+

@@ -6,5 +6,6 @@ export interface Case {
   accepter_uid: string,
   start: string,
   end: string,
-  date: number  //TODO date
+  dateTime: any,
+  price: number
 }
