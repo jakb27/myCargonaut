@@ -1,37 +1,17 @@
-.displayTable {
-  margin: 2em 20em 2em 20em;
-  color:#005B52 ;
-}
-.sign-in-nav {
-  background:#005B52 ;
-  color: white;
-}
-.app-name {
-  margin-left: 2em;
-}
-.displayTableCell {
-  margin: 5em 5em 5em 5em;
-}
 .form-group {
   margin-top: 2em;
 }
-.btn-log-in {
-  background:#005B52;
-  color: white;
-}
-.app-logo {
-  max-width: 100%;
-  max-height: 500px;
-}
+
 .sign-in-link {
-  color:#373F68 ;
-}
-@media only screen and (max-width: 800px) {
-  .displayTableCell {
-    margin: 5em 5em 5em 5em;
-  }
-  .displayTable {
-    margin: 2em 5em 5em 5em;
-  }
+  color: black;
 }
 
+.form-control {
+  background-color: #f2f4ff;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
