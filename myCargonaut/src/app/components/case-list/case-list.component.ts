@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {Case} from "../../shared/models/case";
 import {CaseService} from "../../shared/services/case.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
@@ -7,9 +7,9 @@ import {AuthService} from "../../shared/services/auth.service";
 import {onSnapshot} from "@angular/fire/firestore";
 
 @Component({
-  selector: 'app-case-list',
-  templateUrl: './case-list.component.html',
-  styleUrls: ['./case-list.component.css']
+  selector: "app-case-list",
+  templateUrl: "./case-list.component.html",
+  styleUrls: ["./case-list.component.css"]
 })
 export class CaseListComponent implements OnInit {
 
@@ -42,7 +42,7 @@ export class CaseListComponent implements OnInit {
 
   public async accept(c: Case){
     c.accepter_uid = this.authService.userData.uid;
-    c.status = "booked"
+    c.status = "booked";
     await this.caseService.updateCase(c);
   }
 
@@ -50,15 +50,5 @@ export class CaseListComponent implements OnInit {
     this.showOwn = !this.showOwn;
   }
 
-  public timeConverter(UNIX_timestamp: any){
-    let a = new Date(UNIX_timestamp * 1000);
-    let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    let year = a.getFullYear();
-    let month = months[a.getMonth()];
-    let date = a.getDate();
-    let hour = a.getHours();
-    let min = a.getMinutes() < 10 ? '0' + a.getMinutes() : a.getMinutes();
-    let sec = a.getSeconds() < 10 ? '0' + a.getSeconds() : a.getSeconds();
-    return date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
-  }
+
 }

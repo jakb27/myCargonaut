@@ -1,11 +1,11 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CaseListComponent } from './case-list.component';
+import { CaseListComponent } from "./case-list.component";
 import {AngularFireDatabase} from "@angular/fire/compat/database";
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../../../environments/environment";
 
-describe('CaseListComponent', () => {
+describe("CaseListComponent", () => {
   let component: CaseListComponent;
   let fixture: ComponentFixture<CaseListComponent>;
 
@@ -14,7 +14,7 @@ describe('CaseListComponent', () => {
       declarations: [ CaseListComponent ],
       // providers:[{provide: AngularFireDatabase, useValue: mockDB}] TODO
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

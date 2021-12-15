@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {CaseService} from "../../shared/services/case.service";
 import {Case} from "../../shared/models/case";
 import {AuthService} from "../../shared/services/auth.service";
@@ -8,9 +8,9 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {EditCaseModalComponent} from "../edit-case-modal/edit-case-modal.component";
 
 @Component({
-  selector: 'app-my-cases',
-  templateUrl: './my-cases.component.html',
-  styleUrls: ['./my-cases.component.css']
+  selector: "app-my-cases",
+  templateUrl: "./my-cases.component.html",
+  styleUrls: ["./my-cases.component.css"]
 })
 export class MyCasesComponent implements OnInit {
 

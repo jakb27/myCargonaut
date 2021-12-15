@@ -2,7 +2,7 @@ import {Component, ElementRef, forwardRef, Input} from "@angular/core";
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 
 @Component({
-  selector: "ngbDateTimePicker",
+  selector: "app-ngb-date-time-picker",
   template: `
     <div ngbDropdown (openChange)="!$event && onTouch()">
       <button
@@ -51,7 +51,7 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 export class DateTimePickerComponent implements ControlValueAccessor {
   @Input() mask = "medium";
   @Input() meridian: boolean = false;
-  @Input() placeholder: string = "yyyy/MM/dd hh:mm"
+  @Input() placeholder: string = "yyyy/MM/dd hh:mm";
   @Input() hourStep = 1;
   @Input() minuteStep = 1;
 

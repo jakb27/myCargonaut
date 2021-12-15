@@ -1,13 +1,13 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from "@angular/core";
 import {Case} from "../../shared/models/case";
-import {NgbActiveModal, NgbDate} from "@ng-bootstrap/ng-bootstrap";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {AuthService} from "../../shared/services/auth.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
-  selector: 'app-edit-case-modal',
-  templateUrl: './edit-case-modal.component.html',
-  styleUrls: ['./edit-case-modal.component.css']
+  selector: "app-edit-case-modal",
+  templateUrl: "./edit-case-modal.component.html",
+  styleUrls: ["./edit-case-modal.component.css"]
 })
 export class EditCaseModalComponent implements OnInit {
 
@@ -17,7 +17,7 @@ export class EditCaseModalComponent implements OnInit {
   public type = "request";
 
   form = new FormGroup({
-    control: new FormControl(new Date(),Validators.required)
+    control: new FormControl(new Date(), Validators.required)
   });
 
   constructor(public activeModal: NgbActiveModal, private authService: AuthService) {
@@ -31,7 +31,7 @@ export class EditCaseModalComponent implements OnInit {
       id: "",
       accepter_uid: "",
       price: 0
-    }
+    };
   }
 
   ngOnInit(): void {
