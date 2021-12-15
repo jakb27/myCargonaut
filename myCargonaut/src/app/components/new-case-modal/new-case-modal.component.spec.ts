@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { NewCaseModalComponent } from './new-case-modal.component';
+import { NewCaseModalComponent } from "./new-case-modal.component";
 
-describe('NewCaseModalComponent', () => {
+describe("NewCaseModalComponent", () => {
   let component: NewCaseModalComponent;
   let fixture: ComponentFixture<NewCaseModalComponent>;
 
@@ -10,7 +10,7 @@ describe('NewCaseModalComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ NewCaseModalComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

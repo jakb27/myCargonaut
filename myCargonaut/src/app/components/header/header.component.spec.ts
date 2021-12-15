@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { HeaderComponent } from './header.component';
+import { HeaderComponent } from "./header.component";
 
-describe('HeaderComponent', () => {
+describe("HeaderComponent", () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
 
@@ -10,7 +10,7 @@ describe('HeaderComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ HeaderComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

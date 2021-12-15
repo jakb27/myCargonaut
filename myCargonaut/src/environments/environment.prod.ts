@@ -1,12 +1,12 @@
 export const environment = {
   firebase: {
-    projectId: 'mycargonaut-2e064',
-    appId: '1:1045911373307:web:2bc4905fe1c719f57db75e',
-    storageBucket: 'mycargonaut-2e064.appspot.com',
-    apiKey: 'AIzaSyCWSr3InrPkGLL6JEzqc0XYup_Pe3rG20M',
-    authDomain: 'mycargonaut-2e064.firebaseapp.com',
-    messagingSenderId: '1045911373307',
-    measurementId: 'G-9K0V7W197B',
+    projectId: "mycargonaut-2e064",
+    appId: "1:1045911373307:web:2bc4905fe1c719f57db75e",
+    storageBucket: "mycargonaut-2e064.appspot.com",
+    apiKey: "AIzaSyCWSr3InrPkGLL6JEzqc0XYup_Pe3rG20M",
+    authDomain: "mycargonaut-2e064.firebaseapp.com",
+    messagingSenderId: "1045911373307",
+    measurementId: "G-9K0V7W197B",
   },
   production: true
 };
