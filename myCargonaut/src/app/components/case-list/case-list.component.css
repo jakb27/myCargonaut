@@ -1,0 +1,88 @@
+.case-list {
+  margin: 2em 5em 2em 10em;
+}
+.case-display {
+  min-height: 100px;
+  background: white;
+  min-width: 200px;
+  margin-top: 1.5em;
+  color: #373F68;
+  border-radius: 0.8em;
+  display: flex;
+  flex-font: row;
+  transition: transfrom .2s ease-in;
+}
+.case-offer {
+  border:2px solid #005B52;
+}
+.case-request {
+  border:2px solid #506ae7;
+}
+.case-display:hover {
+  transform: scale(1.04);
+}
+.case-start-end {
+  flex: 0 0 15%;
+  margin-right: 10%;
+  margin-left: 2%;
+  font-weight: bold;
+}
+.case-action {
+  flex: 0 0 10%;
+  align-self: center;
+  border-radius: 0.3em;
+  text-align: center;
+}
+.case-action > .btn {
+  color: white;
+}
+.case-info {
+  flex: 0 0 50%;
+  margin-left: 10%;
+}
+.case-date {
+  font-weight: bold;
+}
+.case-category-status {
+  display: flex;
+  flex-flow: row;
+  margin-top: 0.5em;
+}
+.case-category {
+  margin-right: 10px;
+  background: #f2f4ff;
+  border-radius: 0.3em;
+  border: none;
+  color: #506ae7;
+  font-weight: bold;
+}
+.case-status {
+  margin-right: 10px;
+  background: #f2f4ff;
+  border-radius: 0.3em;
+  border: none;
+  color: #373F68;
+  font-weight: bold;
+}
+.your-case {
+  background: #373F68;
+}
+.others-case {
+background: #005B52;
+}
+.btn-add-case {
+  color: white;
+  background: #005B52;
+}
+.btn {
+  box-shadow: none;
+}
+.form-check-input {
+  background: #373F68;
+  color: white;
+}
+@media only screen and (max-width: 800px) {
+  .case-list {
+    margin: 1em 1em 1em 1em;
+  }
+}

@@ -1,8 +1,8 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from "@angular/core/testing";
 
-import {EditCaseModalComponent} from './edit-case-modal.component';
+import {EditCaseModalComponent} from "./edit-case-modal.component";
 
-describe('EditCaseModalComponent', () => {
+describe("EditCaseModalComponent", () => {
   let component: EditCaseModalComponent;
   let fixture: ComponentFixture<EditCaseModalComponent>;
 

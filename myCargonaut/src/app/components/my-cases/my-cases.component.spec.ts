@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { MyCasesComponent } from './my-cases.component';
+import { MyCasesComponent } from "./my-cases.component";
 
-describe('MyCasesComponent', () => {
+describe("MyCasesComponent", () => {
   let component: MyCasesComponent;
   let fixture: ComponentFixture<MyCasesComponent>;
 
@@ -10,7 +10,7 @@ describe('MyCasesComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ MyCasesComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
