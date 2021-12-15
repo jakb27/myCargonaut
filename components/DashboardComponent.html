@@ -298,13 +298,13 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, OnInit} from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, OnInit} from &quot;@angular/core&quot;;
 import {AuthService} from &quot;../../shared/services/auth.service&quot;;
 
 @Component({
-  selector: &#x27;app-dashboard&#x27;,
-  templateUrl: &#x27;./dashboard.component.html&#x27;,
-  styleUrls: [&#x27;./dashboard.component.css&#x27;]
+  selector: &quot;app-dashboard&quot;,
+  templateUrl: &quot;./dashboard.component.html&quot;,
+  styleUrls: [&quot;./dashboard.component.css&quot;]
 })
 export class DashboardComponent implements OnInit {
 
@@ -323,7 +323,7 @@ export class DashboardComponent implements OnInit {
 &lt;app-header&gt;&lt;/app-header&gt;
 
 &lt;!-- Main --&gt;
-&lt;div class&#x3D;&quot;container-fluid&quot;&gt;
+&lt;div class&#x3D;&quot;app-dashboard&quot;&gt;
   &lt;div class&#x3D;&quot;row&quot;&gt;
     &lt;!-- Main content --&gt;
     &lt;main role&#x3D;&quot;main&quot; class&#x3D;&quot;col-md-9 ml-sm-auto col-lg-10 px-4&quot;&gt;
@@ -334,6 +334,10 @@ export class DashboardComponent implements OnInit {
 
   &lt;/div&gt;
 &lt;/div&gt;
+
+
+&lt;!-- Footer --&gt;
+&lt;app-footer&gt;&lt;/app-footer&gt;
 </code></pre>
     </div>
 
@@ -341,7 +345,10 @@ export class DashboardComponent implements OnInit {
                 <p class="comment">
                     <code>./dashboard.component.css</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
+                <pre class="line-numbers"><code class="language-scss">app-dashboard {
+
+}
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -369,8 +376,8 @@ export class DashboardComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- Top navigation --><app-header></app-header><!-- Main --><div class="container-fluid">  <div class="row">    <!-- Main content -->    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">      <app-case-list></app-case-list>    </main>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CaseListComponent', 'selector': 'app-case-list'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'EditCaseModalComponent', 'selector': 'app-edit-case-modal'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MyCasesComponent', 'selector': 'app-my-cases'},{'name': 'NewCaseModalComponent', 'selector': 'app-new-offer-modal'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
+        var COMPONENT_TEMPLATE = '<div><!-- Top navigation --><app-header></app-header><!-- Main --><div class="app-dashboard">  <div class="row">    <!-- Main content -->    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">      <app-case-list></app-case-list>    </main>  </div></div><!-- Footer --><app-footer></app-footer></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CaseListComponent', 'selector': 'app-case-list'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DateTimePickerComponent', 'selector': 'app-ngb-date-time-picker'},{'name': 'EditCaseModalComponent', 'selector': 'app-edit-case-modal'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MyCasesComponent', 'selector': 'app-my-cases'},{'name': 'NewCaseModalComponent', 'selector': 'app-new-offer-modal'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'DashboardComponent'};
 </script>

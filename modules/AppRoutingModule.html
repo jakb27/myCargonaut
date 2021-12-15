@@ -72,9 +72,9 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
 
-import { Routes, RouterModule } from &#x27;@angular/router&#x27;;
+import { Routes, RouterModule } from &quot;@angular/router&quot;;
 import {SignInComponent} from &quot;./components/sign-in/sign-in.component&quot;;
 import {SignUpComponent} from &quot;./components/sign-up/sign-up.component&quot;;
 import {DashboardComponent} from &quot;./components/dashboard/dashboard.component&quot;;
@@ -83,16 +83,18 @@ import {VerifyEmailComponent} from &quot;./components/verify-email/verify-email.
 import { AuthGuard } from &quot;./shared/guard/auth.guard&quot;;
 import {UserProfileComponent} from &quot;./components/user-profile/user-profile.component&quot;;
 import {MyCasesComponent} from &quot;./components/my-cases/my-cases.component&quot;;
+import {PrivacyPolicyComponent} from &quot;./components/privacy-policy/privacy-policy.component&quot;;
 
 const routes: Routes &#x3D; [
-  { path: &#x27;&#x27;, redirectTo: &#x27;/sign-in&#x27;, pathMatch: &#x27;full&#x27;},
-  { path: &#x27;sign-in&#x27;, component: SignInComponent},
-  { path: &#x27;register-user&#x27;, component: SignUpComponent},
-  { path: &#x27;user-profile&#x27;, component: UserProfileComponent, canActivate: [AuthGuard]},
-  { path: &#x27;dashboard&#x27;, component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: &#x27;my-cases&#x27;, component: MyCasesComponent, canActivate: [AuthGuard] },
-  { path: &#x27;forgot-password&#x27;, component: ForgotPasswordComponent },
-  { path: &#x27;verify-email-address&#x27;, component: VerifyEmailComponent }
+  { path: &quot;&quot;, redirectTo: &quot;/sign-in&quot;, pathMatch: &quot;full&quot;},
+  { path: &quot;sign-in&quot;, component: SignInComponent},
+  { path: &quot;register-user&quot;, component: SignUpComponent},
+  { path: &quot;user-profile&quot;, component: UserProfileComponent, canActivate: [AuthGuard]},
+  { path: &quot;dashboard&quot;, component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: &quot;my-cases&quot;, component: MyCasesComponent, canActivate: [AuthGuard] },
+  { path: &quot;forgot-password&quot;, component: ForgotPasswordComponent },
+  { path: &quot;verify-email-address&quot;, component: VerifyEmailComponent },
+  { path: &quot;privacy-policy&quot;, component: PrivacyPolicyComponent }
 ];
 
 @NgModule({

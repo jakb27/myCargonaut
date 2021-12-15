@@ -298,13 +298,13 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &quot;@angular/core&quot;;
 import {AuthService} from &quot;../../shared/services/auth.service&quot;;
 
 @Component({
-  selector: &#x27;app-user-profile&#x27;,
-  templateUrl: &#x27;./user-profile.component.html&#x27;,
-  styleUrls: [&#x27;./user-profile.component.css&#x27;]
+  selector: &quot;app-user-profile&quot;,
+  templateUrl: &quot;./user-profile.component.html&quot;,
+  styleUrls: [&quot;./user-profile.component.css&quot;]
 })
 export class UserProfileComponent implements OnInit {
 
@@ -322,27 +322,31 @@ export class UserProfileComponent implements OnInit {
 &lt;app-header&gt;&lt;/app-header&gt;
 
 &lt;!--Main--&gt;
-&lt;div class&#x3D;&quot;inner-adjust&quot;&gt;
+&lt;div class&#x3D;&quot;container-fluid&quot;&gt;
+  &lt;div class&#x3D;&quot;inner-adjust&quot;&gt;
 
-  &lt;div class&#x3D;&quot;pt-3 pb-2 mb-3 border-bottom&quot;&gt;
-    &lt;h1 class&#x3D;&quot;h2&quot;&gt;User Profile&lt;/h1&gt;
-  &lt;/div&gt;
-  &lt;!-- Show user data when logged in --&gt;
-  &lt;div class&#x3D;&quot;row&quot; *ngIf&#x3D;&quot;authService.userData as user&quot;&gt;
-    &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
-      &lt;div class&#x3D;&quot;media&quot;&gt;
+    &lt;div class&#x3D;&quot;pt-3 pb-2 mb-3 border-bottom&quot;&gt;
+      &lt;h1 class&#x3D;&quot;h2&quot;&gt;User Profile&lt;/h1&gt;
+    &lt;/div&gt;
+    &lt;!-- Show user data when logged in --&gt;
+    &lt;div class&#x3D;&quot;row&quot; *ngIf&#x3D;&quot;authService.userData as user&quot;&gt;
+      &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+        &lt;div class&#x3D;&quot;media&quot;&gt;
 
-        &lt;div class&#x3D;&quot;media-body&quot;&gt;
-          &lt;h1&gt;Hello: &lt;strong&gt;{{(user.displayName) ? user.displayName : &#x27;User&#x27;}}&lt;/strong&gt;&lt;/h1&gt;
-          &lt;p&gt;User ID: &lt;strong&gt;{{user.uid}}&lt;/strong&gt;&lt;/p&gt;
-          &lt;p&gt;Email: &lt;strong&gt;{{user.email}}&lt;/strong&gt;&lt;/p&gt;
-          &lt;p&gt;Email Verified: &lt;strong&gt;{{user.emailVerified}}&lt;/strong&gt;&lt;/p&gt;
+          &lt;div class&#x3D;&quot;media-body&quot;&gt;
+            &lt;h1&gt;Hello: &lt;strong&gt;{{(user.displayName) ? user.displayName : &#x27;User&#x27;}}&lt;/strong&gt;&lt;/h1&gt;
+            &lt;p&gt;User ID: &lt;strong&gt;{{user.uid}}&lt;/strong&gt;&lt;/p&gt;
+            &lt;p&gt;Email: &lt;strong&gt;{{user.email}}&lt;/strong&gt;&lt;/p&gt;
+            &lt;p&gt;Email Verified: &lt;strong&gt;{{user.emailVerified}}&lt;/strong&gt;&lt;/p&gt;
+          &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-  &lt;/div&gt;
 
+  &lt;/div&gt;
 &lt;/div&gt;
+
+&lt;app-footer&gt;&lt;/app-footer&gt;
 </code></pre>
     </div>
 
@@ -378,8 +382,8 @@ export class UserProfileComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- Top navigation --><app-header></app-header><!--Main--><div class="inner-adjust">  <div class="pt-3 pb-2 mb-3 border-bottom">    <h1 class="h2">User Profile</h1>  </div>  <!-- Show user data when logged in -->  <div class="row" *ngIf="authService.userData as user">    <div class="col-md-12">      <div class="media">        <div class="media-body">          <h1>Hello: <strong>{{(user.displayName) ? user.displayName : \'User\'}}</strong></h1>          <p>User ID: <strong>{{user.uid}}</strong></p>          <p>Email: <strong>{{user.email}}</strong></p>          <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>        </div>      </div>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CaseListComponent', 'selector': 'app-case-list'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'EditCaseModalComponent', 'selector': 'app-edit-case-modal'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MyCasesComponent', 'selector': 'app-my-cases'},{'name': 'NewCaseModalComponent', 'selector': 'app-new-offer-modal'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
+        var COMPONENT_TEMPLATE = '<div><!-- Top navigation --><app-header></app-header><!--Main--><div class="container-fluid">  <div class="inner-adjust">    <div class="pt-3 pb-2 mb-3 border-bottom">      <h1 class="h2">User Profile</h1>    </div>    <!-- Show user data when logged in -->    <div class="row" *ngIf="authService.userData as user">      <div class="col-md-12">        <div class="media">          <div class="media-body">            <h1>Hello: <strong>{{(user.displayName) ? user.displayName : \'User\'}}</strong></h1>            <p>User ID: <strong>{{user.uid}}</strong></p>            <p>Email: <strong>{{user.email}}</strong></p>            <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>          </div>        </div>      </div>    </div>  </div></div><app-footer></app-footer></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CaseListComponent', 'selector': 'app-case-list'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DateTimePickerComponent', 'selector': 'app-ngb-date-time-picker'},{'name': 'EditCaseModalComponent', 'selector': 'app-edit-case-modal'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MyCasesComponent', 'selector': 'app-my-cases'},{'name': 'NewCaseModalComponent', 'selector': 'app-new-offer-modal'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'UserProfileComponent'};
 </script>

@@ -220,12 +220,12 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &quot;@angular/core&quot;;
 
 @Component({
-  selector: &#x27;app-footer&#x27;,
-  templateUrl: &#x27;./footer.component.html&#x27;,
-  styleUrls: [&#x27;./footer.component.css&#x27;]
+  selector: &quot;app-footer&quot;,
+  templateUrl: &quot;./footer.component.html&quot;,
+  styleUrls: [&quot;./footer.component.css&quot;]
 })
 export class FooterComponent implements OnInit {
 
@@ -239,7 +239,70 @@ export class FooterComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;p&gt;footer works!&lt;/p&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;!-- Footer --&gt;
+&lt;footer class&#x3D;&quot;bg-light text-center p-4 border-top site-footer fixed-bottom&quot;&gt;
+  &lt;!-- Grid container --&gt;
+  &lt;div class&#x3D;&quot;container p-4&quot;&gt;
+
+    &lt;!--Grid row--&gt;
+    &lt;div class&#x3D;&quot;row&quot;&gt;
+
+      &lt;!--Grid column--&gt;
+      &lt;div class&#x3D;&quot;col-lg-4 col-md-6 mb-4 mb-md-0&quot;&gt;
+        &lt;ul class&#x3D;&quot;list-unstyled mb-0&quot;&gt;
+          &lt;li&gt;
+            &lt;a href&#x3D;&quot;#!&quot; class&#x3D;&quot;text-white footer-element&quot;&gt;About&lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;a href&#x3D;&quot;#!&quot; class&#x3D;&quot;text-white footer-element&quot;&gt;Credits&lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;!--Grid column--&gt;
+
+      &lt;!--Grid column--&gt;
+      &lt;div class&#x3D;&quot;col-lg-4 col-md-6 mb-4 mb-md-0&quot;&gt;
+        &lt;ul class&#x3D;&quot;list-unstyled mb-0&quot;&gt;
+          &lt;li&gt;
+            &lt;a href&#x3D;&quot;#!&quot; class&#x3D;&quot;text-white footer-element&quot;&gt;Customer Service&lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;a href&#x3D;&quot;#!&quot; class&#x3D;&quot;text-white footer-element&quot;&gt;Payment Options&lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;!--Grid column--&gt;
+
+      &lt;!--Grid column--&gt;
+      &lt;div class&#x3D;&quot;col-lg-4 col-md-6 mb-4 mb-md-0&quot;&gt;
+        &lt;ul class&#x3D;&quot;list-unstyled mb-0&quot;&gt;
+          &lt;li&gt;
+            &lt;a routerLink &#x3D;&quot;/privacy-policy&quot; routerLinkActive&#x3D;&quot;active&quot; class&#x3D;&quot;text-white footer-element&quot;&gt;Privacy Policy&lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;a href&#x3D;&quot;#!&quot; class&#x3D;&quot;text-white footer-element&quot;&gt;Contact&lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;!--Grid column--&gt;
+    &lt;/div&gt;
+    &lt;!--Grid row--&gt;
+
+  &lt;/div&gt;
+  &lt;!-- Grid container --&gt;
+
+  &lt;!-- GitHub --&gt;
+  &lt;div class&#x3D;&quot;text-center p-3 footer-git border-top&quot;&gt;
+    &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; width&#x3D;&quot;48&quot; height&#x3D;&quot;48&quot; color&#x3D;&quot;white&quot; fill&#x3D;&quot;currentColor&quot; class&#x3D;&quot;bi bi-github&quot; viewBox&#x3D;&quot;0 0 16 16&quot;&gt;
+      &lt;path d&#x3D;&quot;M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z&quot;/&gt;
+    &lt;/svg&gt;
+  &lt;/div&gt;
+  &lt;!-- GitHub --&gt;
+
+&lt;/footer&gt;
+&lt;!-- Footer --&gt;
+
+
 </code></pre>
     </div>
 
@@ -247,7 +310,24 @@ export class FooterComponent implements OnInit {
                 <p class="comment">
                     <code>./footer.component.css</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
+                <pre class="line-numbers"><code class="language-scss">.footer-element {
+  text-decoration: none;
+}
+
+footer {
+  background-color:  #005B52 !important;
+  margin-top: 5%;
+
+}
+
+li {
+  margin-bottom:8%;
+}
+
+.footer-git {
+  border-top: 5px;
+}
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -275,8 +355,8 @@ export class FooterComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><p>footer works!</p></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CaseListComponent', 'selector': 'app-case-list'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'EditCaseModalComponent', 'selector': 'app-edit-case-modal'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MyCasesComponent', 'selector': 'app-my-cases'},{'name': 'NewCaseModalComponent', 'selector': 'app-new-offer-modal'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
+        var COMPONENT_TEMPLATE = '<div><!-- Footer --><footer class="bg-light text-center p-4 border-top site-footer fixed-bottom">  <!-- Grid container -->  <div class="container p-4">    <!--Grid row-->    <div class="row">      <!--Grid column-->      <div class="col-lg-4 col-md-6 mb-4 mb-md-0">        <ul class="list-unstyled mb-0">          <li>            <a href="#!" class="text-white footer-element">About</a>          </li>          <li>            <a href="#!" class="text-white footer-element">Credits</a>          </li>        </ul>      </div>      <!--Grid column-->      <!--Grid column-->      <div class="col-lg-4 col-md-6 mb-4 mb-md-0">        <ul class="list-unstyled mb-0">          <li>            <a href="#!" class="text-white footer-element">Customer Service</a>          </li>          <li>            <a href="#!" class="text-white footer-element">Payment Options</a>          </li>        </ul>      </div>      <!--Grid column-->      <!--Grid column-->      <div class="col-lg-4 col-md-6 mb-4 mb-md-0">        <ul class="list-unstyled mb-0">          <li>            <a routerLink ="/privacy-policy" routerLinkActive="active" class="text-white footer-element">Privacy Policy</a>          </li>          <li>            <a href="#!" class="text-white footer-element">Contact</a>          </li>        </ul>      </div>      <!--Grid column-->    </div>    <!--Grid row-->  </div>  <!-- Grid container -->  <!-- GitHub -->  <div class="text-center p-3 footer-git border-top">    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" color="white" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>    </svg>  </div>  <!-- GitHub --></footer><!-- Footer --></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CaseListComponent', 'selector': 'app-case-list'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DateTimePickerComponent', 'selector': 'app-ngb-date-time-picker'},{'name': 'EditCaseModalComponent', 'selector': 'app-edit-case-modal'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MyCasesComponent', 'selector': 'app-my-cases'},{'name': 'NewCaseModalComponent', 'selector': 'app-new-offer-modal'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'FooterComponent'};
 </script>

@@ -298,13 +298,13 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &quot;@angular/core&quot;;
 import {AuthService} from &quot;../../shared/services/auth.service&quot;;
 
 @Component({
-  selector: &#x27;app-sign-up&#x27;,
-  templateUrl: &#x27;./sign-up.component.html&#x27;,
-  styleUrls: [&#x27;./sign-up.component.css&#x27;]
+  selector: &quot;app-sign-up&quot;,
+  templateUrl: &quot;./sign-up.component.html&quot;,
+  styleUrls: [&quot;./sign-up.component.css&quot;]
 })
 export class SignUpComponent implements OnInit {
 
@@ -318,47 +318,46 @@ export class SignUpComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;displayTable&quot;&gt;
-  &lt;div class&#x3D;&quot;displayTableCell&quot;&gt;
-
-    &lt;div class&#x3D;&quot;authBlock&quot;&gt;
-      &lt;h3&gt;Sign Up&lt;/h3&gt;
-
-      &lt;div class&#x3D;&quot;formGroup&quot;&gt;
-        &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;formControl&quot; placeholder&#x3D;&quot;Firstname&quot; #firstName required&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container-fluid&quot;&gt;
+  &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
+    &lt;div class&#x3D;&quot;col-4 col-lg-3&quot;&gt;
+      &lt;div class&#x3D;&quot;img-fluid pt-5&quot;&gt;
+        &lt;img src&#x3D;&quot;assets/images/logo.png&quot;&gt;
       &lt;/div&gt;
+      &lt;div class&#x3D;&quot;authBlock pt-5&quot;&gt;
+        &lt;h3 class&#x3D;&quot;d-flex justify-content-center fw-bold&quot;&gt;Sign Up&lt;/h3&gt;
+        &lt;div class&#x3D;&quot;form-group&quot;&gt;
+          &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; placeholder&#x3D;&quot;Firstname&quot; #firstName required&gt;
+        &lt;/div&gt;
 
-      &lt;div class&#x3D;&quot;formGroup&quot;&gt;
-        &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;formControl&quot; placeholder&#x3D;&quot;Lastname&quot; #lastName required&gt;
+        &lt;div class&#x3D;&quot;form-group&quot;&gt;
+          &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; placeholder&#x3D;&quot;Lastname&quot; #lastName required&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;form-group&quot;&gt;
+          &lt;input type&#x3D;&quot;date&quot; class&#x3D;&quot;form-control&quot; placeholder&#x3D;&quot;Birthday&quot; #birthday required&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;form-group&quot;&gt;
+          &lt;input type&#x3D;&quot;email&quot; class&#x3D;&quot;form-control&quot; placeholder&#x3D;&quot;Email Address&quot; #userEmail required&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;form-group&quot;&gt;
+          &lt;input type&#x3D;&quot;password&quot; class&#x3D;&quot;form-control&quot; placeholder&#x3D;&quot;Password&quot; #userPwd required&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;form-group d-flex justify-content-center&quot;&gt;
+          &lt;input type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-sign-up btn-lg bg-darkgreen text-white&quot; value&#x3D;&quot;Sign Up&quot;
+                 (click)&#x3D;&quot;authService.SignUp(firstName.value, lastName.value, birthday.value, userEmail.value, userPwd.value)&quot;&gt;
+        &lt;/div&gt;
       &lt;/div&gt;
-
-      &lt;div class&#x3D;&quot;formGroup&quot;&gt;
-        &lt;input type&#x3D;&quot;date&quot; class&#x3D;&quot;formControl&quot; placeholder&#x3D;&quot;Birthday&quot; #birthday required&gt;
+      &lt;div class&#x3D;&quot;redirectToLogin d-flex justify-content-center pb-5 mt-3&quot;&gt;
+        &lt;span&gt;Already have an account? &lt;a class&#x3D;&quot;redirect sign-in-link fw-bold&quot; routerLink&#x3D;&quot;/sign-in&quot;&gt;Log In&lt;/a&gt;&lt;/span&gt;
       &lt;/div&gt;
-
-      &lt;div class&#x3D;&quot;formGroup&quot;&gt;
-        &lt;input type&#x3D;&quot;email&quot; class&#x3D;&quot;formControl&quot; placeholder&#x3D;&quot;Email Address&quot; #userEmail required&gt;
-      &lt;/div&gt;
-
-      &lt;div class&#x3D;&quot;formGroup&quot;&gt;
-        &lt;input type&#x3D;&quot;password&quot; class&#x3D;&quot;formControl&quot; placeholder&#x3D;&quot;Password&quot; #userPwd required&gt;
-      &lt;/div&gt;
-
-      &lt;div class&#x3D;&quot;formGroup&quot;&gt;
-        &lt;input type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btnPrimary&quot; value&#x3D;&quot;Sign Up&quot; (click)&#x3D;&quot;authService.SignUp(firstName.value, lastName.value, birthday.value, userEmail.value, userPwd.value)&quot;&gt;
-      &lt;/div&gt;
-
-      &lt;div class&#x3D;&quot;formGroup&quot;&gt;
-        &lt;span class&#x3D;&quot;or&quot;&gt;&lt;span class&#x3D;&quot;orInner&quot;&gt;Or&lt;/span&gt;&lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;div class&#x3D;&quot;redirectToLogin&quot;&gt;
-      &lt;span&gt;Already have an account? &lt;span class&#x3D;&quot;redirect&quot; routerLink&#x3D;&quot;/sign-in&quot;&gt;Log In&lt;/span&gt;&lt;/span&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-
 &lt;/div&gt;
+&lt;app-footer&gt;&lt;/app-footer&gt;
 </code></pre>
     </div>
 
@@ -366,7 +365,27 @@ export class SignUpComponent implements OnInit {
                 <p class="comment">
                     <code>./sign-up.component.css</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
+                <pre class="line-numbers"><code class="language-scss">.form-group {
+  margin-top: 1em;
+}
+
+.form-control {
+  background-color: #f2f4ff;
+}
+.bg-darkgreen {
+  background: #005B52;
+}
+
+.sign-in-link {
+  color: black;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -394,8 +413,8 @@ export class SignUpComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="displayTable">  <div class="displayTableCell">    <div class="authBlock">      <h3>Sign Up</h3>      <div class="formGroup">        <input type="text" class="formControl" placeholder="Firstname" #firstName required>      </div>      <div class="formGroup">        <input type="text" class="formControl" placeholder="Lastname" #lastName required>      </div>      <div class="formGroup">        <input type="date" class="formControl" placeholder="Birthday" #birthday required>      </div>      <div class="formGroup">        <input type="email" class="formControl" placeholder="Email Address" #userEmail required>      </div>      <div class="formGroup">        <input type="password" class="formControl" placeholder="Password" #userPwd required>      </div>      <div class="formGroup">        <input type="button" class="btn btnPrimary" value="Sign Up" (click)="authService.SignUp(firstName.value, lastName.value, birthday.value, userEmail.value, userPwd.value)">      </div>      <div class="formGroup">        <span class="or"><span class="orInner">Or</span></span>      </div>    </div>    <div class="redirectToLogin">      <span>Already have an account? <span class="redirect" routerLink="/sign-in">Log In</span></span>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CaseListComponent', 'selector': 'app-case-list'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'EditCaseModalComponent', 'selector': 'app-edit-case-modal'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MyCasesComponent', 'selector': 'app-my-cases'},{'name': 'NewCaseModalComponent', 'selector': 'app-new-offer-modal'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">  <div class="row justify-content-center">    <div class="col-4 col-lg-3">      <div class="img-fluid pt-5">        <img src="assets/images/logo.png">      </div>      <div class="authBlock pt-5">        <h3 class="d-flex justify-content-center fw-bold">Sign Up</h3>        <div class="form-group">          <input type="text" class="form-control" placeholder="Firstname" #firstName required>        </div>        <div class="form-group">          <input type="text" class="form-control" placeholder="Lastname" #lastName required>        </div>        <div class="form-group">          <input type="date" class="form-control" placeholder="Birthday" #birthday required>        </div>        <div class="form-group">          <input type="email" class="form-control" placeholder="Email Address" #userEmail required>        </div>        <div class="form-group">          <input type="password" class="form-control" placeholder="Password" #userPwd required>        </div>        <div class="form-group d-flex justify-content-center">          <input type="button" class="btn btn-sign-up btn-lg bg-darkgreen text-white" value="Sign Up"                 (click)="authService.SignUp(firstName.value, lastName.value, birthday.value, userEmail.value, userPwd.value)">        </div>      </div>      <div class="redirectToLogin d-flex justify-content-center pb-5 mt-3">        <span>Already have an account? <a class="redirect sign-in-link fw-bold" routerLink="/sign-in">Log In</a></span>      </div>    </div>  </div></div><app-footer></app-footer></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CaseListComponent', 'selector': 'app-case-list'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DateTimePickerComponent', 'selector': 'app-ngb-date-time-picker'},{'name': 'EditCaseModalComponent', 'selector': 'app-edit-case-modal'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MyCasesComponent', 'selector': 'app-my-cases'},{'name': 'NewCaseModalComponent', 'selector': 'app-new-offer-modal'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SignUpComponent'};
 </script>

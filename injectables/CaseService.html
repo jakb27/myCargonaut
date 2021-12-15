@@ -93,6 +93,10 @@
                                 <a href="#readCasesDashboard" >readCasesDashboard</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#timeConverter" >timeConverter</a>
+                            </li>
+                            <li>
                                 <a href="#updateCase" >updateCase</a>
                             </li>
                         </ul>
@@ -478,6 +482,77 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="timeConverter"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span ><b>timeConverter</b></span>
+                        <a href="#timeConverter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>timeConverter(UNIX_timestamp: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/app/shared/services/case.service.ts:44</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>UNIX_timestamp</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="updateCase"></a>
                     <span class="name">
                         <span ><b>updateCase</b></span>
@@ -549,13 +624,13 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Injectable} from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Injectable} from &quot;@angular/core&quot;;
 import {Case} from &quot;../models/case&quot;;
 import {AngularFirestore} from &quot;@angular/fire/compat/firestore&quot;;
 import {collection, query, where} from &quot;@angular/fire/firestore&quot;;
 
 @Injectable({
-  providedIn: &#x27;root&#x27;
+  providedIn: &quot;root&quot;
 })
 export class CaseService {
 
@@ -564,11 +639,11 @@ export class CaseService {
 
   createCase(c: Case) {
     c.id &#x3D; this.fs.createId();
-    return this.fs.collection(&#x27;cases&#x27;).doc(c.id).set(c);
+    return this.fs.collection(&quot;cases&quot;).doc(c.id).set(c);
   }
 
   readCasesDashboard() {
-    return query(collection(this.fs.firestore, &#x27;cases&#x27;), where(&quot;accepter_uid&quot;, &quot;&#x3D;&#x3D;&quot;, &quot;&quot;));
+    return query(collection(this.fs.firestore, &quot;cases&quot;), where(&quot;accepter_uid&quot;, &quot;&#x3D;&#x3D;&quot;, &quot;&quot;));
   }
 
   // readCasesByID(uid: string) {
@@ -576,20 +651,32 @@ export class CaseService {
   // }
 
   readCasesByIDP(uid: string) {
-    return query(collection(this.fs.firestore, &#x27;cases&#x27;), where(&quot;publisher_uid&quot;, &quot;&#x3D;&#x3D;&quot;, uid));
+    return query(collection(this.fs.firestore, &quot;cases&quot;), where(&quot;publisher_uid&quot;, &quot;&#x3D;&#x3D;&quot;, uid));
   }
 
   readCasesByIDA(uid: string) {
-    return query(collection(this.fs.firestore, &#x27;cases&#x27;), where(&quot;accepter_uid&quot;, &quot;&#x3D;&#x3D;&quot;, uid));
+    return query(collection(this.fs.firestore, &quot;cases&quot;), where(&quot;accepter_uid&quot;, &quot;&#x3D;&#x3D;&quot;, uid));
   }
 
   updateCase(c: Case) {
-    return this.fs.doc(&#x27;cases/&#x27; + c.id).update(c);
+    return this.fs.doc(&quot;cases/&quot; + c.id).update(c);
   }
 
   deleteCase(c: Case) {
-    console.log(c.id)
-    return this.fs.doc(&#x27;cases/&#x27; + c.id).delete();
+    console.log(c.id);
+    return this.fs.doc(&quot;cases/&quot; + c.id).delete();
+  }
+
+  public timeConverter(UNIX_timestamp: any){
+    let a &#x3D; new Date(UNIX_timestamp[&quot;seconds&quot;] * 1000);
+    let months &#x3D; [&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Aug&quot;,&quot;Sep&quot;,&quot;Oct&quot;,&quot;Nov&quot;,&quot;Dec&quot;];
+    let year &#x3D; a.getFullYear();
+    let month &#x3D; months[a.getMonth()];
+    let date &#x3D; a.getDate();
+    let hour &#x3D; a.getHours();
+    let min &#x3D; a.getMinutes() &lt; 10 ? &quot;0&quot; + a.getMinutes() : a.getMinutes();
+    let sec &#x3D; a.getSeconds() &lt; 10 ? &quot;0&quot; + a.getSeconds() : a.getSeconds();
+    return date + &quot; &quot; + month + &quot; &quot; + year + &quot; &quot; + hour + &quot;:&quot; + min + &quot;:&quot; + sec;
   }
 }
 </code></pre>

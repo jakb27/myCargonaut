@@ -266,13 +266,13 @@
 
 
         <div class="tab-pane fade  tab-source-code" id="c-source">
-            <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Injectable} from &#x27;@angular/core&#x27;;
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from &#x27;@angular/router&#x27;;
-import {Observable} from &#x27;rxjs&#x27;;
+            <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Injectable} from &quot;@angular/core&quot;;
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from &quot;@angular/router&quot;;
+import {Observable} from &quot;rxjs&quot;;
 import {AuthService} from &quot;../services/auth.service&quot;;
 
 @Injectable({
-  providedIn: &#x27;root&#x27;
+  providedIn: &quot;root&quot;
 })
 export class AuthGuard implements CanActivate {
   constructor(
@@ -283,8 +283,8 @@ export class AuthGuard implements CanActivate {
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable&lt;boolean&gt; | Promise&lt;boolean&gt; | boolean {
     if (!this.authService.isLoggedIn) {
-      console.log(&quot;not logged in&quot;)
-      this.router.navigate([&#x27;sign-in&#x27;])
+      console.log(&quot;not logged in&quot;);
+      this.router.navigate([&quot;sign-in&quot;]);
     }
     return true;
   }
