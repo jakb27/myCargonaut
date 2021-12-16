@@ -9,6 +9,7 @@
     "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
     "test": "ng test",
     "lint": "ng lint",
+    "lint:fix": "ng lint --fix",
     "compodoc": "npx compodoc -p tsconfig.doc.json",
     "e2e": "ng e2e",
     "cypress:open": "cypress open",
