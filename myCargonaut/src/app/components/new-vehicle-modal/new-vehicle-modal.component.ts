@@ -13,10 +13,11 @@ export class NewVehicleModalComponent implements OnInit {
   public vehicle!: Vehicle;
 
   constructor(public activeModal: NgbActiveModal, private authService: AuthService) {
-    this.vehicle = {v_id: "", owner_id: authService.userData.uid, name: "", seats: 0, capacity: 0};
+    this.vehicle = {v_id: "", owner_id: "", name: "", seats: 0, capacity: 0};
   }
 
   ngOnInit(): void {
+    this.vehicle.owner_id = this.authService.userData.uid;
   }
 
   save(): void {

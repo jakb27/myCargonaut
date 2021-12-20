@@ -27,12 +27,9 @@ export class UserProfileComponent implements OnInit {
         this.vehicles.push(doc.data() as Vehicle);
       });
     });
-
-
   }
 
   public async create() {
-    console.log(this.authService.userData.uid);
     const modalReference = this.modalService.open(NewVehicleModalComponent);
     try {
       const resultVehicle: Vehicle = await modalReference.result;

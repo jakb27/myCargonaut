@@ -20,7 +20,8 @@ export class VehicleService {
   }
 
   readVehicles() {
-    return query(collection(this.fs.firestore, "users/" + this.authService.userData.uid + "/vehicles"));
+    let uid = this.authService.userData.uid; //TODO race condition
+    return query(collection(this.fs.firestore, "users/" + uid + "/vehicles"));
   }
 
   updateVehicle(v: Vehicle) {
