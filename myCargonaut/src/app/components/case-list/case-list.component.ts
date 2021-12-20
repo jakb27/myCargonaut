@@ -36,7 +36,6 @@ export class CaseListComponent implements OnInit {
       const resultCase: Case = await modalReference.result;
       await this.caseService.createCase(resultCase);
     } catch(error) {
-      console.log(error);
     }
   }
 

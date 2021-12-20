@@ -23,6 +23,15 @@
       </div>
     </div>
 
+    <div class="row" *ngIf="authService.userData as user">
+      <div class="col-12">
+        <button class="btn btn-danger" (click)="create()">Add Vehicle</button>
+        <div *ngFor="let v of this.vehicles">
+          <p>{{v.name}}</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 

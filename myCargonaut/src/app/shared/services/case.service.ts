@@ -37,7 +37,6 @@ export class CaseService {
   }
 
   deleteCase(c: Case) {
-    console.log(c.id);
     return this.fs.doc("cases/" + c.id).delete();
   }
 
