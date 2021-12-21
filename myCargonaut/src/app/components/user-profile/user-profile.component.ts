@@ -5,6 +5,9 @@ import {Vehicle} from "../../shared/models/vehicle";
 import {VehicleService} from "../../shared/services/vehicle.service";
 import {NewVehicleModalComponent} from "../new-vehicle-modal/new-vehicle-modal.component";
 import {onSnapshot} from "@angular/fire/firestore";
+import {Case} from "../../shared/models/case";
+import {EditCaseModalComponent} from "../edit-case-modal/edit-case-modal.component";
+import {EditVehicleModalComponent} from "../edit-vehicle-modal/edit-vehicle-modal.component";
 
 @Component({
   selector: "app-user-profile",
@@ -38,5 +41,21 @@ export class UserProfileComponent implements OnInit {
       await this.vehicleService.createVehicle(resultVehicle);
     } catch (error) {
     }
+  }
+
+  public async edit(v: Vehicle) {
+    const modalReference = this.modalService.open(EditVehicleModalComponent);
+    modalReference.componentInstance.v = v;
+
+    try {
+      const resultVehicle: Vehicle = await modalReference.result;
+      await this.vehicleService.updateVehicle(resultVehicle);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  public async delete(v: Vehicle) {
+    await this.vehicleService.deleteVehicle(v);
   }
 }

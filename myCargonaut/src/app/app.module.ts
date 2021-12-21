@@ -29,6 +29,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {DateTimePickerComponent} from "./components/custom/datetime-picker.component";
 import {PrivacyPolicyComponent} from "./components/privacy-policy/privacy-policy.component";
 import { NewVehicleModalComponent } from "./components/new-vehicle-modal/new-vehicle-modal.component";
+import { EditVehicleModalComponent } from "./components/edit-vehicle-modal/edit-vehicle-modal.component";
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { NewVehicleModalComponent } from "./components/new-vehicle-modal/new-veh
     EditCaseModalComponent,
     DateTimePickerComponent,
     PrivacyPolicyComponent,
-    NewVehicleModalComponent
+    NewVehicleModalComponent,
+    EditVehicleModalComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

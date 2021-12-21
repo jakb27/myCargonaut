@@ -10,7 +10,7 @@
     </div>
     <!-- Show user data when logged in -->
     <div class="row" *ngIf="authService.userData as user">
-      <div class="col-md-12">
+      <div class="col-6">
         <div class="media">
 
           <div class="media-body">
@@ -21,17 +21,13 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="row" *ngIf="authService.userData as user">
-      <div class="col-12">
+      <div class="col-6">
         <button class="btn btn-danger" (click)="create()">Add Vehicle</button>
         <div *ngFor="let v of this.vehicles">
-          <p>{{v.name}}</p>
+          <p>{{v.name}}: {{v.seats}}, {{v.capacity}}<span><button class="btn btn-success" (click)="edit(v)">Edit</button><button class="btn btn-warning" (click)="delete(v)">Del</button></span></p>
         </div>
       </div>
     </div>
-
   </div>
 </div>
 

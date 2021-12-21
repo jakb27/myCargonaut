@@ -1,8 +1,7 @@
 import {Injectable} from "@angular/core";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {Vehicle} from "../models/vehicle";
-import {Case} from "../models/case";
-import {collection, query, where} from "@angular/fire/firestore";
+import {collection, query} from "@angular/fire/firestore";
 import {AuthService} from "./auth.service";
 
 @Injectable({
@@ -20,15 +19,15 @@ export class VehicleService {
   }
 
   readVehicles() {
-    let uid = this.authService.userData.uid; //TODO race condition
-    return query(collection(this.fs.firestore, "users/" + uid + "/vehicles"));
+    // let uid = this.authService.userData.uid; //TODO race condition
+    return query(collection(this.fs.firestore, "users/" + this.authService.userData.uid + "/vehicles"));
   }
 
   updateVehicle(v: Vehicle) {
-    return this.fs.doc("users/" + this.authService.userData.uid + "/vehicles" + v.v_id).update(v);
+    return this.fs.doc("users/" + this.authService.userData.uid + "/vehicles/" + v.v_id).update(v);
   }
 
   deleteVehicle(v: Vehicle) {
-    return this.fs.doc("users/" + this.authService.userData.uid + "/vehicles" + v.v_id).delete();
+    return this.fs.doc("users/" + this.authService.userData.uid + "/vehicles/" + v.v_id).delete();
   }
 }
