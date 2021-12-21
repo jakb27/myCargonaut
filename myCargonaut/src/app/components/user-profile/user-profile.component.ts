@@ -19,14 +19,16 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const q = this.vehicleService.readVehicles();
+    if(this.authService.userData) {
+      const q = this.vehicleService.readVehicles();
 
-    onSnapshot(q, (querySnapshot) => {
-      this.vehicles = [];
-      querySnapshot.forEach((doc) => {
-        this.vehicles.push(doc.data() as Vehicle);
+      onSnapshot(q, (querySnapshot) => {
+        this.vehicles = [];
+        querySnapshot.forEach((doc) => {
+          this.vehicles.push(doc.data() as Vehicle);
+        });
       });
-    });
+    }
   }
 
   public async create() {

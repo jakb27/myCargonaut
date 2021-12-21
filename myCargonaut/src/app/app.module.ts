@@ -28,7 +28,7 @@ import {EditCaseModalComponent} from "./components/edit-case-modal/edit-case-mod
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {DateTimePickerComponent} from "./components/custom/datetime-picker.component";
 import {PrivacyPolicyComponent} from "./components/privacy-policy/privacy-policy.component";
-import { NewVehicleModalComponent } from './components/new-vehicle-modal/new-vehicle-modal.component';
+import { NewVehicleModalComponent } from "./components/new-vehicle-modal/new-vehicle-modal.component";
 
 @NgModule({
   declarations: [

@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { NewVehicleModalComponent } from './new-vehicle-modal.component';
+import { NewVehicleModalComponent } from "./new-vehicle-modal.component";
 
-describe('NewVehicleModalComponent', () => {
+describe("NewVehicleModalComponent", () => {
   let component: NewVehicleModalComponent;
   let fixture: ComponentFixture<NewVehicleModalComponent>;
 
@@ -10,7 +10,7 @@ describe('NewVehicleModalComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ NewVehicleModalComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe('NewVehicleModalComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
