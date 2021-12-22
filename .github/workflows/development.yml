@@ -17,10 +17,7 @@ jobs:
       #- name: Run Unit-Tests
       #  run: (cd myCargonaut && npm run test:ci)
       - name: Run Cypress E2E-Tests
-        uses: cypress-io/github-action@v2
-        with:
-          build: (cd myCargonaut && npm run build)
-          start: (cd myCargonaut && npm run start)
+        run: (cd myCargonaut && npm run e2e)
   
   Linter:
     runs-on: ubuntu-latest
