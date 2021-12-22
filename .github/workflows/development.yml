@@ -5,7 +5,7 @@ on:
     branches-ignore: [main]
     
 jobs:
-  tests:
+  Tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -19,7 +19,7 @@ jobs:
       - name: Run Tests
         run: (cd myCargonaut && npm run test:ci)
   
-  linter:
+  Linter:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -33,7 +33,7 @@ jobs:
       - name: Run Linter
         run: (cd myCargonaut && npm run lint)
   
-  build:
+  Build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
