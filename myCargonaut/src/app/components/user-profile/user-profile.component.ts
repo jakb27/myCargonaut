@@ -5,8 +5,6 @@ import {Vehicle} from "../../shared/models/vehicle";
 import {VehicleService} from "../../shared/services/vehicle.service";
 import {NewVehicleModalComponent} from "../new-vehicle-modal/new-vehicle-modal.component";
 import {onSnapshot} from "@angular/fire/firestore";
-import {Case} from "../../shared/models/case";
-import {EditCaseModalComponent} from "../edit-case-modal/edit-case-modal.component";
 import {EditVehicleModalComponent} from "../edit-vehicle-modal/edit-vehicle-modal.component";
 
 @Component({
@@ -22,7 +20,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.authService.userData) {
+    if (this.authService.userData) {
       const q = this.vehicleService.readVehicles();
 
       onSnapshot(q, (querySnapshot) => {

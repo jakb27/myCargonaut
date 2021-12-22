@@ -31,9 +31,9 @@ export class AuthService {
         this.userData = user;
         localStorage.setItem("user", JSON.stringify(this.userData));
         JSON.parse(<string>localStorage.getItem("user"));
-        this.ngZone.run(() => {
-          this.router.navigate(["dashboard"]);
-        });
+        // this.ngZone.run(() => {
+        //   this.router.navigate(["dashboard"]);
+        // });
       }
     });
   }
