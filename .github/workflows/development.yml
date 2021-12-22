@@ -14,8 +14,6 @@ jobs:
           node-version: '14'
       - name: Install Dependencies
         run: (cd myCargonaut && npm ci)
-      - name: Install Angular-CLI
-        run: (cd myCargonaut && npm i -g @angular/cli)
       - name: Run Tests
         run: (cd myCargonaut && npm run test:ci)
   
@@ -28,8 +26,6 @@ jobs:
           node-version: '14'
       - name: Install Dependencies
         run: (cd myCargonaut && npm ci)
-      - name: Install Angular-CLI
-        run: (cd myCargonaut && npm i -g @angular/cli)
       - name: Run Linter
         run: (cd myCargonaut && npm run lint)
   
