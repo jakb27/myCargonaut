@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {Vehicle} from "../../shared/models/vehicle";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {AuthService} from "../../shared/services/auth.service";
 
 @Component({
   selector: "app-edit-vehicle-modal",
