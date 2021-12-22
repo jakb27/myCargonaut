@@ -13,21 +13,13 @@ import {onSnapshot} from "@angular/fire/firestore";
 })
 export class CaseListComponent implements OnInit {
 
-  cases: Case[] = [];
   showOwn: boolean = true;
   type_offer: string = "offer";
 
   constructor(public caseService: CaseService, public modalService: NgbModal, public authService: AuthService) { }
 
   ngOnInit(): void {
-    const q = this.caseService.readCasesDashboard();
-
-    onSnapshot(q, (querySnapshot) => {
-      this.cases = [];
-      querySnapshot.forEach((doc) => {
-        this.cases.push(doc.data() as Case);
-      });
-    });
+    this.caseService.readCasesDashboard();
   }
 
   public async create() {

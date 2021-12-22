@@ -14,52 +14,14 @@ import {EditCaseModalComponent} from "../edit-case-modal/edit-case-modal.compone
 })
 export class MyCasesComponent implements OnInit {
 
-  public list = "published"; // "booked"
-
-  myCasesP: Case[] = [];
-  myCasesA: Case[] = [];
-  type_offer: string = "offer";
+  public list: string = "published"; // "booked"
+  public type_offer: string = "offer";
 
   constructor(public caseService: CaseService, public authService: AuthService, public modalService: NgbModal) {
   }
 
   ngOnInit(): void {
-    //TODO race condition?
-
-    if(this.authService.userData) {
-      const queryPublished = this.caseService.readCasesByIDP(this.authService.userData.uid);
-      const queryAccepted = this.caseService.readCasesByIDA(this.authService.userData.uid);
-
-      onSnapshot(queryPublished, (querySnapshot) => {
-        this.myCasesP = [];
-        querySnapshot.forEach((doc) => {
-          this.myCasesP.push(doc.data() as Case);
-        });
-      });
-      onSnapshot(queryAccepted, (querySnapshot) => {
-        this.myCasesA = [];
-        querySnapshot.forEach((doc) => {
-          this.myCasesA.push(doc.data() as Case);
-        });
-      });
-    }
-
-
-    //TODO 2 queries as 1 with where(uid in published/accepted)
-
-    // const q = this.caseService.readCasesByID(this.authService.userData.uid);
-    // onSnapshot(q, (querySnapshot) => {
-    //   this.myCasesP = [];
-    //   this.myCasesA = [];
-    //   querySnapshot.forEach((doc) => {
-    //     let d = doc.data() as Case;
-    //     if(d.accepter_uid != "") {
-    //       this.myCasesA.push(d);
-    //     } else {
-    //       this.myCasesP.push(d);
-    //     }
-    //   });
-    // });
+    this.caseService.readMyCases();
   }
 
   public async create() {
@@ -99,8 +61,8 @@ export class MyCasesComponent implements OnInit {
   }
 
   public select(){
-    if(this.list === "published") return this.myCasesP;
-    if(this.list === "booked") return this.myCasesA;
+    if(this.list === "published") return this.caseService.myCasesP;
+    if(this.list === "booked") return this.caseService.myCasesA;
     return null;
   }
 

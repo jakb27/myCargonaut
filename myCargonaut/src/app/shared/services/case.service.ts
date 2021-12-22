@@ -1,14 +1,19 @@
 import {Injectable} from "@angular/core";
 import {Case} from "../models/case";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {collection, query, where} from "@angular/fire/firestore";
+import {collection, onSnapshot, query, where} from "@angular/fire/firestore";
+import {AuthService} from "./auth.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class CaseService {
 
-  constructor(private fs: AngularFirestore) {
+  private _casesDashboard: Case[] = [];
+  private _myCasesP: Case[] = [];
+  private _myCasesA: Case[] = [];
+
+  constructor(private fs: AngularFirestore, private authService: AuthService) {
   }
 
   createCase(c: Case) {
@@ -17,19 +22,50 @@ export class CaseService {
   }
 
   readCasesDashboard() {
-    return query(collection(this.fs.firestore, "cases"), where("accepter_uid", "==", ""));
+    const q = query(collection(this.fs.firestore, "cases"), where("accepter_uid", "==", ""));
+
+    onSnapshot(q, (querySnapshot) => {
+      this._casesDashboard = [];
+      querySnapshot.forEach((doc) => {
+        this._casesDashboard.push(doc.data() as Case);
+      });
+    });
   }
 
-  // readCasesByID(uid: string) {
-  //   return query(collection(this.fs.firestore, 'cases'), where("publisher_uid", "==", uid), where("accepter_uid", "==", uid));
-  // }
+  readMyCases() {
+    if(this.authService.userData) {
+      const queryPublished = query(collection(this.fs.firestore, "cases"), where("publisher_uid", "==", this.authService.userData.uid));
+      const queryAccepted = query(collection(this.fs.firestore, "cases"), where("accepter_uid", "==", this.authService.userData.uid));
 
-  readCasesByIDP(uid: string) {
-    return query(collection(this.fs.firestore, "cases"), where("publisher_uid", "==", uid));
-  }
+      onSnapshot(queryPublished, (querySnapshot) => {
+        this._myCasesP = [];
+        querySnapshot.forEach((doc) => {
+          this.myCasesP.push(doc.data() as Case);
+        });
+      });
+      onSnapshot(queryAccepted, (querySnapshot) => {
+        this._myCasesA = [];
+        querySnapshot.forEach((doc) => {
+          this.myCasesA.push(doc.data() as Case);
+        });
+      });
+    }
 
-  readCasesByIDA(uid: string) {
-    return query(collection(this.fs.firestore, "cases"), where("accepter_uid", "==", uid));
+    //TODO 2 queries as 1 with where(uid in published/accepted) ?
+
+    // const q = this.caseService.readCasesByID(this.authService.userData.uid);
+    // onSnapshot(q, (querySnapshot) => {
+    //   this.myCasesP = [];
+    //   this.myCasesA = [];
+    //   querySnapshot.forEach((doc) => {
+    //     let d = doc.data() as Case;
+    //     if(d.accepter_uid != "") {
+    //       this.myCasesA.push(d);
+    //     } else {
+    //       this.myCasesP.push(d);
+    //     }
+    //   });
+    // });
   }
 
   updateCase(c: Case) {
@@ -38,6 +74,18 @@ export class CaseService {
 
   deleteCase(c: Case) {
     return this.fs.doc("cases/" + c.id).delete();
+  }
+
+  get casesDashboard(): Case[] {
+    return this._casesDashboard;
+  }
+
+  get myCasesP(): Case[] {
+    return this._myCasesP;
+  }
+
+  get myCasesA(): Case[] {
+    return this._myCasesA;
   }
 
   public timeConverter(UNIX_timestamp: any){
