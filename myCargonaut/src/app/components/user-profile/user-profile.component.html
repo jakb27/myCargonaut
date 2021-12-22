@@ -23,7 +23,7 @@
       </div>
       <div class="col-6">
         <button class="btn btn-danger" (click)="create()">Add Vehicle</button>
-        <div *ngFor="let v of this.vehicles">
+        <div *ngFor="let v of this.vehicleService.vehicles">
           <p>{{v.name}}: {{v.seats}}, {{v.capacity}}<span><button class="btn btn-success" (click)="edit(v)">Edit</button><button class="btn btn-warning" (click)="delete(v)">Del</button></span></p>
         </div>
       </div>

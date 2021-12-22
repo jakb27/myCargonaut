@@ -3,6 +3,7 @@ import {Case} from "../../shared/models/case";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {AuthService} from "../../shared/services/auth.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {VehicleService} from "../../shared/services/vehicle.service";
 
 @Component({
   selector: "app-edit-case-modal",
@@ -20,7 +21,7 @@ export class EditCaseModalComponent implements OnInit {
     control: new FormControl(new Date(), Validators.required)
   });
 
-  constructor(public activeModal: NgbActiveModal, private authService: AuthService) {
+  constructor(public activeModal: NgbActiveModal, private authService: AuthService, public vehicleService: VehicleService) {
     this.case = {
       publisher_uid: authService.userData.uid,
       type: "",
@@ -30,16 +31,13 @@ export class EditCaseModalComponent implements OnInit {
       dateTime: null,
       id: "",
       accepter_uid: "",
-      price: 0
+      price: 0,
+      vehicle: {v_id: "", name: "", seats: 0, capacity: 0, owner_id: ""}
     };
   }
 
   ngOnInit(): void {
-    this.case.start = this.c.start;
-    this.case.end = this.c.end;
-    this.case.id = this.c.id;
-    this.case.price = this.c.price;
-    this.case.dateTime = this.c.dateTime; // TODO
+    this.case = this.c; //TODO request/offer + date + vehicle (name) wird nicht übernommen
   }
 
   save(): void {
