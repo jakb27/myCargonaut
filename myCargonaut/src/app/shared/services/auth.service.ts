@@ -19,7 +19,7 @@ export class AuthService {
     public router: Router,
     public ngZone: NgZone
   ) {
-    
+
     if(!environment.production){
       afAuth.useEmulator("http://localhost:9099");
     }
@@ -31,9 +31,9 @@ export class AuthService {
         this.userData = user;
         localStorage.setItem("user", JSON.stringify(this.userData));
         JSON.parse(<string>localStorage.getItem("user"));
-      } else {
-        localStorage.setItem("user", "");
-        JSON.parse(<string>localStorage.getItem("user"));
+        this.ngZone.run(() => {
+          this.router.navigate(["dashboard"]);
+        });
       }
     });
   }
@@ -43,10 +43,12 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         console.log(result);
-        this.ngZone.run(() => {
-          this.router.navigate(["dashboard"]);
+        this.SetUserData(result.user!).then(r => {
+          this.ngZone.run(() => {
+            this.router.navigate(["dashboard"]);
+          });
         });
-        this.SetUserData(result.user!);
+
       }).catch((error) => {
         window.alert(error.message);
       });
