@@ -19,8 +19,8 @@ jobs:
       - name: Run Cypress E2E-Tests
         uses: cypress-io/github-action@v2
         with:
-          build: npm run build
-          start: npm run start
+          build: (cd myCargonaut && npm run build)
+          start: (cd myCargonaut && npm run start)
   
   Linter:
     runs-on: ubuntu-latest
