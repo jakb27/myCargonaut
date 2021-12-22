@@ -14,6 +14,8 @@ import {EditCaseModalComponent} from "../edit-case-modal/edit-case-modal.compone
 })
 export class MyCasesComponent implements OnInit {
 
+  public list = "published"; // "booked"
+
   myCasesP: Case[] = [];
   myCasesA: Case[] = [];
   type_offer: string = "offer";
@@ -94,6 +96,12 @@ export class MyCasesComponent implements OnInit {
 
   public async cancel(c: Case) {
 
+  }
+
+  public select(){
+    if(this.list === "published") return this.myCasesP;
+    if(this.list === "booked") return this.myCasesA;
+    return null;
   }
 
 }
