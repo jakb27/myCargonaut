@@ -39,7 +39,8 @@
   </div>
 
   <select [(ngModel)]="case.vehicle">
-    <option *ngFor="let v of this.vehicleService.vehicles" [ngValue]="v">{{v.name}}</option>
+<!--    <option disabled>Choose a Vehicle</option>-->
+    <option *ngFor="let v of this.vehicleService.vehicles" [selected]="v === this.c.vehicle" [ngValue]="v">{{v.name}}</option>
   </select>
 
 </div>

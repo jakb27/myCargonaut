@@ -4,6 +4,7 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {AuthService} from "../../shared/services/auth.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {VehicleService} from "../../shared/services/vehicle.service";
+import {Vehicle} from "../../shared/models/vehicle";
 
 @Component({
   selector: "app-edit-case-modal",
@@ -37,6 +38,7 @@ export class EditCaseModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.vehicleService.readVehicles();
     this.case = this.c; //TODO request/offer + date + vehicle (name) wird nicht übernommen
   }
 
