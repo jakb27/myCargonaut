@@ -6,8 +6,6 @@ import {User} from "../models/user";
 import firebase from "firebase/compat";
 import {environment} from "../../../environments/environment";
 import {AlertService} from "./alerts.service";
-import {CaseService} from "./case.service";
-import {VehicleService} from "./vehicle.service";
 
 @Injectable({
   providedIn: "root"
@@ -24,7 +22,7 @@ export class AuthService {
     public alertService: AlertService
   ) {
 
-    if(!environment.production){
+    if (!environment.production) {
       afAuth.useEmulator("http://localhost:9099");
     }
 
@@ -59,7 +57,7 @@ export class AuthService {
   }
 
   // Sign up with email/password
-  SignUp(firstname:string, lastname: string, birthday: string, email: string, password: string) {
+  SignUp(firstname: string, lastname: string, birthday: string, email: string, password: string) {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
         // this.SendVerificationMail(); //TODO verification email
@@ -149,6 +147,10 @@ export class AuthService {
     });
   }
 
+  async deleteUser() {
+    await this.SignOut();
+    await this.afs.collection("/users").doc(this.userData.uid).delete();
+  }
 
 
 }
