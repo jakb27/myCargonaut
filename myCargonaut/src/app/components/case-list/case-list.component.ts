@@ -34,7 +34,6 @@ export class CaseListComponent implements OnInit {
       } catch (error) {
       }
     } else {
-      console.log("please add vehicle"); //TODO alert
       this.alertService.nextAlert({type: "danger", message: "Please add Vehicle first"});
     }
   }

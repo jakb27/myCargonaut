@@ -6,6 +6,8 @@ import {onSnapshot} from "@angular/fire/firestore";
 import {NewCaseModalComponent} from "../new-case-modal/new-case-modal.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {EditCaseModalComponent} from "../edit-case-modal/edit-case-modal.component";
+import {VehicleService} from "../../shared/services/vehicle.service";
+import {AlertService} from "../../shared/services/alerts.service";
 
 @Component({
   selector: "app-my-cases",
@@ -17,7 +19,7 @@ export class MyCasesComponent implements OnInit {
   public list: string = "published"; // "booked"
   public type_offer: string = "offer";
 
-  constructor(public caseService: CaseService, public authService: AuthService, public modalService: NgbModal) {
+  constructor(public caseService: CaseService, public authService: AuthService, public modalService: NgbModal, public vehicleService:VehicleService, public alertService: AlertService) {
   }
 
   ngOnInit(): void {
@@ -25,12 +27,18 @@ export class MyCasesComponent implements OnInit {
   }
 
   public async create() {
-    const modalReference = this.modalService.open(NewCaseModalComponent);
-    try {
-      const resultCase: Case = await modalReference.result;
-      await this.caseService.createCase(resultCase);
-    } catch (error) {
-      console.log(error);
+    if (this.vehicleService.vehicles != undefined && this.vehicleService.vehicles.length > 0) {
+      const modalReference = this.modalService.open(NewCaseModalComponent);
+      try {
+        const resultCase: Case = await modalReference.result;
+        await this.caseService.createCase(resultCase).then(
+          () => this.alertService.nextAlert({type: "success", message: "Case successful added"})
+        );
+
+      } catch (error) {
+      }
+    } else {
+      this.alertService.nextAlert({type: "danger", message: "Please add Vehicle first"});
     }
   }
 
