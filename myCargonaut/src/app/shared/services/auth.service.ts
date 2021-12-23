@@ -5,6 +5,9 @@ import {Router} from "@angular/router";
 import {User} from "../models/user";
 import firebase from "firebase/compat";
 import {environment} from "../../../environments/environment";
+import {AlertService} from "./alerts.service";
+import {CaseService} from "./case.service";
+import {VehicleService} from "./vehicle.service";
 
 @Injectable({
   providedIn: "root"
@@ -17,7 +20,8 @@ export class AuthService {
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
     public router: Router,
-    public ngZone: NgZone
+    public ngZone: NgZone,
+    public alertService: AlertService
   ) {
 
     if(!environment.production){
@@ -50,7 +54,7 @@ export class AuthService {
         });
 
       }).catch((error) => {
-        window.alert(error.message);
+        this.alertService.nextAlert({type: "danger", message: error.message});
       });
   }
 
@@ -63,7 +67,7 @@ export class AuthService {
         // this.SetUserData(result.user!, firstname, lastname, birthday);
         this.SetUserData(result.user!);
       }).catch((error) => {
-        window.alert(error.message);
+        this.alertService.nextAlert({type: "danger", message: error.message});
       });
   }
 

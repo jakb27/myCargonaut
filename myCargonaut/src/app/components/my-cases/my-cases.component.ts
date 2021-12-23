@@ -23,6 +23,7 @@ export class MyCasesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.vehicleService.readVehicles();
     this.caseService.readMyCases();
   }
 
@@ -48,23 +49,29 @@ export class MyCasesComponent implements OnInit {
 
     try {
       const resultCase: Case = await modalReference.result;
-      await this.caseService.updateCase(resultCase);
+      await this.caseService.updateCase(resultCase).then(
+        () => this.alertService.nextAlert({type: "success", message: "Case successful edited"})
+      );;
     } catch (error) {
       console.log(error);
     }
   }
 
   public async delete(c: Case) {
-    await this.caseService.deleteCase(c);
+    await this.caseService.deleteCase(c).then(
+      () => this.alertService.nextAlert({type: "success", message: "Case successful deleted"})
+    );;
   }
 
   public async unaccept(c: Case) {
     c.accepter_uid = "";
     c.status = "open";
-    await this.caseService.updateCase(c);
+    await this.caseService.updateCase(c).then(
+      () => this.alertService.nextAlert({type: "success", message: "Case successful canceled"}) // TODO
+    );;
   }
 
-  public async cancel(c: Case) {
+  public async cancel(c: Case) { // TODO
 
   }
 

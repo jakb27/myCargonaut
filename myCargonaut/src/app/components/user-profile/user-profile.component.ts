@@ -5,6 +5,7 @@ import {Vehicle} from "../../shared/models/vehicle";
 import {VehicleService} from "../../shared/services/vehicle.service";
 import {NewVehicleModalComponent} from "../new-vehicle-modal/new-vehicle-modal.component";
 import {EditVehicleModalComponent} from "../edit-vehicle-modal/edit-vehicle-modal.component";
+import {AlertService} from "../../shared/services/alerts.service";
 
 @Component({
   selector: "app-user-profile",
@@ -13,7 +14,7 @@ import {EditVehicleModalComponent} from "../edit-vehicle-modal/edit-vehicle-moda
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor(public authService: AuthService, public modalService: NgbModal, public vehicleService: VehicleService) {
+  constructor(public authService: AuthService, public modalService: NgbModal, public vehicleService: VehicleService, public alertService: AlertService) {
   }
 
   ngOnInit(): void {
@@ -24,7 +25,9 @@ export class UserProfileComponent implements OnInit {
     const modalReference = this.modalService.open(NewVehicleModalComponent);
     try {
       const resultVehicle: Vehicle = await modalReference.result;
-      await this.vehicleService.createVehicle(resultVehicle);
+      await this.vehicleService.createVehicle(resultVehicle).then(
+        () => this.alertService.nextAlert({type: "success", message: "Vehicle successful added"})
+      );
     } catch (error) {
       console.log(error);
     }
@@ -36,13 +39,17 @@ export class UserProfileComponent implements OnInit {
 
     try {
       const resultVehicle: Vehicle = await modalReference.result;
-      await this.vehicleService.updateVehicle(resultVehicle);
+      await this.vehicleService.updateVehicle(resultVehicle).then(
+        () => this.alertService.nextAlert({type: "success", message: "Vehicle successful edited"})
+      );
     } catch (error) {
       console.log(error);
     }
   }
 
   public async delete(v: Vehicle) {
-    await this.vehicleService.deleteVehicle(v);
+    await this.vehicleService.deleteVehicle(v).then(
+      () => this.alertService.nextAlert({type: "success", message: "Vehicle successful deleted"})
+    );
   }
 }

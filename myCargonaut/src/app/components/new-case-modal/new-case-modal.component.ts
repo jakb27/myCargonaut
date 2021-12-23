@@ -4,6 +4,7 @@ import {Case} from "../../shared/models/case";
 import {AuthService} from "../../shared/services/auth.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {VehicleService} from "../../shared/services/vehicle.service";
+import {AlertService} from "../../shared/services/alerts.service";
 
 @Component({
   selector: "app-new-offer-modal",
@@ -19,7 +20,7 @@ export class NewCaseModalComponent implements OnInit {
     control: new FormControl(new Date(), Validators.required)
   });
 
-  constructor(public activeModal: NgbActiveModal, private authService: AuthService, public vehicleService: VehicleService) {
+  constructor(public activeModal: NgbActiveModal, private authService: AuthService, public vehicleService: VehicleService, public alertService: AlertService) {
     this.case = {
       publisher_uid: authService.userData.uid,
       type: this.type,
@@ -43,6 +44,8 @@ export class NewCaseModalComponent implements OnInit {
       this.case.type = this.type;
       this.case.dateTime = this.form.value.control;
       this.activeModal.close(this.case);
+    } else {
+      // this.alertService.nextAlert({type: "danger", message: "Please add Start and End"});
     }
   }
 

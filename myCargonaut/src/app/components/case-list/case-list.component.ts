@@ -23,6 +23,7 @@ export class CaseListComponent implements OnInit {
 
   ngOnInit(): void {
     this.caseService.readCasesDashboard();
+    this.vehicleService.readVehicles();
   }
 
   public async create() {
@@ -30,7 +31,9 @@ export class CaseListComponent implements OnInit {
       const modalReference = this.modalService.open(NewCaseModalComponent);
       try {
         const resultCase: Case = await modalReference.result;
-        await this.caseService.createCase(resultCase);
+        await this.caseService.createCase(resultCase).then(
+          () => this.alertService.nextAlert({type: "success", message: "Case successful added"})
+        );
       } catch (error) {
       }
     } else {
@@ -41,7 +44,9 @@ export class CaseListComponent implements OnInit {
   public async accept(c: Case) {
     c.accepter_uid = this.authService.userData.uid;
     c.status = "booked";
-    await this.caseService.updateCase(c);
+    await this.caseService.updateCase(c).then( () => {
+      this.alertService.nextAlert({type: "success", message: "Successfully booked"});
+    });
   }
 
   public toggleShowOwn() {
