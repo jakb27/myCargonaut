@@ -1,0 +1,3 @@
+<ngb-alert #selfClosingAlert *ngIf="alert" type="{{alert.type}}"
+           (closed)="alert = undefined">{{ alert.message }}
+</ngb-alert>
