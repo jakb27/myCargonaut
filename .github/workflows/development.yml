@@ -39,9 +39,7 @@ jobs:
           node-version: '14'
       - name: Install Dependencies
         run: (cd myCargonaut && npm ci)
-      - name: Install Angular CLI
-        run: (cd myCargonaut && npm install -g @angular/cli)
       - name: Run Build
         run: (cd myCargonaut && npm run build)
       - name: Run Cypress E2E-Tests
-        run: (cy myCargonaut && npm run cypress-run:ci)
+        run: (cd myCargonaut && npm run cypress-run:ci)
