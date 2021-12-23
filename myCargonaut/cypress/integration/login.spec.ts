@@ -12,7 +12,7 @@ describe("Login Page",() => {
     cy.visit("dashboard");
 
     cy.get(".log-out").should("exist");
-    cy.get(".log-out").click({force: true});
+    //cy.get(".log-out").click({force: true});
 
 
   });
