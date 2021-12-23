@@ -46,6 +46,7 @@ export class EditCaseModalComponent implements OnInit {
     if (EditCaseModalComponent.isNotEmpty(this.case.start) && EditCaseModalComponent.isNotEmpty(this.case.end)) {
       this.case.type = this.type;
       this.case.dateTime = this.form.value.control;
+      console.log(this.case);
       this.activeModal.close(this.case);
     }
   }

@@ -38,7 +38,7 @@
   </div>
 
   <select [(ngModel)]="case.vehicle">
-<!--    <option disabled>Choose a Vehicle</option> // TODO bug dropdown value-->
+    <option selected disabled>Choose a Vehicle</option>
     <option *ngFor="let v of this.vehicleService.vehicles" [selected]="v === this.c.vehicle" [ngValue]="v">{{v.name}}</option>
   </select>
 

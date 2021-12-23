@@ -43,9 +43,10 @@ export class NewCaseModalComponent implements OnInit {
     if (NewCaseModalComponent.isNotEmpty(this.case.start) && NewCaseModalComponent.isNotEmpty(this.case.end)) {
       this.case.type = this.type;
       this.case.dateTime = this.form.value.control;
+      console.log(this.case);
       this.activeModal.close(this.case);
     } else {
-      // this.alertService.nextAlert({type: "danger", message: "Please add Start and End"});
+      this.alertService.nextAlert({type: "danger", message: "Please add Start and End"});
     }
   }
 

@@ -1,3 +1,3 @@
-<ngb-alert id="alert" #selfClosingAlert [dismissible] = "false" *ngIf="alert" type="{{alert.type}}"
+<ngb-alert id="alert" class="fade" #selfClosingAlert [dismissible] = "false" *ngIf="alert" type="{{alert.type}}"
            (closed)="alert = undefined">{{ alert.message }}
 </ngb-alert>
