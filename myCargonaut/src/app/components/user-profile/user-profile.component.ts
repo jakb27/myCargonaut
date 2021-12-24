@@ -14,6 +14,8 @@ import {AlertService} from "../../shared/services/alerts.service";
 })
 export class UserProfileComponent implements OnInit {
 
+  currentRate = 4.7; // TODO
+
   constructor(public authService: AuthService, public modalService: NgbModal, public vehicleService: VehicleService, public alertService: AlertService) {
   }
 
