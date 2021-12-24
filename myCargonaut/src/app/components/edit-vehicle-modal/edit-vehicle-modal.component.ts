@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from "@angular/core";
-import {Vehicle} from "../../shared/models/vehicle";
+import {Vehicle, VehicleType} from "../../shared/models/vehicle";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
@@ -12,9 +12,10 @@ export class EditVehicleModalComponent implements OnInit {
   @Input() v!: Vehicle;
 
   public vehicle!: Vehicle;
+  public vehicleTypes = VehicleType;
 
   constructor(public activeModal: NgbActiveModal) {
-    this.vehicle = {name: "", owner_id: "", v_id: "", capacity: 0, seats: 0};
+    this.vehicle = {name: "", owner_id: "", v_id: "", capacity: 0, seats: 0, type: undefined};
   }
 
   ngOnInit(): void {
