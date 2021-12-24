@@ -7,11 +7,17 @@ describe("Login Page",() => {
     const {email, password} = authUser;
     cy.visit("/sign-in");
     cy.get("input[type=text]").type(email);
-    cy.get("input[type=password]").type(password);
-    cy.get(".btn-log-in").click({force: true});
+    cy.get("input[type=password]").type(password).then(() => {
+      cy.get(".btn-log-in").click({force: true}).then(() => {
+        cy.visit("/dashboard").then( () => {
+          cy.get(".log-out").should("exist");
+          cy.get(".log-out").click({force: true});
+        });
+      });
+    });
 
-    //cy.get(".log-out").should("exist");
-    //cy.get(".log-out").click({force: true});
+
+
 
 
   });
