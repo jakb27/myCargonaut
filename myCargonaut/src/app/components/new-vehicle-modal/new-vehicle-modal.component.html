@@ -22,6 +22,11 @@
     <input type="number" class="form-control" id="capacity" min="0" [(ngModel)]="vehicle.capacity">
   </div>
 
+  <select [(ngModel)]="vehicle.type">
+    <option selected disabled>Choose a Vehicle</option>
+    <option *ngFor="let v of vehicleTypes | keyvalue" [ngValue]="v.value">{{v.value}}</option>
+  </select>
+
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark"

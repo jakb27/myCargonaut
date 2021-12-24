@@ -4,4 +4,15 @@ export interface Vehicle {
   seats: number;
   capacity: number;
   name: string;
+  type?: VehicleType;
+}
+
+export enum VehicleType {
+  combi = "Combi",
+  suv = "SUV",
+  van = "Van",
+  cabrio = "Cabrio",
+  sport = "Sport",
+  coupe = "Coupe",
+  compact = "Compact"
 }
