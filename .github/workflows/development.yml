@@ -41,5 +41,9 @@ jobs:
         run: (cd myCargonaut && npm ci)
       - name: Run Build
         run: (cd myCargonaut && npm run build)
-      - name: Run Cypress E2E-Tests
-        run: (cd myCargonaut && npm run cypress-run:ci)
+      - name: Install Firebase-Tools
+        run:  (cd myCargonaut && npm install -g firebase-tools)
+      - name: Just a test run Firebase emulator in ci
+        run: (cd myCargonaut && firebase emulators:start)
+      #- name: Run Cypress E2E-Tests
+       # run: (cd myCargonaut && npm run cypress-run:ci)
