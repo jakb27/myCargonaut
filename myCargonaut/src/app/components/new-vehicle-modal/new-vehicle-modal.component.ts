@@ -14,7 +14,7 @@ export class NewVehicleModalComponent implements OnInit {
   public vehicleTypes = VehicleType;
 
   constructor(public activeModal: NgbActiveModal, private authService: AuthService) {
-    this.vehicle = {v_id: "", owner_id: "", name: "", seats: 0, capacity: 0};
+    this.vehicle = {v_id: "", owner_id: "", name: "", seats: 0, capacity: 0, type: undefined};
   }
 
   ngOnInit(): void {

@@ -5,12 +5,14 @@
 <!-- New Main -->
 <!-- TODO layout not finished -->
 <div class="container-fluid">
-  <div class="row justify-content-center p-3">
-    <div class="col-12 col-md-4">
+  <div class="row text-center p-3">
+    <div class="col-12 col-lg-4">
       <h3>Your Profile:</h3>
-      <img src="favicon.ico" alt="User.photoURL">
-      <div id="userProfile">
-        <p>Rating</p>
+      <div class="img-fluid text-center pt-2 pb-5">
+        <img src="http://via.placeholder.com/420x420" alt="User.photoURL">
+      </div>
+      <div id="userProfile" class="text-center pb-5">
+        <h5>Rating</h5>
         <ng-template #t let-fill="fill">
           <span class="star" [class.full]="fill === 100">
           <span class="half" [style.width.%]="fill">&starf;</span>&starf;</span>
@@ -20,7 +22,7 @@
       <!-- // TODO-->
       <button class="btn btn-danger" (click)="this.authService.deleteUser()"> DELETE USER</button>
     </div>
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-lg-4">
       <div id="userInfo">
         <h3>About you:</h3>
         <p>Firstname: User.first</p>
@@ -29,7 +31,7 @@
         <p>Birthday: User.birth</p>
       </div>
     </div>
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-lg-4">
       <div id="userVehicles">
         <h3>Your Vehicles:</h3>
         <button class="btn btn-danger" (click)="create()">Add Vehicle</button>
