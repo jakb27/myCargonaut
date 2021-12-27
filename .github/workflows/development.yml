@@ -12,7 +12,6 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
-      - run: echo (${{github.ref}} != 'refs/heads/dev')
      # - name: Install Dependencies
      #   run: (cd myCargonaut && npm ci)
      # - name: Run Unit-Tests
@@ -44,17 +43,17 @@ jobs:
         run:  (cd myCargonaut && npm install -g firebase-tools)
       
       - name: Run Build-Development (Only in Feature-Branches)
-        if:  (${{github.ref}} != 'refs/heads/dev')
+        if:  (github.ref != 'refs/heads/dev')
         run: (cd myCargonaut && npm run build-dev) 
       - name: Run E2E Tests with Firebase-Emulator (Only in Feature-Branches)
-        if: (${{github.ref}} != 'refs/heads/dev')
+        if: (github.ref != 'refs/heads/dev')
         run: (cd myCargonaut && firebase emulators:exec "npm run cypress-run:ci")
       
       - name: Run Build-Production (Only in dev-Branch)
-        if:  (${{github.ref}} == 'refs/heads/dev')
+        if:  (github.ref == 'refs/heads/dev')
         run: (cd myCargonaut && npm run build)  
       - name: Run E2E Tests with Firebase-Database (Only in dev-Branch)
-        if: (${{github.ref}} == 'refs/heads/dev')
+        if: (github.ref == 'refs/heads/dev')
         run: (cd myCargonaut && npm run cypress-run:ci)
         
         
