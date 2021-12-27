@@ -44,14 +44,14 @@ jobs:
         run: (cd myCargonaut && npm run build-dev)
       - name: Install Firebase-Tools
         run:  (cd myCargonaut && npm install -g firebase-tools)
-      - name: Run E2E Tests von Firebase-Emulator
+      - name: Run E2E Tests on Firebase-Emulator
         run: (cd myCargonaut && firebase emulators:exec "npm run cypress-run:ci")
 
 
   Build-prod_and_E2E-Tests-Firebase:
     runs-on: ubuntu-latest
     needs: [ Unit-Tests, Linter ]
-    if: github.ref == 'dev'
+    if: github.ref == 'MSWS21T07-90-E2E'
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -63,5 +63,5 @@ jobs:
         run: (cd myCargonaut && npm run build)
       - name: Install Firebase-Tools
         run: (cd myCargonaut && npm install -g firebase-tools)
-      - name: Run E2E Tests von Firebase-Emulator
+      - name: Run E2E Tests on Firebase
         run: (cd myCargonaut && firebase emulators:exec "npm run cypress-run:ci")
