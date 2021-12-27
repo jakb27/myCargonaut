@@ -32,7 +32,7 @@ jobs:
   Build-dev_and_E2E-Tests-Emulator:
     runs-on: ubuntu-latest
     needs: [Unit-Tests, Linter]
-    if: github.ref != "dev"
+    if: github.ref != 'dev'
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -51,7 +51,7 @@ jobs:
   Build-prod_and_E2E-Tests-Firebase:
     runs-on: ubuntu-latest
     needs: [ Unit-Tests, Linter ]
-    if: github.ref == "dev"
+    if: github.ref == 'dev'
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
