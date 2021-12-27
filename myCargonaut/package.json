@@ -17,7 +17,7 @@
     "cypress-run-headless": "cypress run --headless --browser chrome",
     "e2e": "ng e2e",
     "start-server:ci": "angular-http-server --path ./dist/myCargonaut -p 4200",
-    "cypress-run:ci": "start-server-and-test start-server:ci http://localhost:4200 cypress-run-headless"
+    "cypress-run:ci": "start-server-and-test start-server:ci 4200 cypress-run-headless"
   },
   "private": true,
   "dependencies": {
