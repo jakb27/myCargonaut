@@ -12,6 +12,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
+      - run: echo github.ref
      # - name: Install Dependencies
      #   run: (cd myCargonaut && npm ci)
      # - name: Run Unit-Tests
