@@ -18,8 +18,8 @@ jobs:
           cache-dependency-path: myCargonaut/package-lock.json
       - name: Install Dependencies
         run: (cd myCargonaut && npm ci)
-      #- name: Run Unit-Tests
-      #  run: (cd myCargonaut && npm run test:ci)
+      - name: Run Unit-Tests
+        run: (cd myCargonaut && npm run test:ci)
 
   Linter:
     runs-on: ubuntu-latest
