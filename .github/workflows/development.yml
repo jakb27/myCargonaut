@@ -13,6 +13,7 @@ jobs:
         with:
           node-version: '16'
           cache: 'npm'
+          cache-dependency-path: myCargonaut/package-lock.json
       - name: Install Dependencies
         run: (cd myCargonaut && npm ci)
       - name: Run Unit-Tests
@@ -26,6 +27,7 @@ jobs:
         with:
           node-version: '16'
           cache: 'npm'
+          cache-dependency-path: myCargonaut/package-lock.json
       - name: Install Dependencies
         run: (cd myCargonaut && npm ci)
       - name: Run Linter
