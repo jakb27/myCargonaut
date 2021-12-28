@@ -9,25 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Cache node modules
-        id: cache-nodemodules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          # caching node_modules
-          path: node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
-      - name: Install Dependencies
-        if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: (cd myCargonaut && npm ci)
+     # - name: Install Dependencies
+     #   run: (cd myCargonaut && npm ci)
      # - name: Run Unit-Tests
      #   run: (cd myCargonaut && npm run test:ci)
 
@@ -35,25 +21,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Cache node modules
-        id: cache-nodemodules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          # caching node_modules
-          path: node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
-      - name: Install Dependencies
-        if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: (cd myCargonaut && npm ci)
+     # - name: Install Dependencies
+     #   run: (cd myCargonaut && npm ci)
      # - name: Run Linter
      #   run: (cd myCargonaut && npm run lint)
 
@@ -62,33 +34,17 @@ jobs:
     needs: [Unit-Tests, Linter]
     steps:
       - uses: actions/checkout@v2
-      - name: Cache node modules
-        id: cache-nodemodules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          # caching node_modules
-          path: node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
       - name: Install Dependencies
-        if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: (cd myCargonaut && npm ci)
-      
       - name: Run Build-Development (Only in Feature-Branches)
         if:  (github.ref != 'refs/heads/dev')
         run: (cd myCargonaut && npm run build-dev) 
       - name: Run Build-Production (Only in dev-Branch)
         if:  (github.ref == 'refs/heads/dev')
         run: (cd myCargonaut && npm run build)  
-      
       - name: Upload Production Build for Deploy
         uses: actions/upload-artifact@v2
         with:
@@ -105,28 +61,13 @@ jobs:
         with:
           name: Production-Build
           path: myCargonaut/dist/myCargonaut
-      - name: Cache node modules
-        id: cache-nodemodules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          # caching node_modules
-          path: node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
       - name: Install Dependencies
-        if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: (cd myCargonaut && npm ci)
       - name: Install Firebase-Tools
         run:  (cd myCargonaut && npm install -g firebase-tools)
-      
       - name: Run E2E Tests with Firebase-Emulator (Only in Feature-Branches)
         if: (github.ref != 'refs/heads/dev')
         run: (cd myCargonaut && firebase emulators:exec "npm run cypress-run:ci")
