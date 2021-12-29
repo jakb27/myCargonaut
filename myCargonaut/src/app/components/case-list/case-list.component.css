@@ -81,6 +81,9 @@ background: #005B52;
   background: #373F68;
   color: white;
 }
+svg {
+  height: 15px;
+}
 @media only screen and (max-width: 800px) {
   .case-list {
     margin: 1em 1em 1em 1em;

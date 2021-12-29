@@ -46,6 +46,10 @@
 .btn-edit {
   background:#373F68 ;
 }
+.btn-delete,.btn-edit {
+  display: flex;
+  justify-content: center;
+}
 .booked-cases {
   margin-top: 2em;
 }
@@ -89,6 +93,10 @@
 .form-check-input {
   background: #373F68;
   color: white;
+}
+svg{
+  height: 15px;
+  margin-top: 5px;
 }
 @media only screen and (max-width: 800px) {
   .my-cases {
