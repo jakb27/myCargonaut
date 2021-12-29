@@ -4,7 +4,7 @@
 
 footer {
   background-color:  #005B52 !important;
-  margin-top: 5%;
+  margin-top: 2%;
 
 }
 
@@ -15,3 +15,19 @@ li {
 .footer-git {
   border-top: 5px;
 }
+.footer-link-element {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
+
+.footer-link-element > a {
+  flex: 0 0 50%;
+  margin-bottom: 0.8em;
+  color: white;
+}
+.footer-link-element > a:hover{
+  color: #373F68;
+}
+
