@@ -2,7 +2,7 @@
 const authUser = require("../fixtures/auth-user.json");
 
 describe("Login Page",async() => {
-  it("should login with email and password",async () => {
+  it("should login with email and password",() => {
     const {email, password} = authUser;
     cy.visit("/sign-in");
     cy.get("input[type=text]").type(email);
