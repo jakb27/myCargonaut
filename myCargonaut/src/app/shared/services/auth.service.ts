@@ -42,18 +42,17 @@ export class AuthService {
 
   // Sign in with email/password
   SignIn(email: string, password: string) {
-    return this.afAuth.signInWithEmailAndPassword(email, password)
-      .then((result) => {
+    let result = this.afAuth.signInWithEmailAndPassword(email, password)
+      .then(async(result) => {
         console.log(result);
-        this.SetUserData(result.user!).then(r => {
-          this.ngZone.run(() => {
-            this.router.navigate(["dashboard"]);
-          });
-        });
-
+        await this.SetUserData(result.user!);
       }).catch((error) => {
         this.alertService.nextAlert({type: "danger", message: error.message});
       });
+    this.ngZone.run(async () => {
+      await this.router.navigate(["dashboard"]);
+    });
+    return result;
   }
 
   // Sign up with email/password
