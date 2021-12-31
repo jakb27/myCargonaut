@@ -8,8 +8,8 @@ describe("Login Page",async() => {
     cy.get("input[type=text]").type(email);
     cy.get("input[type=password]").type(password);
     cy.get(".btn-log-in").click({force: true});
-    //cy.get(".log-out", {timeout: 60000}).should("exist");
-    //cy.get(".log-out", {timeout: 60000}).click({force: true});
+    cy.get(".log-out", {timeout: 60000}).should("exist");
+    cy.get(".log-out", {timeout: 60000}).click({force: true});
 
 
 
