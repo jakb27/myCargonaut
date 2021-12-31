@@ -72,7 +72,9 @@ import { AlertComponent } from "./components/alert/alert.component";
       provide: SETTINGS,
       useValue: environment.production ? undefined : {
         host: "localhost:8080",
-        ssl: false
+        ssl: false,
+        experimentalForceLongPolling: true,
+        merge: true,
       }
     }
   ],
