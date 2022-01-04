@@ -11,7 +11,9 @@
       <div class="img-fluid text-center pt-2 pb-5">
         <img src="http://via.placeholder.com/420x420" alt="User.photoURL">
       </div>
-      <div id="userProfile" class="text-center pb-5">
+      <button class="btn btn-outline-success" (click)="this.uploadProfilePic()"> UPLOAD PIC</button>
+      <button class="btn btn-outline-danger" (click)="this.deleteProfilePic()"> DELETE PIC</button>
+      <div id="userProfile" class="text-center p-5">
         <h5>Rating ({{this.user.ratings}})</h5>
         <ng-template #t let-fill="fill">
           <span class="star" [class.full]="fill === 100">

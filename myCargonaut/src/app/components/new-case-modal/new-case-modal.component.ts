@@ -1,10 +1,10 @@
 import {Component, OnInit} from "@angular/core";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {Case} from "../../shared/models/case";
-import {AuthService} from "../../shared/services/auth.service";
+import {AuthService} from "../../shared/services/auth/auth.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {VehicleService} from "../../shared/services/vehicle.service";
-import {AlertService} from "../../shared/services/alerts.service";
+import {VehicleService} from "../../shared/services/vehicle/vehicle.service";
+import {AlertService} from "../../shared/services/alerts/alerts.service";
 
 @Component({
   selector: "app-new-offer-modal",

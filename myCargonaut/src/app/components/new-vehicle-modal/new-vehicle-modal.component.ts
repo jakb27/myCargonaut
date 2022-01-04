@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {AuthService} from "../../shared/services/auth.service";
+import {AuthService} from "../../shared/services/auth/auth.service";
 import {Vehicle, VehicleType} from "../../shared/models/vehicle";
 
 @Component({

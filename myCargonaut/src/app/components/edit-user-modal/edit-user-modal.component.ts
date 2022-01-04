@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {User} from "../../shared/models/user";
-import {AuthService} from "../../shared/services/auth.service";
+import {AuthService} from "../../shared/services/auth/auth.service";
 
 @Component({
   selector: "app-edit-user-modal",

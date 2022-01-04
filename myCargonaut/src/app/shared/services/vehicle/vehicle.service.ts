@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {Vehicle} from "../models/vehicle";
+import {Vehicle} from "../../models/vehicle";
 import {collection, onSnapshot, query} from "@angular/fire/firestore";
-import {AuthService} from "./auth.service";
+import {AuthService} from "../auth/auth.service";
 
 @Injectable({
   providedIn: "root"

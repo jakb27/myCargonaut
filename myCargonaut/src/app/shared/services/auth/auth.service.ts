@@ -1,13 +1,13 @@
 import {Injectable, NgZone} from "@angular/core";
-import {AngularFirestore, AngularFirestoreDocument} from "@angular/fire/compat/firestore";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Router} from "@angular/router";
-import {User} from "../models/user";
+import {User} from "../../models/user";
 import firebase from "firebase/compat";
-import {environment} from "../../../environments/environment";
-import {AlertService} from "./alerts.service";
+import {environment} from "../../../../environments/environment";
+import {AlertService} from "../alerts/alerts.service";
 import {Subject} from "rxjs";
-import {updateProfile} from "@angular/fire/auth";
+import {getStorage} from "@angular/fire/storage";
 
 @Injectable({
   providedIn: "root"
@@ -17,6 +17,8 @@ export class AuthService {
   userFirebase: firebase.User | null = null;
   userData!: User;
   private readonly authState = new Subject<firebase.User | null>();
+
+  storage = getStorage(); //TODO
 
   constructor(
     public afs: AngularFirestore,
@@ -51,7 +53,7 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         console.log(result);
-        if(result.user){
+        if (result.user) {
           const token = result.user.getIdToken(true);
           localStorage.setItem("token", JSON.stringify(token));
 
@@ -59,12 +61,6 @@ export class AuthService {
             this.router.navigate(["dashboard"]);
           });
         }
-        // this.SetUserData(result.user!).then(r => {
-        //   this.ngZone.run(() => {
-        //     this.router.navigate(["dashboard"]);
-        //   });
-        // });
-
       }).catch((error) => {
         this.alertService.nextAlert({type: "danger", message: error.message});
       });
@@ -139,10 +135,10 @@ export class AuthService {
 
   getUserData(): void {
     this.authState.asObservable().subscribe((res) => {
-      if(res) {
+      if (res) {
         this.userFirebase = res;
         this.afs.doc(`users/${this.userFirebase.uid}`).get().subscribe((res) => {
-          if(res) {
+          if (res) {
             this.userData = {
               uid: res.get("uid"),
               firstname: res.get("firstname"),
@@ -163,38 +159,6 @@ export class AuthService {
     });
   }
 
-  /* Setting up user data when sign in with username/password,
-  sign up with username/password and sign in with social auth
-  provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
-  // SetUserData(user: firebase.User) {
-  //   const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-  //   const userData: User = {
-  //     uid: user.uid,
-  //     email: user.email!,
-  //     displayName: user.displayName!,
-  //     emailVerified: user.emailVerified,
-  //   };
-  //   return userRef.set(userData, {
-  //     merge: true
-  //   });
-  // }
-
-  // SetUserData(user: firebase.User, firstname: string, lastname: string, birthday: string) {
-  //   const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-  //   const userData: User = {
-  //     uid: user.uid,
-  //     email: user.email!,
-  //     displayName: firstname + " " + lastname,
-  //     emailVerified: user.emailVerified,
-  //     firstname: firstname,
-  //     lastname: lastname,
-  //     birthday: birthday
-  //   }
-  //   return userRef.set(userData, {
-  //     merge: true
-  //   })
-  // }
-
   // Sign out
   signOut() {
     return this.afAuth.signOut().then(() => {
@@ -208,7 +172,7 @@ export class AuthService {
     await this.afs.collection("/users").doc(this.userData!.uid).delete();
   }
 
-  async updateCredit(){
+  async updateCredit() {
     await this.afs.collection("/users").doc(this.userData!.uid).update({
       credit: this.userData.credit
     });

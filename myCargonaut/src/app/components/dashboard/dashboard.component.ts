@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
-import {AuthService} from "../../shared/services/auth.service";
-import {VehicleService} from "../../shared/services/vehicle.service";
+import {AuthService} from "../../shared/services/auth/auth.service";
+import {VehicleService} from "../../shared/services/vehicle/vehicle.service";
 
 @Component({
   selector: "app-dashboard",

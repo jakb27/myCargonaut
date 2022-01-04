@@ -1,13 +1,13 @@
 import {Component, OnInit} from "@angular/core";
-import {AuthService} from "../../shared/services/auth.service";
+import {AuthService} from "../../shared/services/auth/auth.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Vehicle} from "../../shared/models/vehicle";
-import {VehicleService} from "../../shared/services/vehicle.service";
+import {VehicleService} from "../../shared/services/vehicle/vehicle.service";
 import {NewVehicleModalComponent} from "../new-vehicle-modal/new-vehicle-modal.component";
 import {EditVehicleModalComponent} from "../edit-vehicle-modal/edit-vehicle-modal.component";
-import {AlertService} from "../../shared/services/alerts.service";
+import {AlertService} from "../../shared/services/alerts/alerts.service";
 import {User} from "../../shared/models/user";
-import {CreditService} from "../../shared/services/credit.service";
+import {CreditService} from "../../shared/services/credit/credit.service";
 import {EditUserModalComponent} from "../edit-user-modal/edit-user-modal.component";
 
 @Component({
@@ -26,6 +26,14 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.authService.userData;
     this.vehicleService.readVehicles();
+  }
+
+  public async uploadProfilePic() {
+
+  }
+
+  public async deleteProfilePic() {
+
   }
 
   public async create() {
