@@ -31,6 +31,7 @@ import {PrivacyPolicyComponent} from "./components/privacy-policy/privacy-policy
 import { NewVehicleModalComponent } from "./components/new-vehicle-modal/new-vehicle-modal.component";
 import { EditVehicleModalComponent } from "./components/edit-vehicle-modal/edit-vehicle-modal.component";
 import { AlertComponent } from "./components/alert/alert.component";
+import { EditUserModalComponent } from "./components/edit-user-modal/edit-user-modal.component";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { AlertComponent } from "./components/alert/alert.component";
     PrivacyPolicyComponent,
     NewVehicleModalComponent,
     EditVehicleModalComponent,
-    AlertComponent
+    AlertComponent,
+    EditUserModalComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

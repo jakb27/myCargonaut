@@ -12,7 +12,7 @@
         <img src="http://via.placeholder.com/420x420" alt="User.photoURL">
       </div>
       <div id="userProfile" class="text-center pb-5">
-        <h5>Rating</h5>
+        <h5>Rating ({{this.user.ratings}})</h5>
         <ng-template #t let-fill="fill">
           <span class="star" [class.full]="fill === 100">
           <span class="half" [style.width.%]="fill">&starf;</span>&starf;</span>
@@ -21,7 +21,7 @@
       </div>
       <!-- // TODO-->
       <button class="btn btn-success" (click)="this.creditService.addCredit()"> ADD CREDIT</button>
-      <button class="btn btn-warning" (click)="this.authService.editUser()"> EDIT USER</button>
+      <button class="btn btn-warning" (click)="this.editUser()"> EDIT USER</button>
       <button class="btn btn-danger" (click)="this.authService.deleteUser()"> DELETE USER</button>
     </div>
     <div class="col-12 col-lg-4">
@@ -41,7 +41,7 @@
         <button class="btn btn-danger" (click)="create()">Add Vehicle</button>
         <div *ngFor="let v of this.vehicleService.vehicles">
           <p>{{v.name}} ({{v.type}}): {{v.seats}}, {{v.capacity}}<span><button class="btn btn-success"
-                                                                  (click)="edit(v)">Edit</button><button
+                                                                  (click)="editVehicle(v)">Edit</button><button
             class="btn btn-warning" (click)="delete(v)">Del</button></span></p>
         </div>
       </div>

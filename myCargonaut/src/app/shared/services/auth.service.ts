@@ -7,6 +7,7 @@ import firebase from "firebase/compat";
 import {environment} from "../../../environments/environment";
 import {AlertService} from "./alerts.service";
 import {Subject} from "rxjs";
+import {updateProfile} from "@angular/fire/auth";
 
 @Injectable({
   providedIn: "root"
@@ -46,7 +47,7 @@ export class AuthService {
   }
 
   // Sign in with email/password
-  SignIn(email: string, password: string) {
+  signIn(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         console.log(result);
@@ -70,7 +71,7 @@ export class AuthService {
   }
 
   // Sign up with email/password
-  SignUp(firstname: string, lastname: string, birthday: string, email: string, password: string) {
+  signUp(firstname: string, lastname: string, birthday: string, email: string, password: string) {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then(async (result) => {
         // this.SendVerificationMail(); //TODO verification email
@@ -87,6 +88,7 @@ export class AuthService {
           displayName: firstname + " " + lastname,
           photoURL: "",
           rating: 0,
+          ratings: 0,
           credit: 0
         };
         await this.afs.collection("/users").doc(uid).set(user).then(() => {
@@ -106,7 +108,7 @@ export class AuthService {
   // }
 
   // Reset Forgot password
-  ForgotPassword(passwordResetEmail: string) {
+  forgotPassword(passwordResetEmail: string) {
     return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
         window.alert("Password reset email sent, check your inbox.");
@@ -150,6 +152,7 @@ export class AuthService {
               emailVerified: res.get("emailVerified"),
               displayName: res.get("displayName"),
               rating: res.get("rating"),
+              ratings: res.get("ratings"),
               photoURL: res.get("photoURL"),
               credit: res.get("credit")
             };
@@ -193,7 +196,7 @@ export class AuthService {
   // }
 
   // Sign out
-  SignOut() {
+  signOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem("token");
       this.router.navigate(["sign-in"]);
@@ -201,12 +204,20 @@ export class AuthService {
   }
 
   async deleteUser() {
-    await this.SignOut();
+    await this.signOut();
     await this.afs.collection("/users").doc(this.userData!.uid).delete();
   }
 
-  async editUser() {
+  async updateCredit(){
+    await this.afs.collection("/users").doc(this.userData!.uid).update({
+      credit: this.userData.credit
+    });
+  }
 
+  async editUser(u: User) {
+    await this.afs.collection("/users").doc(this.userData!.uid).set(u, {
+      merge: true
+    });
   }
 
 

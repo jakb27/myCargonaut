@@ -7,6 +7,8 @@ import {NewVehicleModalComponent} from "../new-vehicle-modal/new-vehicle-modal.c
 import {EditVehicleModalComponent} from "../edit-vehicle-modal/edit-vehicle-modal.component";
 import {AlertService} from "../../shared/services/alerts.service";
 import {User} from "../../shared/models/user";
+import {CreditService} from "../../shared/services/credit.service";
+import {EditUserModalComponent} from "../edit-user-modal/edit-user-modal.component";
 
 @Component({
   selector: "app-user-profile",
@@ -17,7 +19,8 @@ export class UserProfileComponent implements OnInit {
 
   user!: User;
 
-  constructor(public authService: AuthService, public modalService: NgbModal, public vehicleService: VehicleService, public alertService: AlertService) {
+  constructor(public authService: AuthService, public modalService: NgbModal, public vehicleService: VehicleService,
+              public alertService: AlertService, public creditService: CreditService) {
   }
 
   ngOnInit(): void {
@@ -37,24 +40,38 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  public async edit(v: Vehicle) {
+  public async editVehicle(v: Vehicle) {
     const modalReference = this.modalService.open(EditVehicleModalComponent);
     modalReference.componentInstance.v = v;
 
     try {
       const resultVehicle: Vehicle = await modalReference.result;
       await this.vehicleService.updateVehicle(resultVehicle).then(
-        () => this.alertService.nextAlert({type: "success", message: "Vehicle successful edited"})
+        () => this.alertService.nextAlert({type: "success", message: "Vehicle successfully edited"})
       );
     } catch (error) {
       console.log(error);
     }
   }
+
   // TODO editUser
+  public async editUser() {
+    const modalReference = this.modalService.open(EditUserModalComponent);
+    modalReference.componentInstance.u = this.authService.userData;
+
+    try {
+      const resultUser: User = await modalReference.result;
+      await this.authService.editUser(resultUser).then(
+        () => this.alertService.nextAlert({type: "success", message: "User successfully edited"})
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   public async delete(v: Vehicle) {
     await this.vehicleService.deleteVehicle(v).then(
-      () => this.alertService.nextAlert({type: "success", message: "Vehicle successful deleted"})
+      () => this.alertService.nextAlert({type: "success", message: "Vehicle successfully deleted"})
     );
   }
 }

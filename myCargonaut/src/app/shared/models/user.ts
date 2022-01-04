@@ -7,6 +7,7 @@ export interface User {
   emailVerified: boolean;
   displayName: string;
   rating: number;
+  ratings: number;
   photoURL: string;
   credit: number;
 

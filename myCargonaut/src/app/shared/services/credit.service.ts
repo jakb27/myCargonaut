@@ -1,9 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
+import {AuthService} from "./auth.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class CreditService {
 
-  constructor() { }
+  constructor(public authService: AuthService) { }
+
+  async addCredit() {
+    if(this.authService.afAuth.currentUser != null){
+      this.authService.userData.credit += 10;
+      this.authService.updateCredit();
+    }
+  }
 }
