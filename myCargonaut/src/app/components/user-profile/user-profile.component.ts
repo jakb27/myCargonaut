@@ -6,6 +6,7 @@ import {VehicleService} from "../../shared/services/vehicle.service";
 import {NewVehicleModalComponent} from "../new-vehicle-modal/new-vehicle-modal.component";
 import {EditVehicleModalComponent} from "../edit-vehicle-modal/edit-vehicle-modal.component";
 import {AlertService} from "../../shared/services/alerts.service";
+import {User} from "../../shared/models/user";
 
 @Component({
   selector: "app-user-profile",
@@ -14,12 +15,13 @@ import {AlertService} from "../../shared/services/alerts.service";
 })
 export class UserProfileComponent implements OnInit {
 
-  currentRate = 4.7; // TODO
+  user!: User;
 
   constructor(public authService: AuthService, public modalService: NgbModal, public vehicleService: VehicleService, public alertService: AlertService) {
   }
 
   ngOnInit(): void {
+    this.user = this.authService.userData;
     this.vehicleService.readVehicles();
   }
 
@@ -48,6 +50,7 @@ export class UserProfileComponent implements OnInit {
       console.log(error);
     }
   }
+  // TODO editUser
 
   public async delete(v: Vehicle) {
     await this.vehicleService.deleteVehicle(v).then(
