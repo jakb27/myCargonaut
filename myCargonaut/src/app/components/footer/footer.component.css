@@ -1,3 +1,4 @@
+
 .footer-element {
   text-decoration: none;
 }
@@ -23,11 +24,10 @@ li {
 
 
 .footer-link-element > a {
-  flex: 0 0 50%;
+  flex: 0 0 45%;
   margin-bottom: 0.8em;
   color: white;
 }
 .footer-link-element > a:hover{
   color: #373F68;
 }
-
