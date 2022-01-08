@@ -13,8 +13,12 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.getUserData();
-    this.vehicleService.readVehicles();
+    this.init();
+  }
+
+  async init(): Promise<void> {
+    await this.authService.getUserData();
+    await this.vehicleService.readVehicles();
   }
 
 }

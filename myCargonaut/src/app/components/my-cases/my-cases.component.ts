@@ -8,6 +8,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {EditCaseModalComponent} from "../edit-case-modal/edit-case-modal.component";
 import {VehicleService} from "../../shared/services/vehicle/vehicle.service";
 import {AlertService} from "../../shared/services/alerts/alerts.service";
+import {CreditService} from "../../shared/services/credit/credit.service";
 
 @Component({
   selector: "app-my-cases",
@@ -19,7 +20,12 @@ export class MyCasesComponent implements OnInit {
   public list: string = "published"; // "booked"
   public type_offer: string = "offer";
 
-  constructor(public caseService: CaseService, public authService: AuthService, public modalService: NgbModal, public vehicleService:VehicleService, public alertService: AlertService) {
+  constructor(public caseService: CaseService,
+              public authService: AuthService,
+              public modalService: NgbModal,
+              public vehicleService:VehicleService,
+              public alertService: AlertService,
+              public creditService: CreditService) {
   }
 
   ngOnInit(): void {
@@ -59,7 +65,7 @@ export class MyCasesComponent implements OnInit {
 
   public async delete(c: Case) {
     await this.caseService.deleteCase(c).then(
-      () => this.alertService.nextAlert({type: "success", message: "Case successful deleted"})
+      () => this.alertService.nextAlert({type: "success", message: "Case successfully deleted"})
     );;
   }
 
@@ -67,17 +73,27 @@ export class MyCasesComponent implements OnInit {
     c.accepter_uid = "";
     c.status = "open";
     await this.caseService.updateCase(c).then(
-      () => this.alertService.nextAlert({type: "success", message: "Case successful canceled"}) // TODO
-    );;
+      () => this.alertService.nextAlert({type: "success", message: "Case successfully canceled with 50% fee"}) // TODO
+    );
+    await this.creditService.unacceptFee(c);
+  }
+
+  public async finish(c: Case) {
+    c.status = "finished";
+    await this.caseService.updateCase(c).then(
+      () => this.alertService.nextAlert({type: "success", message: "Case successfully finished"}) // TODO
+    );
+    await this.creditService.finishPay(c);
   }
 
   public async cancel(c: Case) { // TODO
-
+  //pay storno fee? to whom?
   }
 
   public select(){
     if(this.list === "published") return this.caseService.myCasesP;
     if(this.list === "booked") return this.caseService.myCasesA;
+    if(this.list === "finished") return this.caseService.myCasesF;
     return null;
   }
 

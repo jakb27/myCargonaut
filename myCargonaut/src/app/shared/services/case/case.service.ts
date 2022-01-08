@@ -12,6 +12,7 @@ export class CaseService {
   private _casesDashboard: Case[] = [];
   private _myCasesP: Case[] = [];
   private _myCasesA: Case[] = [];
+  private _myCasesF: Case[] = [];
 
   constructor(private fs: AngularFirestore, private authService: AuthService) {
   }
@@ -34,8 +35,14 @@ export class CaseService {
 
   readMyCases() {
     if(this.authService.userData) {
-      const queryPublished = query(collection(this.fs.firestore, "cases"), where("publisher_uid", "==", this.authService.userData.uid));
-      const queryAccepted = query(collection(this.fs.firestore, "cases"), where("accepter_uid", "==", this.authService.userData.uid));
+      const queryPublished = query(collection(this.fs.firestore, "cases"),
+        where("publisher_uid", "==", this.authService.userData.uid),
+        where("status", "!=", "finished"));
+      const queryAccepted = query(collection(this.fs.firestore, "cases"),
+        where("accepter_uid", "==", this.authService.userData.uid),
+        where("status", "!=", "finished"));
+      const queryFinished = query(collection(this.fs.firestore, "cases"),
+        where("status", "==", "finished"));
 
       onSnapshot(queryPublished, (querySnapshot) => {
         this._myCasesP = [];
@@ -47,6 +54,12 @@ export class CaseService {
         this._myCasesA = [];
         querySnapshot.forEach((doc) => {
           this.myCasesA.push(doc.data() as Case);
+        });
+      });
+      onSnapshot(queryFinished, (querySnapshot) => {
+        this._myCasesF = [];
+        querySnapshot.forEach((doc) => {
+          this.myCasesF.push(doc.data() as Case);
         });
       });
     }
@@ -86,6 +99,10 @@ export class CaseService {
 
   get myCasesA(): Case[] {
     return this._myCasesA;
+  }
+
+  get myCasesF(): Case[] {
+    return this._myCasesF;
   }
 
   public timeConverter(UNIX_timestamp: any){
