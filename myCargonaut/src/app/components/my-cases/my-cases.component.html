@@ -19,6 +19,9 @@
           <label ngbButtonLabel class="btn-outline-success">
             <input ngbButton type="radio" value="booked"> Booked
           </label>
+          <label ngbButtonLabel class="btn-outline-success">
+            <input ngbButton type="radio" value="finished"> Finished
+          </label>
         </div>
         <button type="button" class="btn btn-add-case" (click)="create()">Add</button>
       </div>
@@ -38,7 +41,7 @@
               <div class="case-category-status">
                 <span class="btn case-category">{{c.type}}</span>
                 <span class="btn case-status">{{c.status}}</span>
-                <span class="btn case-status">{{c.price}}€</span>
+                <span class="btn case-status">{{c.price}}$</span>
                 <span class="btn case-status">{{c.vehicle.name}}</span>
               </div>
             </div>
@@ -52,6 +55,10 @@
               </div>
               <div *ngIf="this.list === 'booked'">
                 <button type="button" class="btn btn-warning" (click)="unaccept(c)">Cancel</button>
+                <button type="button" class="btn btn-success" (click)="finish(c)">Finish</button>
+              </div>
+              <div *ngIf="this.list === 'finished'">
+
               </div>
             </div>
           </div>
