@@ -173,12 +173,6 @@ export class AuthService {
     await this.signOut();
   }
 
-  async updateCredit() {
-    await this.afs.collection("/users").doc(this.userData!.uid).update({
-      credit: this.userData.credit
-    });
-  }
-
   async editUser(u: User) {
     await this.afs.collection("/users").doc(this.userData!.uid).set(u, {
       merge: true
