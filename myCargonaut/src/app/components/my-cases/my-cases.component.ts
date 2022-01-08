@@ -1,11 +1,13 @@
 import {Component, OnInit} from "@angular/core";
-import {CaseService} from "../../shared/services/case.service";
+import {CaseService} from "../../shared/services/case/case.service";
 import {Case} from "../../shared/models/case";
-import {AuthService} from "../../shared/services/auth.service";
+import {AuthService} from "../../shared/services/auth/auth.service";
 import {onSnapshot} from "@angular/fire/firestore";
 import {NewCaseModalComponent} from "../new-case-modal/new-case-modal.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {EditCaseModalComponent} from "../edit-case-modal/edit-case-modal.component";
+import {VehicleService} from "../../shared/services/vehicle/vehicle.service";
+import {AlertService} from "../../shared/services/alerts/alerts.service";
 
 @Component({
   selector: "app-my-cases",
@@ -14,59 +16,30 @@ import {EditCaseModalComponent} from "../edit-case-modal/edit-case-modal.compone
 })
 export class MyCasesComponent implements OnInit {
 
-  myCasesP: Case[] = [];
-  myCasesA: Case[] = [];
-  type_offer: string = "offer";
+  public list: string = "published"; // "booked"
+  public type_offer: string = "offer";
 
-  constructor(public caseService: CaseService, public authService: AuthService, public modalService: NgbModal) {
+  constructor(public caseService: CaseService, public authService: AuthService, public modalService: NgbModal, public vehicleService:VehicleService, public alertService: AlertService) {
   }
 
   ngOnInit(): void {
-    //TODO race condition?
-
-    if(this.authService.userData) {
-      const queryPublished = this.caseService.readCasesByIDP(this.authService.userData.uid);
-      const queryAccepted = this.caseService.readCasesByIDA(this.authService.userData.uid);
-
-      onSnapshot(queryPublished, (querySnapshot) => {
-        this.myCasesP = [];
-        querySnapshot.forEach((doc) => {
-          this.myCasesP.push(doc.data() as Case);
-        });
-      });
-      onSnapshot(queryAccepted, (querySnapshot) => {
-        this.myCasesA = [];
-        querySnapshot.forEach((doc) => {
-          this.myCasesA.push(doc.data() as Case);
-        });
-      });
-    }
-
-
-    //TODO 2 queries as 1 with where(uid in published/accepted)
-
-    // const q = this.caseService.readCasesByID(this.authService.userData.uid);
-    // onSnapshot(q, (querySnapshot) => {
-    //   this.myCasesP = [];
-    //   this.myCasesA = [];
-    //   querySnapshot.forEach((doc) => {
-    //     let d = doc.data() as Case;
-    //     if(d.accepter_uid != "") {
-    //       this.myCasesA.push(d);
-    //     } else {
-    //       this.myCasesP.push(d);
-    //     }
-    //   });
-    // });
+    this.vehicleService.readVehicles();
+    this.caseService.readMyCases();
   }
 
   public async create() {
-    const modalReference = this.modalService.open(NewCaseModalComponent);
-    try {
-      const resultCase: Case = await modalReference.result;
-      await this.caseService.createCase(resultCase);
-    } catch (error) {
-      console.log(error);
+    if (this.vehicleService.vehicles != undefined && this.vehicleService.vehicles.length > 0) {
+      const modalReference = this.modalService.open(NewCaseModalComponent);
+      try {
+        const resultCase: Case = await modalReference.result;
+        await this.caseService.createCase(resultCase).then(
+          () => this.alertService.nextAlert({type: "success", message: "Case successful added"})
+        );
+
+      } catch (error) {
+      }
+    } else {
+      this.alertService.nextAlert({type: "danger", message: "Please add Vehicle first"});
     }
   }
 
@@ -76,24 +49,36 @@ export class MyCasesComponent implements OnInit {
 
     try {
       const resultCase: Case = await modalReference.result;
-      await this.caseService.updateCase(resultCase);
+      await this.caseService.updateCase(resultCase).then(
+        () => this.alertService.nextAlert({type: "success", message: "Case successful edited"})
+      );;
     } catch (error) {
       console.log(error);
     }
   }
 
   public async delete(c: Case) {
-    await this.caseService.deleteCase(c);
+    await this.caseService.deleteCase(c).then(
+      () => this.alertService.nextAlert({type: "success", message: "Case successful deleted"})
+    );;
   }
 
   public async unaccept(c: Case) {
     c.accepter_uid = "";
     c.status = "open";
-    await this.caseService.updateCase(c);
+    await this.caseService.updateCase(c).then(
+      () => this.alertService.nextAlert({type: "success", message: "Case successful canceled"}) // TODO
+    );;
   }
 
-  public async cancel(c: Case) {
+  public async cancel(c: Case) { // TODO
 
+  }
+
+  public select(){
+    if(this.list === "published") return this.caseService.myCasesP;
+    if(this.list === "booked") return this.caseService.myCasesA;
+    return null;
   }
 
 }

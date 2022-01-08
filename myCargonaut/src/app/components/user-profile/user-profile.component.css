@@ -1,0 +1,32 @@
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: 2rem;
+  color: #d3d3d3;
+}
+.full {
+  color: #dcb425;
+}
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: #dcb425;
+}
+
+img {
+  border-radius: 30%;
+}
+
+#userInfo {
+  height: 100%;
+  background-color: #f4f4f4;
+  border-radius: 10%;
+}
+
+#userVehicles {
+  height: 100%;
+  background-color: #f4f4f4;
+  border-radius: 10%;
+}
+

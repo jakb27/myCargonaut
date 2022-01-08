@@ -1,3 +1,5 @@
+import {Vehicle} from "./vehicle";
+
 export interface Case {
   id: string, //TODO
   type: string,
@@ -7,5 +9,6 @@ export interface Case {
   start: string,
   end: string,
   dateTime: any,
-  price: number
+  price: number,
+  vehicle: Vehicle
 }

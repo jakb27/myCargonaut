@@ -10,11 +10,11 @@ import {SignUpComponent} from "./components/sign-up/sign-up.component";
 import {ForgotPasswordComponent} from "./components/forgot-password/forgot-password.component";
 import {VerifyEmailComponent} from "./components/verify-email/verify-email.component";
 import {AppRoutingModule} from "./app-routing.module";
-import {AuthService} from "./shared/services/auth.service";
+import {AuthService} from "./shared/services/auth/auth.service";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {AngularFirestoreModule, SETTINGS} from "@angular/fire/compat/firestore";
-import {CaseService} from "./shared/services/case.service";
+import {CaseService} from "./shared/services/case/case.service";
 import {CaseListComponent} from "./components/case-list/case-list.component";
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import {NewCaseModalComponent} from "./components/new-case-modal/new-case-modal.component";
@@ -28,6 +28,10 @@ import {EditCaseModalComponent} from "./components/edit-case-modal/edit-case-mod
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {DateTimePickerComponent} from "./components/custom/datetime-picker.component";
 import {PrivacyPolicyComponent} from "./components/privacy-policy/privacy-policy.component";
+import { NewVehicleModalComponent } from "./components/new-vehicle-modal/new-vehicle-modal.component";
+import { EditVehicleModalComponent } from "./components/edit-vehicle-modal/edit-vehicle-modal.component";
+import { AlertComponent } from "./components/alert/alert.component";
+import { EditUserModalComponent } from "./components/edit-user-modal/edit-user-modal.component";
 
 @NgModule({
   declarations: [
@@ -45,7 +49,11 @@ import {PrivacyPolicyComponent} from "./components/privacy-policy/privacy-policy
     MyCasesComponent,
     EditCaseModalComponent,
     DateTimePickerComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    NewVehicleModalComponent,
+    EditVehicleModalComponent,
+    AlertComponent,
+    EditUserModalComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

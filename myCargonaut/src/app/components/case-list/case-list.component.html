@@ -9,7 +9,7 @@
   </div>
 
   <div class="pricing-header mx-auto">
-    <div *ngFor="let c of this.cases; let i = index;">
+    <div *ngFor="let c of this.caseService.casesDashboard; let i = index;">
       <ng-container *ngIf="showOwn || c.publisher_uid !== this.authService.userData.uid">
       <div [ngClass]="c.type === this.type_offer ? 'case-display case-offer' : 'case-display case-request'">
         <div class="case-start-end">
@@ -26,11 +26,12 @@
             <span class="btn case-category">{{c.type}}</span>
             <span class="btn case-status">{{c.status}}</span>
             <span class="btn case-status">{{c.price}}€</span>
+            <span class="btn case-status">{{c.vehicle.name}}</span>
           </div>
         </div>
         <div class="case-action">
-          <button class="btn btn-action others-case" type="button" *ngIf="this.authService.userData.uid !== c.publisher_uid" (click)="accept(c)">Book</button>
-          <button class="btn btn-action  your-case" type="button" *ngIf="this.authService.userData.uid === c.publisher_uid" >Own</button>
+          <button class="btn btn-action others-case" type="button" *ngIf="this.authService.userData?.uid !== c.publisher_uid" (click)="accept(c)">Book</button>
+          <button class="btn btn-action  your-case" type="button" *ngIf="this.authService.userData?.uid === c.publisher_uid" >Own</button>
         </div>
       </div>
       </ng-container>
