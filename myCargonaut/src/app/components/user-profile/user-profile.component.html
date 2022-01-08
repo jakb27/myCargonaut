@@ -3,13 +3,12 @@
 <app-alert></app-alert>
 
 <!-- New Main -->
-<!-- TODO layout not finished -->
 <div class="container-fluid">
   <div class="row text-center p-3">
-    <div class="col-12 col-lg-4">
+    <div class="col-12 cols col-lg-2">
       <h3>Your Profile:</h3>
       <div class="img-fluid text-center pt-2 pb-5">
-        <img src="http://via.placeholder.com/420x420" alt="User.photoURL">
+        <img src="http://via.placeholder.com/240x240" alt="User.photoURL">
       </div>
       <button class="btn btn-outline-success" (click)="this.uploadProfilePic()"> UPLOAD PIC</button>
       <button class="btn btn-outline-danger" (click)="this.deleteProfilePic()"> DELETE PIC</button>
@@ -23,28 +22,89 @@
       </div>
       <!-- // TODO-->
       <button class="btn btn-success" (click)="this.creditService.addCredit()"> ADD CREDIT</button>
-      <button class="btn btn-warning" (click)="this.editUser()"> EDIT USER</button>
       <button class="btn btn-danger" (click)="this.authService.deleteUser()"> DELETE USER</button>
     </div>
     <div class="col-12 col-lg-4">
       <div id="userInfo">
         <h3 class="pb-2">About you:</h3>
         <h5>Hello {{this.user.displayName}}!</h5>
-        <p>Firstname: {{this.user.firstname}}</p>
-        <p>Lastname: {{this.user.lastname}}</p>
-        <p>Email: {{this.user.email}} ({{this.user.emailVerified ? "&check;" : "&cross;"}})</p>
-        <p>Birthday: {{this.user.birthday}}</p>
-        <p>Credit: {{this.user.credit}} $</p>
+        <div class="row">
+          <div class="col-6">
+            <p class ="hl"><b>Firstname:</b> </p>
+          </div>
+          <div class="col-6">
+            <p>{{this.user.firstname}}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <p class ="hl"><b>Lastname:</b> </p>
+          </div>
+          <div class="col-6">
+            <p>{{this.user.lastname}}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <p class ="hl"><b>Email: </b></p>
+          </div>
+          <div class="col-6">
+            <p>{{this.user.email}} ({{this.user.emailVerified ? "&check;" : "&cross;"}})</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <p class ="hl"><b>Birthday:</b> </p>
+          </div>
+          <div class="col-6">
+            <p>{{this.user.birthday}}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <p class ="hl"><b>Credit: </b></p>
+          </div>
+          <div class="col-6">
+            <p>{{this.user.credit}} $</p>
+          </div>
+        </div>
+        <span class="material-icons editor" (click)="this.editUser()">edit</span>
+
       </div>
     </div>
-    <div class="col-12 col-lg-4">
+
+    <div class="col-12 col-lg-4 justify-content-center">
       <div id="userVehicles">
+
         <h3>Your Vehicles:</h3>
-        <button class="btn btn-danger" (click)="create()">Add Vehicle</button>
-        <div *ngFor="let v of this.vehicleService.vehicles">
-          <p>{{v.name}} ({{v.type}}): {{v.seats}}, {{v.capacity}}<span><button class="btn btn-success"
-                                                                  (click)="editVehicle(v)">Edit</button><button
-            class="btn btn-warning" (click)="delete(v)">Del</button></span></p>
+        <div class="row justify-content-center">
+          <div class="col-10 justify-content-center">
+            <div *ngFor="let v of this.vehicleService.vehicles">
+              <div class="card w-75 vehiclecard">
+                <div class="card-body">
+                  <h5 class="card-title"><b>{{v.name}}</b> ({{v.type}})</h5>
+                  <p class="card-text">Seats: {{v.seats}}, Capacity: {{v.capacity}}</p>
+                  <div class="row justify-content-end">
+                    <div class="col-8">
+
+                    </div>
+                    <div class="col-4">
+                      <span class="material-icons" (click)="editVehicle(v)">edit</span>
+                      <span class="material-icons" (click)="delete(v)">delete</span>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <span class="material-icons md-48 editorVehicle" (click)="create()">add</span>
+          </div>
         </div>
       </div>
     </div>
@@ -53,3 +113,4 @@
 
 <!-- Footer -->
 <app-footer></app-footer>
+
