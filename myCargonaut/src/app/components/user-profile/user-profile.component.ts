@@ -25,6 +25,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.authService.userData;
+    this.authService.getUserRating();
     this.vehicleService.readVehicles();
   }
 

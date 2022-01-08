@@ -31,6 +31,7 @@ export class NewCaseModalComponent implements OnInit {
       id: "",
       accepter_uid: "",
       price: 0,
+      rating: 0,
       vehicle: {v_id: "", name: "", seats: 0, capacity: 0, owner_id: ""}
     };
   }

@@ -9,6 +9,7 @@ import {EditCaseModalComponent} from "../edit-case-modal/edit-case-modal.compone
 import {VehicleService} from "../../shared/services/vehicle/vehicle.service";
 import {AlertService} from "../../shared/services/alerts/alerts.service";
 import {CreditService} from "../../shared/services/credit/credit.service";
+import {RatingModalComponent} from "../rating-modal/rating-modal.component";
 
 @Component({
   selector: "app-my-cases",
@@ -23,7 +24,7 @@ export class MyCasesComponent implements OnInit {
   constructor(public caseService: CaseService,
               public authService: AuthService,
               public modalService: NgbModal,
-              public vehicleService:VehicleService,
+              public vehicleService: VehicleService,
               public alertService: AlertService,
               public creditService: CreditService) {
   }
@@ -57,7 +58,7 @@ export class MyCasesComponent implements OnInit {
       const resultCase: Case = await modalReference.result;
       await this.caseService.updateCase(resultCase).then(
         () => this.alertService.nextAlert({type: "success", message: "Case successful edited"})
-      );;
+      );
     } catch (error) {
       console.log(error);
     }
@@ -66,10 +67,10 @@ export class MyCasesComponent implements OnInit {
   public async delete(c: Case) {
     await this.caseService.deleteCase(c).then(
       () => this.alertService.nextAlert({type: "success", message: "Case successfully deleted"})
-    );;
+    );
   }
 
-  public async unaccept(c: Case) {
+  public async cancel(c: Case) {
     c.accepter_uid = "";
     c.status = "open";
     await this.caseService.updateCase(c).then(
@@ -79,21 +80,26 @@ export class MyCasesComponent implements OnInit {
   }
 
   public async finish(c: Case) {
-    c.status = "finished";
-    await this.caseService.updateCase(c).then(
-      () => this.alertService.nextAlert({type: "success", message: "Case successfully finished"}) // TODO
-    );
-    await this.creditService.finishPay(c);
+    const modalReference = this.modalService.open(RatingModalComponent);
+    modalReference.componentInstance.c = c;
+
+    try {
+      const resultCase: Case = await modalReference.result;
+      // c.status = "finished";
+      resultCase.status = "finished";
+      await this.caseService.updateCase(resultCase).then(
+        () => this.alertService.nextAlert({type: "success", message: "Case successfully finished"}) // TODO
+      );
+      await this.creditService.finishPay(c);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  public async cancel(c: Case) { // TODO
-  //pay storno fee? to whom?
-  }
-
-  public select(){
-    if(this.list === "published") return this.caseService.myCasesP;
-    if(this.list === "booked") return this.caseService.myCasesA;
-    if(this.list === "finished") return this.caseService.myCasesF;
+  public select() {
+    if (this.list === "published") return this.caseService.myCasesP;
+    if (this.list === "booked") return this.caseService.myCasesA;
+    if (this.list === "finished") return this.caseService.myCasesF;
     return null;
   }
 

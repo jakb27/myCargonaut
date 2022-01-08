@@ -4,7 +4,6 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {AuthService} from "../../shared/services/auth/auth.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {VehicleService} from "../../shared/services/vehicle/vehicle.service";
-import {Vehicle} from "../../shared/models/vehicle";
 
 @Component({
   selector: "app-edit-case-modal",
@@ -33,6 +32,7 @@ export class EditCaseModalComponent implements OnInit {
       id: "",
       accepter_uid: "",
       price: 0,
+      rating: 0,
       vehicle: {v_id: "", name: "", seats: 0, capacity: 0, owner_id: ""}
     };
   }

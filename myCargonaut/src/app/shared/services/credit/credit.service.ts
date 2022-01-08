@@ -30,7 +30,7 @@ export class CreditService {
       this.authService.userData.credit -= c.price; //TODO neuer credit sonst nur bei reload sichtbar
       // await this.updateCredit(this.authService.userData.uid, this.authService.userData.credit-c.price);
       await this.updateCredit(this.authService.userData.uid, this.authService.userData.credit);
-      // TODO add money to publisher
+      // TODO add money to publisher (firestore rules?? cant access publisher credit!!)
       // let p = await this.afs.firestore.collection("/users").doc(c.publisher_uid).get();
       // console.log(p);
       // await this.updateCredit(c.publisher_uid, p.data()!["credit"] + c.price);
