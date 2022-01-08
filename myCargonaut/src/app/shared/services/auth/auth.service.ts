@@ -3,7 +3,7 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Router} from "@angular/router";
 import {User} from "../../models/user";
-import firebase from "firebase/compat";
+import firebase from "firebase/compat/app";
 import {environment} from "../../../../environments/environment";
 import {AlertService} from "../alerts/alerts.service";
 import {Subject} from "rxjs";
@@ -168,8 +168,8 @@ export class AuthService {
   }
 
   async deleteUser() {
+    await firebase.auth().currentUser?.delete();
     await this.signOut();
-    await this.afs.collection("/users").doc(this.userData!.uid).delete();
   }
 
   async updateCredit() {
