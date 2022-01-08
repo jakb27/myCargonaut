@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {Case} from "../../shared/models/case";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {AuthService} from "../../shared/services/auth.service";
+import {AuthService} from "../../shared/services/auth/auth.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {VehicleService} from "../../shared/services/vehicle.service";
+import {VehicleService} from "../../shared/services/vehicle/vehicle.service";
 import {Vehicle} from "../../shared/models/vehicle";
 
 @Component({

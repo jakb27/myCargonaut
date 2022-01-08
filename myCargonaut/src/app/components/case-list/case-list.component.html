@@ -30,8 +30,8 @@
           </div>
         </div>
         <div class="case-action">
-          <button class="btn btn-action others-case" type="button" *ngIf="this.authService.userData.uid !== c.publisher_uid" (click)="accept(c)">Book</button>
-          <button class="btn btn-action  your-case" type="button" *ngIf="this.authService.userData.uid === c.publisher_uid" >Own</button>
+          <button class="btn btn-action others-case" type="button" *ngIf="this.authService.userData?.uid !== c.publisher_uid" (click)="accept(c)">Book</button>
+          <button class="btn btn-action  your-case" type="button" *ngIf="this.authService.userData?.uid === c.publisher_uid" >Own</button>
         </div>
       </div>
       </ng-container>

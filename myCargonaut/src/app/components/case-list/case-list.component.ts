@@ -1,11 +1,11 @@
 import {Component, OnInit} from "@angular/core";
 import {Case} from "../../shared/models/case";
-import {CaseService} from "../../shared/services/case.service";
+import {CaseService} from "../../shared/services/case/case.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NewCaseModalComponent} from "../new-case-modal/new-case-modal.component";
-import {AuthService} from "../../shared/services/auth.service";
-import {VehicleService} from "../../shared/services/vehicle.service";
-import {AlertService} from "../../shared/services/alerts.service";
+import {AuthService} from "../../shared/services/auth/auth.service";
+import {VehicleService} from "../../shared/services/vehicle/vehicle.service";
+import {AlertService} from "../../shared/services/alerts/alerts.service";
 import {Alert} from "../../shared/models/alert";
 
 @Component({

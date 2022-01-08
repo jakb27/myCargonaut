@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
-import {Case} from "../models/case";
+import {Case} from "../../models/case";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {collection, onSnapshot, query, where} from "@angular/fire/firestore";
-import {AuthService} from "./auth.service";
+import {AuthService} from "../auth/auth.service";
 
 @Injectable({
   providedIn: "root"

@@ -1,13 +1,13 @@
 import {Component, OnInit} from "@angular/core";
-import {CaseService} from "../../shared/services/case.service";
+import {CaseService} from "../../shared/services/case/case.service";
 import {Case} from "../../shared/models/case";
-import {AuthService} from "../../shared/services/auth.service";
+import {AuthService} from "../../shared/services/auth/auth.service";
 import {onSnapshot} from "@angular/fire/firestore";
 import {NewCaseModalComponent} from "../new-case-modal/new-case-modal.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {EditCaseModalComponent} from "../edit-case-modal/edit-case-modal.component";
-import {VehicleService} from "../../shared/services/vehicle.service";
-import {AlertService} from "../../shared/services/alerts.service";
+import {VehicleService} from "../../shared/services/vehicle/vehicle.service";
+import {AlertService} from "../../shared/services/alerts/alerts.service";
 
 @Component({
   selector: "app-my-cases",

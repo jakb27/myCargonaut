@@ -11,24 +11,30 @@
       <div class="img-fluid text-center pt-2 pb-5">
         <img src="http://via.placeholder.com/420x420" alt="User.photoURL">
       </div>
-      <div id="userProfile" class="text-center pb-5">
-        <h5>Rating</h5>
+      <button class="btn btn-outline-success" (click)="this.uploadProfilePic()"> UPLOAD PIC</button>
+      <button class="btn btn-outline-danger" (click)="this.deleteProfilePic()"> DELETE PIC</button>
+      <div id="userProfile" class="text-center p-5">
+        <h5>Rating ({{this.user.ratings}})</h5>
         <ng-template #t let-fill="fill">
           <span class="star" [class.full]="fill === 100">
           <span class="half" [style.width.%]="fill">&starf;</span>&starf;</span>
         </ng-template>
-        <ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
+        <ngb-rating [(rate)]="this.user.rating" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
       </div>
       <!-- // TODO-->
+      <button class="btn btn-success" (click)="this.creditService.addCredit()"> ADD CREDIT</button>
+      <button class="btn btn-warning" (click)="this.editUser()"> EDIT USER</button>
       <button class="btn btn-danger" (click)="this.authService.deleteUser()"> DELETE USER</button>
     </div>
     <div class="col-12 col-lg-4">
       <div id="userInfo">
-        <h3>About you:</h3>
-        <p>Firstname: User.first</p>
-        <p>Lastname: User.last</p>
-        <p>Email: User.email (&check;)</p>
-        <p>Birthday: User.birth</p>
+        <h3 class="pb-2">About you:</h3>
+        <h5>Hello {{this.user.displayName}}!</h5>
+        <p>Firstname: {{this.user.firstname}}</p>
+        <p>Lastname: {{this.user.lastname}}</p>
+        <p>Email: {{this.user.email}} ({{this.user.emailVerified ? "&check;" : "&cross;"}})</p>
+        <p>Birthday: {{this.user.birthday}}</p>
+        <p>Credit: {{this.user.credit}} $</p>
       </div>
     </div>
     <div class="col-12 col-lg-4">
@@ -37,7 +43,7 @@
         <button class="btn btn-danger" (click)="create()">Add Vehicle</button>
         <div *ngFor="let v of this.vehicleService.vehicles">
           <p>{{v.name}} ({{v.type}}): {{v.seats}}, {{v.capacity}}<span><button class="btn btn-success"
-                                                                  (click)="edit(v)">Edit</button><button
+                                                                  (click)="editVehicle(v)">Edit</button><button
             class="btn btn-warning" (click)="delete(v)">Del</button></span></p>
         </div>
       </div>

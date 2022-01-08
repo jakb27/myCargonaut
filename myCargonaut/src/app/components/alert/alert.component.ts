@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
 import {debounceTime} from "rxjs/operators";
 import {NgbAlert} from "@ng-bootstrap/ng-bootstrap";
-import {AlertService} from "../../shared/services/alerts.service";
+import {AlertService} from "../../shared/services/alerts/alerts.service";
 import {Alert} from "../../shared/models/alert";
 
 @Component({
