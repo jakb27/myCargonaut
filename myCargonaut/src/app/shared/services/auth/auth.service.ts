@@ -168,6 +168,7 @@ export class AuthService {
   }
 
   async deleteUser() {
+    await this.afs.collection("/users").doc(firebase.auth().currentUser?.uid).delete();
     await firebase.auth().currentUser?.delete();
     await this.signOut();
   }
