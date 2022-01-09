@@ -23,6 +23,7 @@ export class NewCaseModalComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal, private authService: AuthService, public vehicleService: VehicleService, public alertService: AlertService) {
     this.case = {
       publisher_uid: authService.userData.uid,
+      publisher_name: authService.userData.displayName,
       type: this.type,
       status: "open",
       start: "",

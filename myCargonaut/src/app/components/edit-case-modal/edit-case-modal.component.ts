@@ -24,6 +24,7 @@ export class EditCaseModalComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal, private authService: AuthService, public vehicleService: VehicleService) {
     this.case = {
       publisher_uid: authService.userData.uid,
+      publisher_name: authService.userData.displayName,
       type: "",
       status: "open",
       start: "",
