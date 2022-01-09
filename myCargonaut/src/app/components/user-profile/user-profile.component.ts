@@ -24,9 +24,13 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = this.authService.userData;
-    this.authService.getUserRating();
-    this.vehicleService.readVehicles();
+    this.init().then(() => this.user = this.authService.userData);
+  }
+
+  async init() {
+    await this.authService.getUserData();
+    await this.vehicleService.readVehicles();
+    await this.authService.getUserRating();
   }
 
   public async uploadProfilePic() {
