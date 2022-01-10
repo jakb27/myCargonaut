@@ -41,7 +41,7 @@
       <div id="userVehicles">
         <h3>Your Vehicles:</h3>
         <button class="btn btn-danger" (click)="create()">Add Vehicle</button>
-        <div *ngFor="let v of this.vehicleService.vehicles">
+        <div *ngFor="let v of this.vehicleService.vehicles" class="pt-2">
           <p>{{v.name}} ({{v.type}}): {{v.seats}}, {{v.capacity}}<span><button class="btn btn-success"
                                                                   (click)="editVehicle(v)">Edit</button><button
             class="btn btn-warning" (click)="delete(v)">Del</button></span></p>

@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { EditUserModalComponent } from './edit-user-modal.component';
+import { EditUserModalComponent } from "./edit-user-modal.component";
 
-describe('EditUserModalComponent', () => {
+describe("EditUserModalComponent", () => {
   let component: EditUserModalComponent;
   let fixture: ComponentFixture<EditUserModalComponent>;
 
@@ -10,7 +10,7 @@ describe('EditUserModalComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ EditUserModalComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe('EditUserModalComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

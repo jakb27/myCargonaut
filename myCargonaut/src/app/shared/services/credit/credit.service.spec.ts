@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { CreditService } from './credit.service';
+import { CreditService } from "./credit.service";
 
-describe('CreditService', () => {
+describe("CreditService", () => {
   let service: CreditService;
 
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe('CreditService', () => {
     service = TestBed.inject(CreditService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 });
