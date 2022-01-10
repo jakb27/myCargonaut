@@ -5,10 +5,12 @@ export interface Case {
   type: string,
   status: string,   // open, booked, in progress, done
   publisher_uid: string,
+  publisher_name: string,
   accepter_uid: string,
   start: string,
   end: string,
   dateTime: any,
   price: number,
-  vehicle: Vehicle
+  vehicle: Vehicle,
+  rating: number
 }
