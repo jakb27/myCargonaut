@@ -137,29 +137,34 @@ export class AuthService {
 
   async getUserData(): Promise<void> {
     return new Promise((resolve) => {
-      this.authState.asObservable().subscribe((res) => {
-        if (res) {
-          this.userFirebase = res;
-          this.afs.doc(`users/${this.userFirebase.uid}`).get().subscribe(async(res) => {
-            if (res) {
-              this.userData = {
-                uid: await res.get("uid"),
-                firstname: await res.get("firstname"),
-                lastname: await res.get("lastname"),
-                birthday: await res.get("birthday"),
-                email: await res.get("email"),
-                emailVerified: await res.get("emailVerified"),
-                displayName: await res.get("displayName"),
-                rating: await res.get("rating"),
-                ratings: await res.get("ratings"),
-                photoURL: await res.get("photoURL"),
-                credit: await res.get("credit")
-              };
-            }
-            resolve();
-          });
-        }
-      });
+      if(this.userData){
+        resolve();
+      }
+      else{
+        this.authState.asObservable().subscribe(async (res) => {
+          if (res) {
+            this.userFirebase = res;
+            await this.afs.doc(`users/${this.userFirebase.uid}`).get().subscribe(async(res) => {
+              if (res) {
+                this.userData = {
+                  uid: await res.get("uid"),
+                  firstname: await res.get("firstname"),
+                  lastname: await res.get("lastname"),
+                  birthday: await res.get("birthday"),
+                  email: await res.get("email"),
+                  emailVerified: await res.get("emailVerified"),
+                  displayName: await res.get("displayName"),
+                  rating: await res.get("rating"),
+                  ratings: await res.get("ratings"),
+                  photoURL: await res.get("photoURL"),
+                  credit: await res.get("credit")
+                };
+              }
+              resolve();
+            });
+          }
+        });
+      }
     });
 
   }

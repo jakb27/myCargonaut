@@ -24,7 +24,9 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.init().then(() => this.user = this.authService.userData);
+    this.init().then(() => {
+      this.user = this.authService.userData;
+    });
   }
 
   async init() {
