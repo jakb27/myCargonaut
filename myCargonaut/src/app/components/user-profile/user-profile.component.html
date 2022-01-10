@@ -20,8 +20,7 @@
         </ng-template>
         <ngb-rating [(rate)]="this.user.rating" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
       </div>
-      <!-- // TODO-->
-      <button class="btn btn-success" (click)="this.creditService.addCredit()"> ADD CREDIT</button>
+      <button class="btn btn-success" (click)="this.addCredits()"> ADD CREDIT</button>
     </div>
     <div class="col-12 col-lg-4">
       <div id="userInfo">
@@ -118,7 +117,7 @@
             </div>
           </div>
           <div class="col-2">
-            <button type="button" class="btn" (click)="create()">
+            <button type="button" class="btn" (click)="createVehicle()">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" fill="#005B52"/>
               </svg></button>

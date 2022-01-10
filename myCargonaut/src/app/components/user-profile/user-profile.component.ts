@@ -9,6 +9,7 @@ import {AlertService} from "../../shared/services/alerts/alerts.service";
 import {User} from "../../shared/models/user";
 import {CreditService} from "../../shared/services/credit/credit.service";
 import {EditUserModalComponent} from "../edit-user-modal/edit-user-modal.component";
+import {AddCreditModalComponent} from "../add-credit-modal/add-credit-modal.component";
 
 @Component({
   selector: "app-user-profile",
@@ -34,14 +35,26 @@ export class UserProfileComponent implements OnInit {
   }
 
   public async uploadProfilePic() {
-
+    //TODO
   }
 
   public async deleteProfilePic() {
-
+    //TODO
   }
 
-  public async create() {
+  public async addCredits() {
+    const modalReference = this.modalService.open(AddCreditModalComponent);
+    try {
+      const resultVehicle: Vehicle = await modalReference.result;
+      await this.vehicleService.createVehicle(resultVehicle).then(
+        () => this.alertService.nextAlert({type: "success", message: "Vehicle successful added"})
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  public async createVehicle() {
     const modalReference = this.modalService.open(NewVehicleModalComponent);
     try {
       const resultVehicle: Vehicle = await modalReference.result;

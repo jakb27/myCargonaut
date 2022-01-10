@@ -11,9 +11,9 @@ export class CreditService {
   constructor(public authService: AuthService, public afs: AngularFirestore,) {
   }
 
-  async addCredit() {
-    if (this.authService.afAuth.currentUser != null) {
-      this.authService.userData.credit += 10;
+  async addCredit(funds: number) {
+    if (this.authService.afAuth.currentUser != null && funds > 0) {
+      this.authService.userData.credit += funds;
       await this.updateCredit(this.authService.userData.uid, this.authService.userData.credit);
     }
   }
