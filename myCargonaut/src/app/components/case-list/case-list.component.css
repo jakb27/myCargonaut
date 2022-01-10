@@ -1,15 +1,14 @@
 .case-list {
-  margin: 2em 5em 2em 10em;
+  margin: 2em 20em 2em 20em;
 }
 .case-display {
   min-height: 100px;
   background: white;
-  min-width: 200px;
   margin-top: 1.5em;
   color: #373F68;
   border-radius: 0.8em;
   display: flex;
-  flex-font: row;
+  flex-flow: row;
   transition: transfrom .2s ease-in;
 }
 .case-offer {
@@ -23,22 +22,24 @@
 }
 .case-start-end {
   flex: 0 0 15%;
-  margin-right: 10%;
+  margin-right: 3%;
   margin-left: 2%;
   font-weight: bold;
 }
 .case-action {
-  flex: 0 0 10%;
+  flex: 0 0 26%;
   align-self: center;
   border-radius: 0.3em;
   text-align: center;
 }
+
 .case-action > .btn {
   color: white;
 }
 .case-info {
   flex: 0 0 50%;
-  margin-left: 10%;
+  margin-left: 2%;
+  margin-right: 2%;
 }
 .case-date {
   font-weight: bold;
@@ -81,8 +82,22 @@ background: #005B52;
   background: #373F68;
   color: white;
 }
+@media only screen and (max-width: 1200px) {
+  .case-list {
+    margin: 2em 3em 3em 3em;
+  }
+
+}
 @media only screen and (max-width: 800px) {
+  .case-action {
+    margin-bottom: 1em;
+  }
   .case-list {
     margin: 1em 1em 1em 1em;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .case-display {
+    flex-flow: row wrap;
   }
 }
