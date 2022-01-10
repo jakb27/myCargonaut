@@ -71,8 +71,12 @@
 background: #005B52;
 }
 .btn-add-case {
-  color: white;
-  background: #005B52;
+  color:#005B52 ;
+  background: white;
+  font-weight: bold;
+}
+.btn-add-case:hover {
+  background: #ededed;
 }
 .btn {
   box-shadow: none;
@@ -85,4 +89,10 @@ background: #005B52;
   .case-list {
     margin: 1em 1em 1em 1em;
   }
+}
+
+svg {
+  height: 15px;
+  font-weight: bold;
+  margin-top: -5px;
 }

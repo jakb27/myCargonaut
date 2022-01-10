@@ -18,14 +18,16 @@
         <a class="nav-link" routerLink="/user-profile">Profile</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0 nav-action">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn  btn-search my-2 my-sm-0" type="submit">Search</button>
-    </form>
+<!--    <form class="form-inline my-2 my-lg-0 nav-action">-->
+<!--      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--      <button class="btn  btn-search my-2 my-sm-0" type="submit">Search</button>-->
+<!--    </form>-->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link log-out" (click)="authService.signOut()">
-          <i class="fa fa-sign-out-alt"></i>Log out
+        <a class="nav-link" (click)="authService.signOut()">
+          <svg class="log-out" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="white" d="M10 2v2h12v16h-12v2h14v-20h-14zm0 7.408l2.963 2.592-2.963 2.592v-1.592h-8v-2h8v-1.592zm-2-4.408v4h-8v6h8v4l8-7-8-7z"/>
+          </svg>
         </a>
       </li>
     </ul>
