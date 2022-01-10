@@ -20,17 +20,20 @@ export class VehicleService {
 
   }
 
-  async readVehicles() {
-    if (this.authService.userData) {
-      const q = query(collection(this.fs.firestore, "users/" + this.authService.userData.uid + "/vehicles"));
+  async readVehicles(): Promise<void> {
+    new Promise<void>((resolve) => {
+      if (this.authService.userData) {
+        const q = query(collection(this.fs.firestore, "users/" + this.authService.userData.uid + "/vehicles"));
 
-      onSnapshot(q, (querySnapshot) => {
-        this._vehicles = [];
-        querySnapshot.forEach((doc) => {
-          this._vehicles!.push(doc.data() as Vehicle);
+        onSnapshot(q, (querySnapshot) => {
+          this._vehicles = [];
+          querySnapshot.forEach((doc) => {
+            this._vehicles!.push(doc.data() as Vehicle);
+          });
+          resolve();
         });
-      });
-    }
+      }
+    });
   }
 
   updateVehicle(v: Vehicle) {

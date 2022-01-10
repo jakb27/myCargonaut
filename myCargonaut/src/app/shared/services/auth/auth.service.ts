@@ -136,29 +136,32 @@ export class AuthService {
   // }
 
   async getUserData(): Promise<void> {
-    this.authState.asObservable().subscribe((res) => {
-      if (res) {
-        this.userFirebase = res;
-        this.afs.doc(`users/${this.userFirebase.uid}`).get().subscribe((res) => {
-          if (res) {
-            this.userData = {
-              uid: res.get("uid"),
-              firstname: res.get("firstname"),
-              lastname: res.get("lastname"),
-              birthday: res.get("birthday"),
-              email: res.get("email"),
-              emailVerified: res.get("emailVerified"),
-              displayName: res.get("displayName"),
-              rating: res.get("rating"),
-              ratings: res.get("ratings"),
-              photoURL: res.get("photoURL"),
-              credit: res.get("credit")
-            };
-            // console.log(this.userData);
-          }
-        });
-      }
+    return new Promise((resolve) => {
+      this.authState.asObservable().subscribe((res) => {
+        if (res) {
+          this.userFirebase = res;
+          this.afs.doc(`users/${this.userFirebase.uid}`).get().subscribe(async(res) => {
+            if (res) {
+              this.userData = {
+                uid: await res.get("uid"),
+                firstname: await res.get("firstname"),
+                lastname: await res.get("lastname"),
+                birthday: await res.get("birthday"),
+                email: await res.get("email"),
+                emailVerified: await res.get("emailVerified"),
+                displayName: await res.get("displayName"),
+                rating: await res.get("rating"),
+                ratings: await res.get("ratings"),
+                photoURL: await res.get("photoURL"),
+                credit: await res.get("credit")
+              };
+            }
+            resolve();
+          });
+        }
+      });
     });
+
   }
 
   // Sign out
@@ -183,20 +186,23 @@ export class AuthService {
   }
 
   // ugly
-  async getUserRating() {
-    const queryRatings = query(collection(this.afs.firestore, "cases"),
-      where("publisher_uid", "==", this.userData.uid),
-      where("status", "==", "finished"));
+  async getUserRating():Promise<void> {
+    new Promise<void>((resolve) => {
+      const queryRatings = query(collection(this.afs.firestore, "cases"),
+        where("publisher_uid", "==", this.userData.uid),
+        where("status", "==", "finished"));
 
-    onSnapshot(queryRatings, (querySnapshot) => {
-      let ratings: number[] = [];
-      querySnapshot.forEach((doc) => {
-        ratings.push((doc.data() as Case).rating);
+      onSnapshot(queryRatings, (querySnapshot) => {
+        let ratings: number[] = [];
+        querySnapshot.forEach((doc) => {
+          ratings.push((doc.data() as Case).rating);
+        });
+        if(ratings.length > 0) {
+          this.userData.ratings = ratings.length;
+          this.userData.rating = ratings.reduce((a, b) => a + b) / ratings.length;
+        }
+        resolve();
       });
-      if(ratings.length > 0) {
-        this.userData.ratings = ratings.length;
-        this.userData.rating = ratings.reduce((a, b) => a + b) / ratings.length;
-      }
     });
   }
 
