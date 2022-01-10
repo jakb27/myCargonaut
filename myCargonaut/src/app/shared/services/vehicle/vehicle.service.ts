@@ -20,7 +20,7 @@ export class VehicleService {
 
   }
 
-  readVehicles() {
+  async readVehicles() {
     if (this.authService.userData) {
       const q = query(collection(this.fs.firestore, "users/" + this.authService.userData.uid + "/vehicles"));
 

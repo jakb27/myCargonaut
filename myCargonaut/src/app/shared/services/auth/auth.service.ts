@@ -3,7 +3,7 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Router} from "@angular/router";
 import {User} from "../../models/user";
-import firebase from "firebase/compat";
+import firebase from "firebase/compat/app";
 import {environment} from "../../../../environments/environment";
 import {AlertService} from "../alerts/alerts.service";
 import {Subject} from "rxjs";
@@ -135,7 +135,7 @@ export class AuthService {
   //     })
   // }
 
-  getUserData(): void {
+  async getUserData(): Promise<void> {
     this.authState.asObservable().subscribe((res) => {
       if (res) {
         this.userFirebase = res;
@@ -170,8 +170,10 @@ export class AuthService {
   }
 
   async deleteUser() {
-    await this.signOut();
     await this.afs.collection("/users").doc(this.userData!.uid).delete();
+    // await this.afs.doc("/users" + this.userData!.uid + "/vehicles").delete();
+    await firebase.auth().currentUser?.delete();
+    await this.signOut();
   }
 
   async editUser(u: User) {
@@ -184,7 +186,7 @@ export class AuthService {
   async getUserRating() {
     const queryRatings = query(collection(this.afs.firestore, "cases"),
       where("publisher_uid", "==", this.userData.uid),
-      where("rating", "!=", "0"));
+      where("status", "==", "finished"));
 
     onSnapshot(queryRatings, (querySnapshot) => {
       let ratings: number[] = [];
