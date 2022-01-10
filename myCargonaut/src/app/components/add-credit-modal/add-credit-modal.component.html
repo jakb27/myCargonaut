@@ -6,7 +6,7 @@
 
 <div class="modal-body">
 
-  <label>Choose an amount to add to your credits</label><br>
+  <label>Choose an amount to add to your credits ($)</label><br>
   <select [(ngModel)]="this.funds">
     <option *ngFor="let a of amount" [ngValue]="a">{{a}}</option>
   </select>
@@ -16,5 +16,5 @@
   <button type="button" class="btn btn-outline-dark"
           (click)="activeModal.dismiss()">Close
   </button>
-  <button type="button" class="btn btn-success" (click)="save()">Save</button>
+  <button type="button" class="btn btn-savemodal" (click)="save()">Save</button>
 </div>
