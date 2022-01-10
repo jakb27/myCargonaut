@@ -10,6 +10,7 @@ import {VehicleService} from "../../shared/services/vehicle/vehicle.service";
 import {AlertService} from "../../shared/services/alerts/alerts.service";
 import {CreditService} from "../../shared/services/credit/credit.service";
 import {RatingModalComponent} from "../rating-modal/rating-modal.component";
+import {ConfirmService} from "../../shared/services/confirm/confirm.service";
 
 @Component({
   selector: "app-my-cases",
@@ -26,7 +27,8 @@ export class MyCasesComponent implements OnInit {
               public modalService: NgbModal,
               public vehicleService: VehicleService,
               public alertService: AlertService,
-              public creditService: CreditService) {
+              public creditService: CreditService,
+              public confirmService: ConfirmService) {
   }
 
   ngOnInit(): void {
@@ -39,10 +41,15 @@ export class MyCasesComponent implements OnInit {
       const modalReference = this.modalService.open(NewCaseModalComponent);
       try {
         const resultCase: Case = await modalReference.result;
-        await this.caseService.createCase(resultCase).then(
-          () => this.alertService.nextAlert({type: "success", message: "Case successful added"})
-        );
-
+        this.confirmService.confirmDialog().then(async (res) => {
+          if (res) {
+            await this.caseService.createCase(resultCase).then(
+              () => this.alertService.nextAlert({type: "success", message: "Case successful added"})
+            );
+          } else {
+            this.alertService.nextAlert({type: "warning", message: "Adding case cancelled"});
+          }
+        });
       } catch (error) {
       }
     } else {
@@ -50,33 +57,51 @@ export class MyCasesComponent implements OnInit {
     }
   }
 
+  // TODO confirm?
   public async edit(c: Case) {
     const modalReference = this.modalService.open(EditCaseModalComponent);
     modalReference.componentInstance.c = c;
 
     try {
       const resultCase: Case = await modalReference.result;
-      await this.caseService.updateCase(resultCase).then(
-        () => this.alertService.nextAlert({type: "success", message: "Case successful edited"})
-      );
+      // console.log(resultCase.dateTime);
+      this.confirmService.confirmDialog().then(async res => {
+        if (res) {
+          await this.caseService.updateCase(resultCase).then(
+            () => this.alertService.nextAlert({type: "success", message: "Case successful edited"})
+          );
+        }
+      });
     } catch (error) {
       console.log(error);
     }
   }
 
   public async delete(c: Case) {
-    await this.caseService.deleteCase(c).then(
-      () => this.alertService.nextAlert({type: "success", message: "Case successfully deleted"})
-    );
+    this.confirmService.confirmDialog().then(async res => {
+      if (res) {
+        await this.caseService.deleteCase(c).then(
+          () => this.alertService.nextAlert({type: "success", message: "Case successfully deleted"})
+        );
+      } else {
+        this.alertService.nextAlert({type: "warning", message: "Deleting case cancelled"});
+      }
+    });
   }
 
   public async cancel(c: Case) {
-    c.accepter_uid = "";
-    c.status = "open";
-    await this.caseService.updateCase(c).then(
-      () => this.alertService.nextAlert({type: "success", message: "Case successfully canceled with 50% fee"}) // TODO
-    );
-    await this.creditService.unacceptFee(c);
+    this.confirmService.confirmDialog().then(async res => {
+      if (res) {
+        c.accepter_uid = "";
+        c.status = "open";
+        await this.caseService.updateCase(c).then(
+          () => this.alertService.nextAlert({type: "warning", message: "Case successfully canceled with 50% fee"}) // TODO
+        );
+        await this.creditService.unacceptFee(c);
+      } else {
+        this.alertService.nextAlert({type: "warning", message: "Cancelling case cancelled"});
+      }
+    });
   }
 
   public async finish(c: Case) {
@@ -85,12 +110,17 @@ export class MyCasesComponent implements OnInit {
 
     try {
       const resultCase: Case = await modalReference.result;
-      // c.status = "finished";
-      resultCase.status = "finished";
-      await this.caseService.updateCase(resultCase).then(
-        () => this.alertService.nextAlert({type: "success", message: "Case successfully finished"}) // TODO
-      );
-      await this.creditService.finishPay(c);
+      this.confirmService.confirmDialog().then(async res => {
+        if (res) {
+          resultCase.status = "finished";
+          await this.caseService.updateCase(resultCase).then(
+            () => this.alertService.nextAlert({type: "success", message: "Case successfully rated and finished"}) // TODO
+          );
+          await this.creditService.finishPay(c);
+        } else {
+          this.alertService.nextAlert({type: "warning", message: "Case not finished"});
+        }
+      });
     } catch (error) {
       console.log(error);
     }

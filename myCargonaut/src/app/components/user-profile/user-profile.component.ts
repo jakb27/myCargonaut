@@ -10,6 +10,7 @@ import {User} from "../../shared/models/user";
 import {CreditService} from "../../shared/services/credit/credit.service";
 import {EditUserModalComponent} from "../edit-user-modal/edit-user-modal.component";
 import {AddCreditModalComponent} from "../add-credit-modal/add-credit-modal.component";
+import {ConfirmService} from "../../shared/services/confirm/confirm.service";
 
 @Component({
   selector: "app-user-profile",
@@ -20,8 +21,12 @@ export class UserProfileComponent implements OnInit {
 
   user!: User;
 
-  constructor(public authService: AuthService, public modalService: NgbModal, public vehicleService: VehicleService,
-              public alertService: AlertService, public creditService: CreditService) {
+  constructor(public authService: AuthService,
+              public modalService: NgbModal,
+              public vehicleService: VehicleService,
+              public alertService: AlertService,
+              public creditService: CreditService,
+              public confirmService: ConfirmService) {
   }
 
   ngOnInit(): void {
@@ -58,14 +63,22 @@ export class UserProfileComponent implements OnInit {
     const modalReference = this.modalService.open(NewVehicleModalComponent);
     try {
       const resultVehicle: Vehicle = await modalReference.result;
-      await this.vehicleService.createVehicle(resultVehicle).then(
-        () => this.alertService.nextAlert({type: "success", message: "Vehicle successful added"})
-      );
+      this.confirmService.confirmDialog().then(async res => {
+        if (res) {
+          await this.vehicleService.createVehicle(resultVehicle).then(
+            () => this.alertService.nextAlert({type: "success", message: "Vehicle successful added"})
+          );
+        } else {
+          this.alertService.nextAlert({type: "warning", message: "Adding vehicle cancelled"});
+        }
+      });
+
     } catch (error) {
       console.log(error);
     }
   }
 
+  // TODO confirm?
   public async editVehicle(v: Vehicle) {
     const modalReference = this.modalService.open(EditVehicleModalComponent);
     modalReference.componentInstance.v = v;
@@ -80,7 +93,19 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  // TODO editUser
+  public async deleteVehicle(v: Vehicle) {
+    this.confirmService.confirmDialog().then(async res => {
+      if (res) {
+        await this.vehicleService.deleteVehicle(v).then(
+          () => this.alertService.nextAlert({type: "success", message: "Vehicle successfully deleted"})
+        );
+      } else {
+        this.alertService.nextAlert({type: "warning", message: "Deleting vehicle cancelled"});
+      }
+    });
+  }
+
+  // TODO editUser mail/pw
   public async editUser() {
     const modalReference = this.modalService.open(EditUserModalComponent);
     modalReference.componentInstance.u = this.authService.userData;
@@ -95,9 +120,13 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  public async delete(v: Vehicle) {
-    await this.vehicleService.deleteVehicle(v).then(
-      () => this.alertService.nextAlert({type: "success", message: "Vehicle successfully deleted"})
-    );
+  public async deleteUser(){
+    this.confirmService.confirmDialog().then(async res => {
+      if (res) {
+        await this.authService.deleteUser();
+      }
+    });
   }
+
+
 }

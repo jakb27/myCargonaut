@@ -34,6 +34,7 @@ import { AlertComponent } from "./components/alert/alert.component";
 import { EditUserModalComponent } from "./components/edit-user-modal/edit-user-modal.component";
 import { RatingModalComponent } from "./components/rating-modal/rating-modal.component";
 import { AddCreditModalComponent } from "./components/add-credit-modal/add-credit-modal.component";
+import { ConfirmModalComponent } from "./components/confirm-modal/confirm-modal.component";
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { AddCreditModalComponent } from "./components/add-credit-modal/add-credi
     AlertComponent,
     EditUserModalComponent,
     RatingModalComponent,
-    AddCreditModalComponent
+    AddCreditModalComponent,
+    ConfirmModalComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
