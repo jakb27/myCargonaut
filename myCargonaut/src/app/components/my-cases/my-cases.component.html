@@ -37,7 +37,7 @@
               <div class="case-date">
                 <p>Date: {{this.caseService.timeConverter(c.dateTime)}}</p>
               </div>
-              <div class="case-user">User: {{c.publisher_uid}}</div>
+              <div class="case-user">User: {{c.publisher_name}}</div>
               <div class="case-category-status">
                 <span class="btn case-category">{{c.type}}</span>
                 <span class="btn case-status">{{c.status}}</span>
@@ -54,11 +54,11 @@
                 </button>
               </div>
               <div *ngIf="this.list === 'booked'">
-                <button type="button" class="btn btn-warning" (click)="unaccept(c)">Cancel</button>
+                <button type="button" class="btn btn-warning" (click)="cancel(c)">Cancel</button>
                 <button type="button" class="btn btn-success" (click)="finish(c)">Finish</button>
               </div>
               <div *ngIf="this.list === 'finished'">
-
+                <ngb-rating [(rate)]="c.rating"  [readonly]="true" [max]="5"></ngb-rating>
               </div>
             </div>
           </div>

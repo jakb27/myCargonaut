@@ -8,6 +8,8 @@ import {environment} from "../../../../environments/environment";
 import {AlertService} from "../alerts/alerts.service";
 import {Subject} from "rxjs";
 import {getStorage} from "@angular/fire/storage";
+import {collection, onSnapshot, query, where} from "@angular/fire/firestore";
+import {Case} from "../../models/case";
 
 @Injectable({
   providedIn: "root"
@@ -172,15 +174,27 @@ export class AuthService {
     await this.afs.collection("/users").doc(this.userData!.uid).delete();
   }
 
-  async updateCredit() {
-    await this.afs.collection("/users").doc(this.userData!.uid).update({
-      credit: this.userData.credit
-    });
-  }
-
   async editUser(u: User) {
     await this.afs.collection("/users").doc(this.userData!.uid).set(u, {
       merge: true
+    });
+  }
+
+  // ugly
+  async getUserRating() {
+    const queryRatings = query(collection(this.afs.firestore, "cases"),
+      where("publisher_uid", "==", this.userData.uid),
+      where("rating", "!=", "0"));
+
+    onSnapshot(queryRatings, (querySnapshot) => {
+      let ratings: number[] = [];
+      querySnapshot.forEach((doc) => {
+        ratings.push((doc.data() as Case).rating);
+      });
+      if(ratings.length > 0) {
+        this.userData.ratings = ratings.length;
+        this.userData.rating = ratings.reduce((a, b) => a + b) / ratings.length;
+      }
     });
   }
 

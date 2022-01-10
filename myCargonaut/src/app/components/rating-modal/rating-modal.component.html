@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h4 class="modal-title">Rate your Case</h4>
+  <button type="button" class="close btn-close" aria-label="Close" (click)="activeModal.dismiss()">
+  </button>
+</div>
+
+<div class="modal-body">
+
+  <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark"
+          (click)="activeModal.dismiss()">Close
+  </button>
+  <button type="button" class="btn btn-success" (click)="save()">Save</button>
+</div>
