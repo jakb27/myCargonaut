@@ -25,6 +25,7 @@
 }
 .nav-link:hover {
   color: black !important;
+  cursor: pointer;
 }
 .nav-action {
   display: flex;
@@ -35,6 +36,11 @@
   margin-left: 10px;
   background: lightslategrey;
   color: white;
+}
+
+.log-out:hover {
+  fill: black !important;
+  cursor: pointer;
 }
 
 

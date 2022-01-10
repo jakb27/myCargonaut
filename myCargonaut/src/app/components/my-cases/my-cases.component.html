@@ -1,16 +1,35 @@
+<!-- Header -->
 <app-header></app-header>
 
+<app-alert></app-alert>
+
+<!-- Content -->
 <div class="my-cases">
   <div class="row">
     <!-- Main content -->
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
       <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h2 class="h2">My published Case List</h2>
-        <button type="button" class="btn btn-add-case" (click)="create()">Add</button>
+        <h2 class="h2">My Case List</h2>
+        <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="list">
+          <label ngbButtonLabel class="btn-outline-success">
+            <input ngbButton type="radio" value="published"> Published
+          </label>
+          <label ngbButtonLabel class="btn-outline-success">
+            <input ngbButton type="radio" value="booked"> Booked
+          </label>
+          <label ngbButtonLabel class="btn-outline-success">
+            <input ngbButton type="radio" value="finished"> Finished
+          </label>
+        </div>
+        <button type="button" class="btn  btn-add-case" (click)="create()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" fill="#005B52"/>
+          </svg> Add Case</button>
       </div>
       <div class="pricing-header mx-auto">
-        <div *ngFor="let c of this.myCasesP; let i = index;">
+        <div *ngFor="let c of this.select(); let i = index;">
           <div [ngClass]="c.type === this.type_offer ? 'case-display case-offer' : 'case-display case-request'">
             <div class="case-start-end">
               <p>{{c.start}}</p>
@@ -21,63 +40,47 @@
               <div class="case-date">
                 <p>Date: {{this.caseService.timeConverter(c.dateTime)}}</p>
               </div>
-              <div class="case-user">User: {{c.publisher_uid}}</div>
+              <div class="case-user">User: {{c.publisher_name}}</div>
               <div class="case-category-status">
                 <span class="btn case-category">{{c.type}}</span>
                 <span class="btn case-status">{{c.status}}</span>
-                <span class="btn case-status">{{c.price}}€</span>
+                <span class="btn case-status">{{c.price}}$</span>
+                <span class="btn case-status">{{c.vehicle.name}}</span>
               </div>
             </div>
             <div class="case-action">
-              <button *ngIf="c.status === 'booked'" type="button" class="btn btn-warning" (click)="cancel(c)">Cancel
-              </button>
-              <button *ngIf="c.status === 'open'" type="button" class="btn btn-edit" (click)="edit(c)">Edit</button>
-              <button *ngIf="c.status === 'open'" type="button" class="btn btn-danger" (click)="delete(c)">Delete
-              </button>
+              <div *ngIf="this.list === 'published'">
+                <button *ngIf="c.status === 'booked'" type="button" class="btn btn-warning" (click)="cancel(c)">Cancel
+                </button>
+                <div *ngIf="c.status === 'open'" class="pOpen">
+                  <button  type="button" class="btn btn-edit" (click)="edit(c)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <path fill="#373F68" d="M1.439 16.873l-1.439 7.127 7.128-1.437 16.873-16.872-5.69-5.69-16.872 16.872zm4.702 3.848l-3.582.724.721-3.584 2.861 2.86zm15.031-15.032l-13.617 13.618-2.86-2.861 10.825-10.826 2.846 2.846 1.414-1.414-2.846-2.846 1.377-1.377 2.861 2.86z"/>
+                    </svg>
+                  </button>
+                  <button type="button" class="btn  btn-delete" (click)="delete(c)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <path fill="red" d="M9 19c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5-17v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712zm-3 4v16h-14v-16h-2v18h18v-18h-2z"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div *ngIf="this.list === 'booked'">
+                <button type="button" class="btn btn-warning" (click)="cancel(c)">Cancel</button>
+                <button type="button" class="btn btn-success" (click)="finish(c)">Finish</button>
+              </div>
+              <div *ngIf="this.list === 'finished'">
+                <ngb-rating [(rate)]="c.rating"  [readonly]="true" [max]="5"></ngb-rating>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="booked-cases">
-        <div
-          class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h2 class="h2">My booked Case List</h2>
-        </div>
-        <div class="pricing-header mx-auto">
-          <div *ngFor="let c of this.myCasesA; let i = index;">
-            <div
-              [ngClass]="this.authService.userData.uid !== c.publisher_uid ? 'case-display case-offer' : 'case-display case-request'">
-              <div class="case-start-end">
-                <p>{{c.start}}</p>
-                <p> to </p>
-                <p>{{c.end}}</p>
-              </div>
-              <div class="case-info">
-                <div class="case-date">
-                  <p>Date: {{this.caseService.timeConverter(c.dateTime)}}</p>
-                </div>
-                <div class="case-user">User: {{c.publisher_uid}}</div>
-                <div class="case-category-status">
-                  <span class="btn case-category">{{c.type}}</span>
-                  <span class="btn case-status">{{c.status}}</span>
-                  <span class="btn case-status">{{c.price}}€</span>
-                </div>
-              </div>
-              <div class="case-action">
-                <button type="button" class="btn btn-warning" (click)="unaccept(c)">Cancel</button>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
     </main>
-
   </div>
 </div>
 
+<!-- Footer -->
 <app-footer></app-footer>
 
 

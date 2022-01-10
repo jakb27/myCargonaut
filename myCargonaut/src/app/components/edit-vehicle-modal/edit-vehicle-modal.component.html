@@ -1,0 +1,37 @@
+<div class="modal-header">
+  <h4 class="modal-title">Edit Your Offer</h4>
+  <button type="button" class="close btn-close" aria-label="Close" (click)="activeModal.dismiss()">
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="form-group">
+    <label for="userIdInput">Owner ID</label>
+    <input type="text" class="form-control" id="userIdInput" [(ngModel)]="vehicle.owner_id" readonly>
+  </div>
+  <div class="form-group">
+    <label for="nameInput">Name</label>
+    <input type="text" class="form-control" id="nameInput" [(ngModel)]="vehicle.name">
+  </div>
+  <div class="form-group">
+    <label for="seats">Seats (without Driver)</label>
+    <input type="number" class="form-control" id="seats" min="0" [(ngModel)]="vehicle.seats">
+  </div>
+  <div class="form-group">
+    <label for="capacity">Capacity (m^3)</label>
+    <input type="number" class="form-control" id="capacity" min="0" [(ngModel)]="vehicle.capacity">
+  </div>
+
+  <label>Choose a Vehicle Type</label><br>
+  <select [(ngModel)]="vehicle.type">
+    <option *ngFor="let v of vehicleTypes | keyvalue" [ngValue]="v.value">{{v.value}}</option>
+  </select>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark"
+          (click)="activeModal.dismiss()">Close
+  </button>
+  <button type="button" class="btn btn-success" (click)="save()">Edit</button>
+</div>
+

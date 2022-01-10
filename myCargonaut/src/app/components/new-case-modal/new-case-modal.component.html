@@ -1,16 +1,15 @@
 <div class="modal-header">
   <h4 class="modal-title">Add A New Offer</h4>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
-    <span aria-hidden="true">&times;</span>
+  <button type="button" class="close btn-close" aria-label="Close" (click)="activeModal.dismiss()">
   </button>
 </div>
 
 <div class="modal-body">
-  <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="type" >
-    <label ngbButtonLabel class="btn-primary">
+  <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="type">
+    <label ngbButtonLabel class="btn-outline-success">
       <input ngbButton type="radio" value="request"> Request
     </label>
-    <label ngbButtonLabel class="btn-primary">
+    <label ngbButtonLabel class="btn-outline-success">
       <input ngbButton type="radio" value="offer"> Offer
     </label>
   </div>
@@ -34,9 +33,17 @@
   <div class="form-group">
     <label>Pick Date and Time</label>
     <form [formGroup]="form">
-      <app-ngb-date-time-picker formControlName="control" [meridian]="true" [hourStep]="1" [minuteStep]="5"></app-ngb-date-time-picker>
+      <app-ngb-date-time-picker formControlName="control" [meridian]="true" [hourStep]="1"
+                                [minuteStep]="5"></app-ngb-date-time-picker>
     </form>
   </div>
+
+  <label>Choose a Vehicle</label><br>
+  <select [(ngModel)]="case.vehicle">
+    <option *ngFor="let v of this.vehicleService.vehicles" [ngValue]="v">{{v.name}}</option>
+  </select>
+
+  <!--  TODO bei reload kein default wert drin-->
 
 </div>
 <div class="modal-footer">
@@ -45,3 +52,4 @@
   </button>
   <button type="button" class="btn btn-success" (click)="save()">Submit</button>
 </div>
+<app-alert></app-alert>

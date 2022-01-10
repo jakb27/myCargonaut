@@ -1,15 +1,18 @@
 <div class="case-list">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h2 class="h2">Case List</h2>
-    <button type="button" class="btn  btn-add-case" (click)="create()">Add Case</button>
     <div class="form-check">
       <input type="checkbox" class="form-check-input" checked autocomplete="off" (click)="toggleShowOwn()">
       <label class="form-check-label active">Show Own</label>
     </div>
+    <button type="button" class="btn  btn-add-case" (click)="create()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" fill="#005B52"/>
+      </svg> Add Case</button>
   </div>
 
   <div class="pricing-header mx-auto">
-    <div *ngFor="let c of this.cases; let i = index;">
+    <div *ngFor="let c of this.caseService.casesDashboard; let i = index;">
       <ng-container *ngIf="showOwn || c.publisher_uid !== this.authService.userData.uid">
       <div [ngClass]="c.type === this.type_offer ? 'case-display case-offer' : 'case-display case-request'">
         <div class="case-start-end">
@@ -21,16 +24,17 @@
           <div class="case-date">
             <p>Date: {{this.caseService.timeConverter(c.dateTime)}}</p>
           </div>
-          <div class="case-user">User: {{c.publisher_uid}}</div>
+          <div class="case-user">User: {{c.publisher_name}}</div>
           <div class="case-category-status">
             <span class="btn case-category">{{c.type}}</span>
             <span class="btn case-status">{{c.status}}</span>
-            <span class="btn case-status">{{c.price}}€</span>
+            <span class="btn case-status">{{c.price}}$</span>
+            <span class="btn case-status">{{c.vehicle.name}}</span>
           </div>
         </div>
         <div class="case-action">
-          <button class="btn btn-action others-case" type="button" *ngIf="this.authService.userData.uid !== c.publisher_uid" (click)="accept(c)">Book</button>
-          <button class="btn btn-action  your-case" type="button" *ngIf="this.authService.userData.uid === c.publisher_uid" >Own</button>
+          <button class="btn btn-action others-case" type="button" *ngIf="this.authService.userData?.uid !== c.publisher_uid" (click)="accept(c)">Book</button>
+          <button class="btn btn-action  your-case" type="button" *ngIf="this.authService.userData?.uid === c.publisher_uid" >Own</button>
         </div>
       </div>
       </ng-container>

@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
-import {AuthService} from "../../shared/services/auth.service";
+import {AuthService} from "../../shared/services/auth/auth.service";
+import {VehicleService} from "../../shared/services/vehicle/vehicle.service";
 
 @Component({
   selector: "app-dashboard",
@@ -8,10 +9,16 @@ import {AuthService} from "../../shared/services/auth.service";
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(public authService: AuthService) {
+  constructor(public authService: AuthService, private vehicleService: VehicleService) {
   }
 
   ngOnInit(): void {
+    this.init();
+  }
+
+  async init(): Promise<void> {
+    await this.authService.getUserData();
+    await this.vehicleService.readVehicles();
   }
 
 }
