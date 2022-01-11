@@ -34,7 +34,7 @@ export class AuthService {
 
     if (!environment.production) {
       afAuth.useEmulator("http://localhost:9099");
-      firebase.storage().useEmulator("localhost",9199);
+      firebase.storage().useEmulator("localhost", 9199);
     }
 
     /* Saving user data in localstorage when
@@ -140,14 +140,13 @@ export class AuthService {
 
   async getUserData(): Promise<void> {
     return new Promise((resolve) => {
-      if(this.userData){
+      if (this.userData) {
         resolve();
-      }
-      else{
+      } else {
         this.authState.asObservable().subscribe(async (res) => {
           if (res) {
             this.userFirebase = res;
-            await this.afs.doc(`users/${this.userFirebase.uid}`).get().subscribe(async(res) => {
+            await this.afs.doc(`users/${this.userFirebase.uid}`).get().subscribe(async (res) => {
               if (res) {
                 this.userData = {
                   uid: await res.get("uid"),
@@ -194,7 +193,7 @@ export class AuthService {
   }
 
   // ugly
-  async getUserRating():Promise<void> {
+  async getUserRating(): Promise<void> {
     new Promise<void>((resolve) => {
       const queryRatings = query(collection(this.afs.firestore, "cases"),
         where("publisher_uid", "==", this.userData.uid),
@@ -205,7 +204,7 @@ export class AuthService {
         querySnapshot.forEach((doc) => {
           ratings.push((doc.data() as Case).rating);
         });
-        if(ratings.length > 0) {
+        if (ratings.length > 0) {
           this.userData.ratings = ratings.length;
           this.userData.rating = ratings.reduce((a, b) => a + b) / ratings.length;
         }
@@ -218,7 +217,8 @@ export class AuthService {
     this.afStorage.upload("/images" + this.userData.uid, file);
   }
 
-  async deleteProfilePic(){
+  async deleteProfilePic() {
+
   }
 
 
