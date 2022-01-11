@@ -10,6 +10,7 @@ import {Subject} from "rxjs";
 import {getStorage} from "@angular/fire/storage";
 import {collection, onSnapshot, query, where} from "@angular/fire/firestore";
 import {Case} from "../../models/case";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
 
 @Injectable({
   providedIn: "root"
@@ -25,6 +26,7 @@ export class AuthService {
   constructor(
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
+    private afStorage: AngularFireStorage,
     public router: Router,
     public ngZone: NgZone,
     public alertService: AlertService
@@ -209,6 +211,13 @@ export class AuthService {
         resolve();
       });
     });
+  }
+
+  async uploadProfilePic(file: any) {
+    this.afStorage.upload("/images" + this.userData.uid, file);
+  }
+
+  async deleteProfilePic(){
   }
 
 

@@ -20,6 +20,7 @@ import {ConfirmService} from "../../shared/services/confirm/confirm.service";
 export class UserProfileComponent implements OnInit {
 
   user!: User;
+  file!: any;
 
   constructor(public authService: AuthService,
               public modalService: NgbModal,
@@ -44,12 +45,16 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  public async upload(event: any) {
+    this.file = event.target.files[0];
+  }
+
   public async uploadProfilePic() {
-    //TODO
+    await this.authService.uploadProfilePic(this.file);
   }
 
   public async deleteProfilePic() {
-    //TODO
+    await this.authService.deleteProfilePic();
   }
 
   public async addCredits() {

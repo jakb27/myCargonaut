@@ -11,14 +11,14 @@ export class CreditService {
   constructor(public authService: AuthService, public afs: AngularFirestore,) {
   }
 
-  async addCredit(funds: number) {
+  async addCredit(funds: number): Promise<void> {
     if (this.authService.afAuth.currentUser != null) {
       this.authService.userData.credit += funds;
       await this.updateCredit(this.authService.userData.uid, this.authService.userData.credit);
     }
   }
 
-  async unacceptFee(c: Case) {
+  async unacceptFee(c: Case): Promise<boolean> {
     let fee = 0.5;
     if (this.authService.afAuth.currentUser != null && this.authService.userData.credit >= c.price * fee) {
       this.authService.userData.credit -= c.price * fee;
@@ -29,7 +29,7 @@ export class CreditService {
     }
   }
 
-  async finishPay(c: Case) {
+  async finishPay(c: Case): Promise<boolean> {
     if (this.authService.afAuth.currentUser != null && this.authService.userData.credit >= c.price) {
       this.authService.userData.credit -= c.price; //TODO neuer credit sonst nur bei reload sichtbar
       // await this.updateCredit(this.authService.userData.uid, this.authService.userData.credit-c.price);
@@ -45,7 +45,7 @@ export class CreditService {
   }
 
   //TODO transaction
-  async updateCredit(uid: any, credit: number) {
+  async updateCredit(uid: any, credit: number): Promise<void> {
     await this.afs.collection("/users").doc(uid).update({
       credit: credit
     });
