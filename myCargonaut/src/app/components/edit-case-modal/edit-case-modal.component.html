@@ -43,7 +43,7 @@
   </div>
 
 
-  <div *ngIf="type=='offer' && this.vehicleService.vehicles.length>0">
+  <div *ngIf="type ==='offer' && this.vehicleService.vehicles.length>0">
     <label>Choose a Vehicle</label><br>
     <select class="form-select" [(ngModel)]="case.vehicle">
       <option></option>

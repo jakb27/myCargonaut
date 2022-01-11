@@ -38,9 +38,8 @@
   color: white;
 }
 
-.log-out:hover {
-  fill: black !important;
-  cursor: pointer;
+svg:hover path {
+  fill:black;
 }
 
 

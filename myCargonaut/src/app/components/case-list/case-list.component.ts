@@ -6,7 +6,6 @@ import {NewCaseModalComponent} from "../new-case-modal/new-case-modal.component"
 import {AuthService} from "../../shared/services/auth/auth.service";
 import {VehicleService} from "../../shared/services/vehicle/vehicle.service";
 import {AlertService} from "../../shared/services/alerts/alerts.service";
-import {Alert} from "../../shared/models/alert";
 import {ConfirmService} from "../../shared/services/confirm/confirm.service";
 
 @Component({
@@ -34,20 +33,20 @@ export class CaseListComponent implements OnInit {
 
   public async create() {
     // if (this.vehicleService.vehicles != undefined && this.vehicleService.vehicles.length > 0) {
-      const modalReference = this.modalService.open(NewCaseModalComponent);
-      try {
-        const resultCase: Case = await modalReference.result;
-        this.confirmService.confirmDialog().then(async (res) => {
-          if (res) {
-            await this.caseService.createCase(resultCase).then(
-              () => this.alertService.nextAlert({type: "success", message: "Case successful added"})
-            );
-          } else {
-            this.alertService.nextAlert({type: "warning", message: "Adding case cancelled"});
-          }
-        });
-      } catch (error) {
-      }
+    const modalReference = this.modalService.open(NewCaseModalComponent);
+    try {
+      const resultCase: Case = await modalReference.result;
+      this.confirmService.confirmDialog().then(async (res) => {
+        if (res) {
+          await this.caseService.createCase(resultCase).then(
+            () => this.alertService.nextAlert({type: "success", message: "Case successful added"})
+          );
+        } else {
+          this.alertService.nextAlert({type: "warning", message: "Adding case cancelled"});
+        }
+      });
+    } catch (error) {
+    }
     // } else {
     //   this.alertService.nextAlert({type: "danger", message: "Please add Vehicle first"});
     // }
@@ -56,7 +55,7 @@ export class CaseListComponent implements OnInit {
   public async accept(c: Case) {
     this.confirmService.confirmDialog().then(async (res) => {
       if (res) {
-        if(this.authService.userData.credit >= c.price){
+        if (this.authService.userData.credit >= c.price) {
           c.accepter_uid = this.authService.userData.uid;
           c.status = "booked";
           await this.caseService.updateCase(c).then(() => {

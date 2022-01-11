@@ -100,7 +100,7 @@ export class MyCasesComponent implements OnInit {
   public async cancel(c: Case) {
     this.confirmService.confirmDialog().then(async res => {
       if (res) {
-        await this.creditService.unacceptFee(c).then( async res => {
+        await this.creditService.unacceptFee(c).then(async res => {
           if (res) {
             c.accepter_uid = "";
             c.status = "open";
@@ -126,7 +126,7 @@ export class MyCasesComponent implements OnInit {
       const resultCase: Case = await modalReference.result;
       this.confirmService.confirmDialog().then(async res => {
         if (res) {
-          await this.creditService.finishPay(c).then( async res => {
+          await this.creditService.finishPay(c).then(async res => {
             if (res) {
               resultCase.status = "finished";
               await this.caseService.updateCase(resultCase).then(
