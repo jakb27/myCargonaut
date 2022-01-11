@@ -11,6 +11,7 @@ import {AlertService} from "../../shared/services/alerts/alerts.service";
 import {CreditService} from "../../shared/services/credit/credit.service";
 import {RatingModalComponent} from "../rating-modal/rating-modal.component";
 import {ConfirmService} from "../../shared/services/confirm/confirm.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: "app-my-cases",
@@ -28,7 +29,8 @@ export class MyCasesComponent implements OnInit {
               public vehicleService: VehicleService,
               public alertService: AlertService,
               public creditService: CreditService,
-              public confirmService: ConfirmService) {
+              public confirmService: ConfirmService,
+              public router: Router) {
   }
 
   ngOnInit(): void {
@@ -48,6 +50,7 @@ export class MyCasesComponent implements OnInit {
             );
           } else {
             this.alertService.nextAlert({type: "warning", message: "Adding case cancelled"});
+            this.router.navigate(["user-profile"]);
           }
         });
       } catch (error) {
@@ -120,6 +123,7 @@ export class MyCasesComponent implements OnInit {
               );
             } else {
               this.alertService.nextAlert({type: "danger", message: "Add funds to pay case"});
+              this.router.navigate(["user-profile"]);
             }
           });
         } else {

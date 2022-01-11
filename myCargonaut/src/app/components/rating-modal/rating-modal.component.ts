@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {Case} from "../../shared/models/case";
+import {FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: "app-rating-modal",
@@ -12,7 +13,8 @@ export class RatingModalComponent implements OnInit {
   @Input() c!: Case;
 
   public case!: Case;
-  public currentRate!: number;
+
+  ctrl = new FormControl(null, Validators.required);
 
   constructor(public activeModal: NgbActiveModal) { }
 
@@ -21,8 +23,10 @@ export class RatingModalComponent implements OnInit {
   }
 
   save() {
-    this.case.rating = this.currentRate;
-    this.activeModal.close(this.case);
+    if(this.ctrl.value > 0){
+      this.case.rating = this.ctrl.value;
+      this.activeModal.close(this.case);
+    }
   }
 
 }
