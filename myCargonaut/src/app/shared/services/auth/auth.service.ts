@@ -34,6 +34,7 @@ export class AuthService {
 
     if (!environment.production) {
       afAuth.useEmulator("http://localhost:9099");
+      firebase.storage().useEmulator("localhost",9199);
     }
 
     /* Saving user data in localstorage when
