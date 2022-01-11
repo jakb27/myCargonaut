@@ -7,10 +7,12 @@ export interface Case {
   publisher_uid: string,
   publisher_name: string,
   accepter_uid: string,
+  seats: number,
+  capacity: number,
   start: string,
   end: string,
   dateTime: any,
   price: number,
-  vehicle: Vehicle,
+  vehicle?: Vehicle,
   rating: number
 }

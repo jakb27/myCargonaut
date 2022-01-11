@@ -26,6 +26,8 @@ export class NewCaseModalComponent implements OnInit {
       publisher_name: authService.userData.displayName,
       type: this.type,
       status: "open",
+      seats: 0,
+      capacity: 0,
       start: "",
       end: "",
       dateTime: null,
@@ -57,5 +59,14 @@ export class NewCaseModalComponent implements OnInit {
     }
     return false;
   }
+
+  setCapacity(): void {
+    if(this.case.vehicle != undefined) {
+      this.case.seats = this.case.vehicle.seats;
+      this.case.capacity = this.case.vehicle.capacity;
+    }
+  }
+
+
 
 }

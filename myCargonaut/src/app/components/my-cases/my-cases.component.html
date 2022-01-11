@@ -13,13 +13,13 @@
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h2 class="h2">My Case List</h2>
         <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="list">
-          <label ngbButtonLabel class="btn-outline-success">
+          <label ngbButtonLabel class="radiobutton">
             <input ngbButton type="radio" value="published"> Published
           </label>
-          <label ngbButtonLabel class="btn-outline-success">
+          <label ngbButtonLabel class="radiobutton">
             <input ngbButton type="radio" value="booked"> Booked
           </label>
-          <label ngbButtonLabel class="btn-outline-success">
+          <label ngbButtonLabel class="radiobutton">
             <input ngbButton type="radio" value="finished"> Finished
           </label>
         </div>
@@ -45,7 +45,8 @@
                 <span class="btn case-category">{{c.type}}</span>
                 <span class="btn case-status">{{c.status}}</span>
                 <span class="btn case-status">{{c.price}}$</span>
-                <span class="btn case-status">{{c.vehicle.name}}</span>
+                <span class="btn case-status">{{c.vehicle?.name}}</span>
+
               </div>
             </div>
             <div class="case-action">

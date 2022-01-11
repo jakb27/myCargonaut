@@ -33,7 +33,7 @@ export class CaseListComponent implements OnInit {
   }
 
   public async create() {
-    if (this.vehicleService.vehicles != undefined && this.vehicleService.vehicles.length > 0) {
+    // if (this.vehicleService.vehicles != undefined && this.vehicleService.vehicles.length > 0) {
       const modalReference = this.modalService.open(NewCaseModalComponent);
       try {
         const resultCase: Case = await modalReference.result;
@@ -48,9 +48,9 @@ export class CaseListComponent implements OnInit {
         });
       } catch (error) {
       }
-    } else {
-      this.alertService.nextAlert({type: "danger", message: "Please add Vehicle first"});
-    }
+    // } else {
+    //   this.alertService.nextAlert({type: "danger", message: "Please add Vehicle first"});
+    // }
   }
 
   public async accept(c: Case) {

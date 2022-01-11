@@ -128,3 +128,49 @@ svg {
   display: flex;
   flex-flow: row;
 }
+
+.radiobutton {
+  color: #005B52;
+  background-color: #FFFFFF;
+  border-color: #005B52;
+}
+
+.radiobutton:hover,
+.radiobutton:focus,
+.radiobutton:active,
+.radiobutton.active,
+.open .dropdown-toggle.radiobutton {
+  color: #FFFFFF;
+  background-color: #005B52;
+  border-color: #005B52;
+}
+
+.radiobutton:active,
+.radiobutton.active,
+.open .dropdown-toggle.btn-sample {
+  background-image: none;
+}
+
+.radiobutton.disabled,
+.radiobutton[disabled],
+fieldset[disabled] .radiobutton,
+.radiobutton.disabled:hover,
+.radiobutton[disabled]:hover,
+fieldset[disabled] .radiobutton:hover,
+.radiobutton.disabled:focus,
+.radiobutton[disabled]:focus,
+fieldset[disabled] .radiobutton:focus,
+.radiobutton.disabled:active,
+.radiobutton[disabled]:active,
+fieldset[disabled] .radiobutton:active,
+.radiobutton.disabled.active,
+.radiobutton[disabled].active,
+fieldset[disabled] .radiobutton.active {
+  background-color: #FFFFFF;
+  border-color: #005B52;
+}
+
+.radiobutton .badge {
+  color: #FFFFFF;
+  background-color: #005B52;
+}
