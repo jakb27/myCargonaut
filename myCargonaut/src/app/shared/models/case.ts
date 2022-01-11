@@ -9,7 +9,7 @@ export interface Case {
   accepter_uid: string,
   seats: number,
   capacity: number,
-  description: string,
+  description?: string,
   start: string,
   end: string,
   dateTime: any,
