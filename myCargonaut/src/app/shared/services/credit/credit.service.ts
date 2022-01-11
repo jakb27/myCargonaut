@@ -11,34 +11,41 @@ export class CreditService {
   constructor(public authService: AuthService, public afs: AngularFirestore,) {
   }
 
-  async addCredit() {
+  async addCredit(funds: number): Promise<void> {
     if (this.authService.afAuth.currentUser != null) {
-      this.authService.userData.credit += 10;
+      this.authService.userData.credit += funds;
       await this.updateCredit(this.authService.userData.uid, this.authService.userData.credit);
     }
   }
 
-  async unacceptFee(c: Case) {
-    if (this.authService.afAuth.currentUser != null) {
-      this.authService.userData.credit -= c.price * 0.5;
+  async unacceptFee(c: Case): Promise<boolean> {
+    let fee = 0.5;
+    if (this.authService.afAuth.currentUser != null && this.authService.userData.credit >= c.price * fee) {
+      this.authService.userData.credit -= c.price * fee;
       await this.updateCredit(this.authService.userData.uid, this.authService.userData.credit);
+      return true;
+    } else {
+      return false;
     }
   }
 
-  async finishPay(c: Case) {
-    if (this.authService.afAuth.currentUser != null) {
+  async finishPay(c: Case): Promise<boolean> {
+    if (this.authService.afAuth.currentUser != null && this.authService.userData.credit >= c.price) {
       this.authService.userData.credit -= c.price; //TODO neuer credit sonst nur bei reload sichtbar
       // await this.updateCredit(this.authService.userData.uid, this.authService.userData.credit-c.price);
       await this.updateCredit(this.authService.userData.uid, this.authService.userData.credit);
+      return true;
       // TODO add money to publisher (firestore rules?? cant access publisher credit!!)
       // let p = await this.afs.firestore.collection("/users").doc(c.publisher_uid).get();
       // console.log(p);
       // await this.updateCredit(c.publisher_uid, p.data()!["credit"] + c.price);
+    } else {
+      return false;
     }
   }
 
   //TODO transaction
-  async updateCredit(uid: any, credit: number) {
+  async updateCredit(uid: any, credit: number): Promise<void> {
     await this.afs.collection("/users").doc(uid).update({
       credit: credit
     });

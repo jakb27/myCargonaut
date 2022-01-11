@@ -32,7 +32,9 @@ import { NewVehicleModalComponent } from "./components/new-vehicle-modal/new-veh
 import { EditVehicleModalComponent } from "./components/edit-vehicle-modal/edit-vehicle-modal.component";
 import { AlertComponent } from "./components/alert/alert.component";
 import { EditUserModalComponent } from "./components/edit-user-modal/edit-user-modal.component";
-import { RatingModalComponent } from './components/rating-modal/rating-modal.component';
+import { RatingModalComponent } from "./components/rating-modal/rating-modal.component";
+import { AddCreditModalComponent } from "./components/add-credit-modal/add-credit-modal.component";
+import { ConfirmModalComponent } from "./components/confirm-modal/confirm-modal.component";
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { RatingModalComponent } from './components/rating-modal/rating-modal.com
     EditVehicleModalComponent,
     AlertComponent,
     EditUserModalComponent,
-    RatingModalComponent
+    RatingModalComponent,
+    AddCreditModalComponent,
+    ConfirmModalComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

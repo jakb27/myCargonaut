@@ -6,7 +6,13 @@
 
 <div class="modal-body">
 
-  <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
+  <div class="form-group">
+    <ngb-rating [formControl]="ctrl" [max]="5"></ngb-rating>
+    <div class="form-text small">
+      <div *ngIf="ctrl.valid" class="text-success">Thanks!</div>
+      <div *ngIf="ctrl.invalid" class="text-danger">Please rate your case!</div>
+    </div>
+  </div>
 
 </div>
 <div class="modal-footer">

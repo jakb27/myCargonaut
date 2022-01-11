@@ -5,10 +5,10 @@
 </div>
 
 <div class="modal-body">
-  <div class="form-group">
-    <label for="userIdInput">Owner ID</label>
-    <input type="text" class="form-control" id="userIdInput" [(ngModel)]="vehicle.owner_id" readonly>
-  </div>
+<!--  <div class="form-group">-->
+<!--    <label for="userIdInput">Owner ID</label>-->
+<!--    <input type="text" class="form-control" id="userIdInput" [(ngModel)]="vehicle.owner_id" readonly>-->
+<!--  </div>-->
   <div class="form-group">
     <label for="nameInput">Name</label>
     <input type="text" class="form-control" id="nameInput" [(ngModel)]="vehicle.name">
@@ -23,7 +23,7 @@
   </div>
 
   <label>Choose a Vehicle Type</label><br>
-  <select [(ngModel)]="vehicle.type">
+  <select class="form-select" [(ngModel)]="vehicle.type">
     <option *ngFor="let v of vehicleTypes | keyvalue" [ngValue]="v.value">{{v.value}}</option>
   </select>
 
@@ -32,6 +32,6 @@
   <button type="button" class="btn btn-outline-dark"
           (click)="activeModal.dismiss()">Close
   </button>
-  <button type="button" class="btn btn-success" (click)="save()">Edit</button>
+  <button type="button" class="btn btn-savemodal" (click)="save()">Edit</button>
 </div>
 
