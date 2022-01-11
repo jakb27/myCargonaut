@@ -34,27 +34,32 @@ export class MyCasesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.vehicleService.readVehicles();
+    this.init();
+  }
+
+  async init(): Promise<void> {
+    await this.authService.getUserData();
+    await this.vehicleService.readVehicles();
     this.caseService.readMyCases();
   }
 
   public async create() {
     // if (this.vehicleService.vehicles != undefined && this.vehicleService.vehicles.length > 0) {
-      const modalReference = this.modalService.open(NewCaseModalComponent);
-      try {
-        const resultCase: Case = await modalReference.result;
-        this.confirmService.confirmDialog().then(async (res) => {
-          if (res) {
-            await this.caseService.createCase(resultCase).then(
-              () => this.alertService.nextAlert({type: "success", message: "Case successful added"})
-            );
-          } else {
-            this.alertService.nextAlert({type: "warning", message: "Adding case cancelled"});
-          }
-        });
-      } catch (error) {
+    const modalReference = this.modalService.open(NewCaseModalComponent);
+    try {
+      const resultCase: Case = await modalReference.result;
+      this.confirmService.confirmDialog().then(async (res) => {
+        if (res) {
+          await this.caseService.createCase(resultCase).then(
+            () => this.alertService.nextAlert({type: "success", message: "Case successful added"})
+          );
+        } else {
+          this.alertService.nextAlert({type: "warning", message: "Adding case cancelled"});
+        }
+      });
+    } catch (error) {
 
-      }
+    }
     // } else {
     //   this.alertService.nextAlert({type: "danger", message: "Please add Vehicle first"});
     // }

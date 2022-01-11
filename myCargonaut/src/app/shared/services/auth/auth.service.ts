@@ -62,7 +62,7 @@ export class AuthService {
           localStorage.setItem("token", JSON.stringify(token));
 
           this.ngZone.run(() => {
-            this.router.navigate(["dashboard"]);
+            this.router.navigate(["dashboard"]).then(() => window.location.reload());
           });
         }
       }).catch((error) => {
@@ -92,7 +92,7 @@ export class AuthService {
           credit: 0
         };
         await this.afs.collection("/users").doc(uid).set(user).then(() => {
-          this.router.navigate(["dashboard"]);
+          this.router.navigate(["dashboard"]).then(() => window.location.reload());
         });
       }).catch((error) => {
         this.alertService.nextAlert({type: "danger", message: error.message});
