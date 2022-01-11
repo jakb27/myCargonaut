@@ -112,11 +112,16 @@ export class MyCasesComponent implements OnInit {
       const resultCase: Case = await modalReference.result;
       this.confirmService.confirmDialog().then(async res => {
         if (res) {
-          resultCase.status = "finished";
-          await this.caseService.updateCase(resultCase).then(
-            () => this.alertService.nextAlert({type: "success", message: "Case successfully rated and finished"}) // TODO
-          );
-          await this.creditService.finishPay(c);
+          await this.creditService.finishPay(c).then( async res => {
+            if (res) {
+              resultCase.status = "finished";
+              await this.caseService.updateCase(resultCase).then(
+                () => this.alertService.nextAlert({type: "success", message: "Case successfully rated and payed"}) // TODO
+              );
+            } else {
+              this.alertService.nextAlert({type: "danger", message: "Add funds to pay case"});
+            }
+          });
         } else {
           this.alertService.nextAlert({type: "warning", message: "Case not finished"});
         }
