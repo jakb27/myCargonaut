@@ -29,6 +29,8 @@ export class EditCaseModalComponent implements OnInit {
       status: "open",
       start: "",
       end: "",
+      seats:0,
+      capacity:0,
       dateTime: null,
       id: "",
       accepter_uid: "",
@@ -57,6 +59,13 @@ export class EditCaseModalComponent implements OnInit {
       return str.trim().length > 0;
     }
     return false;
+  }
+
+  setCapacity(): void {
+    if(this.case.vehicle != undefined) {
+      this.case.seats = this.case.vehicle.seats;
+      this.case.capacity = this.case.vehicle.capacity;
+    }
   }
 
 }
