@@ -56,15 +56,22 @@ export class AuthService {
   // Sign in with email/password
   signIn(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
-      .then((result) => {
+      .then(async (result) => {
         console.log(result);
         if (result.user) {
           const token = result.user.getIdToken(true);
           localStorage.setItem("token", JSON.stringify(token));
+          // this.ngZone.run(() => {
+          //   this.router.navigate(["dashboard"]).then( () => {
+          //     // window.location.reload();
+          //   });
+          // });
 
-          this.ngZone.run(() => {
-            this.router.navigate(["dashboard"]).then(() => window.location.reload());
-          });
+          // TODO
+          await this.router.navigate(["dashboard"]);
+          console.log("test");
+          await this.payPending();
+
         }
       }).catch((error) => {
         this.alertService.nextAlert({type: "danger", message: error.message});
@@ -92,7 +99,10 @@ export class AuthService {
           ratings: 0,
           credit: 0
         };
-        await this.afs.collection("/users").doc(uid).set(user).then(() => {
+        await this.afs.collection("/users").doc(uid).set(user).then(async () => {
+          await this.afs.collection("/pendingCredits").doc(uid).set({
+            pending: 0
+          });
           this.router.navigate(["dashboard"]).then(() => window.location.reload());
         });
       }).catch((error) => {
@@ -219,6 +229,22 @@ export class AuthService {
 
   async deleteProfilePic() {
 
+  }
+
+  // circular dependency in creditService?
+  async payPending(){
+    let publisherPending = await this.afs.firestore.collection("pendingCredits").doc(this.userData.uid).get();
+    let pendingCredit = publisherPending.data()!["pending"];
+    console.log(pendingCredit);
+    await this.afs.collection("/pendingCredits").doc(this.userData.uid).update({
+      pending: 0
+    });
+    let publisher = await this.afs.firestore.collection("/users").doc(this.userData.uid).get();
+    let publisherCredit = publisher.data()!["credit"];
+    console.log(publisherCredit);
+    await this.afs.collection("/users").doc(this.userData.uid).update({
+      credit: publisherCredit + pendingCredit
+    });
   }
 
 

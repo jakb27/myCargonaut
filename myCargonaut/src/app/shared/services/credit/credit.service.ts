@@ -34,11 +34,8 @@ export class CreditService {
       this.authService.userData.credit -= c.price; //TODO neuer credit sonst nur bei reload sichtbar
       // await this.updateCredit(this.authService.userData.uid, this.authService.userData.credit-c.price);
       await this.updateCredit(this.authService.userData.uid, this.authService.userData.credit);
+      await this.payPublisher(c.publisher_uid, c.accepter_uid, c.price);
       return true;
-      // TODO add money to publisher (firestore rules?? cant access publisher credit!!)
-      // let p = await this.afs.firestore.collection("/users").doc(c.publisher_uid).get();
-      // console.log(p);
-      // await this.updateCredit(c.publisher_uid, p.data()!["credit"] + c.price);
     } else {
       return false;
     }
@@ -50,4 +47,13 @@ export class CreditService {
       credit: credit
     });
   }
+
+  async payPublisher(p_uid: string, a_uid: string, price: number){
+    let publisherPending = await this.afs.firestore.collection("pendingCredits").doc(p_uid).get();
+    let newPending = publisherPending.data()!["pending"] + price;
+    await this.afs.collection("/pendingCredits").doc(p_uid).update({
+      pending: newPending
+    });
+  }
+
 }

@@ -7,7 +7,7 @@
 <div class="modal-body">
 
   <label>Choose an amount to add to your credits ($)</label><br>
-  <select [(ngModel)]="this.funds">
+  <select class="form-select" [(ngModel)]="this.funds">
     <option *ngFor="let a of amount" [ngValue]="a">{{a}}</option>
   </select>
 
