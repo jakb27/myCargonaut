@@ -29,7 +29,7 @@
           </svg> Add Case</button>
       </div>
       <div class="pricing-header mx-auto">
-        <div *ngFor="let c of this.select(); let i = index;">
+        <div *ngFor="let c of this.selectCases(); let i = index;">
           <div [ngClass]="c.type === this.type_offer ? 'case-display case-offer' : 'case-display case-request'">
             <div class="case-start-end">
               <p>{{c.start}}</p>

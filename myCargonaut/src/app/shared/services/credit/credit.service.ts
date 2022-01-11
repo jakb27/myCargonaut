@@ -19,14 +19,18 @@ export class CreditService {
   }
 
   async unacceptFee(c: Case) {
-    if (this.authService.afAuth.currentUser != null) {
-      this.authService.userData.credit -= c.price * 0.5;
+    let fee = 0.5;
+    if (this.authService.afAuth.currentUser != null && this.authService.userData.credit >= c.price * fee) {
+      this.authService.userData.credit -= c.price * fee;
       await this.updateCredit(this.authService.userData.uid, this.authService.userData.credit);
+      return true;
+    } else {
+      return false;
     }
   }
 
   async finishPay(c: Case) {
-    if (this.authService.afAuth.currentUser != null && this.authService.userData.credit > c.price) {
+    if (this.authService.afAuth.currentUser != null && this.authService.userData.credit >= c.price) {
       this.authService.userData.credit -= c.price; //TODO neuer credit sonst nur bei reload sichtbar
       // await this.updateCredit(this.authService.userData.uid, this.authService.userData.credit-c.price);
       await this.updateCredit(this.authService.userData.uid, this.authService.userData.credit);

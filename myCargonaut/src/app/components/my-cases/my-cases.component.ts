@@ -50,7 +50,6 @@ export class MyCasesComponent implements OnInit {
             );
           } else {
             this.alertService.nextAlert({type: "warning", message: "Adding case cancelled"});
-            this.router.navigate(["user-profile"]);
           }
         });
       } catch (error) {
@@ -95,12 +94,18 @@ export class MyCasesComponent implements OnInit {
   public async cancel(c: Case) {
     this.confirmService.confirmDialog().then(async res => {
       if (res) {
-        c.accepter_uid = "";
-        c.status = "open";
-        await this.caseService.updateCase(c).then(
-          () => this.alertService.nextAlert({type: "warning", message: "Case successfully canceled with 50% fee"}) // TODO
-        );
-        await this.creditService.unacceptFee(c);
+        await this.creditService.unacceptFee(c).then( async res => {
+          if (res) {
+            c.accepter_uid = "";
+            c.status = "open";
+            await this.caseService.updateCase(c).then(
+              () => this.alertService.nextAlert({type: "warning", message: "Case successfully canceled with 50% fee"}) // TODO
+            );
+          } else {
+            this.alertService.nextAlert({type: "danger", message: "Please add funds in your profile to pay case"});
+            // this.router.navigate(["user-profile"]);
+          }
+        });
       } else {
         this.alertService.nextAlert({type: "warning", message: "Cancelling case cancelled"});
       }
@@ -122,8 +127,8 @@ export class MyCasesComponent implements OnInit {
                 () => this.alertService.nextAlert({type: "success", message: "Case successfully rated and payed"}) // TODO
               );
             } else {
-              this.alertService.nextAlert({type: "danger", message: "Add funds to pay case"});
-              this.router.navigate(["user-profile"]);
+              this.alertService.nextAlert({type: "danger", message: "Please add funds in your profile to pay case"});
+              // this.router.navigate(["user-profile"]);
             }
           });
         } else {
@@ -135,7 +140,7 @@ export class MyCasesComponent implements OnInit {
     }
   }
 
-  public select() {
+  public selectCases() {
     if (this.list === "published") return this.caseService.myCasesP;
     if (this.list === "booked") return this.caseService.myCasesA;
     if (this.list === "finished") return this.caseService.myCasesF;

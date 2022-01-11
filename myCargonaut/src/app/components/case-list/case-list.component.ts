@@ -56,11 +56,16 @@ export class CaseListComponent implements OnInit {
   public async accept(c: Case) {
     this.confirmService.confirmDialog().then(async (res) => {
       if (res) {
-        c.accepter_uid = this.authService.userData.uid;
-        c.status = "booked";
-        await this.caseService.updateCase(c).then(() => {
-          this.alertService.nextAlert({type: "success", message: "Successfully booked"});
-        });
+        if(this.authService.userData.credit >= c.price){
+          c.accepter_uid = this.authService.userData.uid;
+          c.status = "booked";
+          await this.caseService.updateCase(c).then(() => {
+            this.alertService.nextAlert({type: "success", message: "Successfully booked"});
+          });
+        } else {
+          this.alertService.nextAlert({type: "danger", message: "Please add funds in your profile to book case"});
+        }
+
       } else {
         this.alertService.nextAlert({type: "warning", message: "Booking cancelled"});
       }
