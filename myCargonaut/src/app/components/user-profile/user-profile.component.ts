@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import {AuthService} from "../../shared/services/auth/auth.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Vehicle} from "../../shared/models/vehicle";
@@ -30,6 +30,9 @@ export class UserProfileComponent implements OnInit {
               public confirmService: ConfirmService) {
   }
 
+  @ViewChild("fileInput")
+    inputVar!: ElementRef;
+
   ngOnInit(): void {
     this.init().then(() => {
       this.user = this.authService.userData;
@@ -53,7 +56,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   public async uploadProfilePic() {
-    if(this.file != undefined){
+    if (this.file != undefined) {
       this.confirmService.confirmDialog().then(async res => {
         if (res) {
           await this.authService.uploadProfilePic(this.file).then(
@@ -62,6 +65,7 @@ export class UserProfileComponent implements OnInit {
         } else {
           this.alertService.nextAlert({type: "warning", message: "Adding profile picture cancelled"});
         }
+        this.inputVar.nativeElement.value = "";
       });
     } else {
       this.alertService.nextAlert({type: "danger", message: "Please choose file to upload"});
