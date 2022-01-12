@@ -123,7 +123,7 @@ svg.icon-user {
   background: white;
   font-weight: bold;
 }
-.btn-add-case:hover {
+.btn-add-case:hover , .btn-cancel:hover, .btn-finish:hover{
   background: #ededed;
 }
 .btn {
