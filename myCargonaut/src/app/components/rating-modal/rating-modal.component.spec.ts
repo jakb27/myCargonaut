@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { RatingModalComponent } from './rating-modal.component';
+import { RatingModalComponent } from "./rating-modal.component";
 
-describe('RatingModalComponent', () => {
+describe("RatingModalComponent", () => {
   let component: RatingModalComponent;
   let fixture: ComponentFixture<RatingModalComponent>;
 
@@ -10,7 +10,7 @@ describe('RatingModalComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ RatingModalComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe('RatingModalComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  //it("should create", () => {
+  //  expect(component).toBeTruthy();
+  //});
 });

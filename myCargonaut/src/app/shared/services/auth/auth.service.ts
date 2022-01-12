@@ -21,6 +21,9 @@ export class AuthService {
   userData!: User;
   private readonly authState = new Subject<firebase.User | null>();
 
+  profilePic: any;
+  filePath = "/profilePictures/";
+
   storage = getStorage(); //TODO
 
   constructor(
@@ -34,6 +37,7 @@ export class AuthService {
 
     if (!environment.production) {
       afAuth.useEmulator("http://localhost:9099");
+      firebase.storage().useEmulator("localhost", 9199);
     }
 
     /* Saving user data in localstorage when
@@ -55,15 +59,21 @@ export class AuthService {
   // Sign in with email/password
   signIn(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
-      .then((result) => {
+      .then(async (result) => {
         console.log(result);
         if (result.user) {
           const token = result.user.getIdToken(true);
           localStorage.setItem("token", JSON.stringify(token));
+          // this.ngZone.run(() => {
+          //   this.router.navigate(["dashboard"]).then( () => {
+          //     // window.location.reload();
+          //   });
+          // });
 
-          this.ngZone.run(() => {
-            this.router.navigate(["dashboard"]).then(() => window.location.reload());
-          });
+          // TODO
+          await this.router.navigate(["dashboard"]);
+          await this.payPending();
+
         }
       }).catch((error) => {
         this.alertService.nextAlert({type: "danger", message: error.message});
@@ -91,8 +101,18 @@ export class AuthService {
           ratings: 0,
           credit: 0
         };
-        await this.afs.collection("/users").doc(uid).set(user).then(() => {
-          this.router.navigate(["dashboard"]).then(() => window.location.reload());
+        await this.afs.collection("/users").doc(uid).set(user).then(async () => {
+          await this.afs.collection("/pendingCredits").doc(uid).set({
+            pending: 0
+          });
+          // TODO standard pic setzen
+          await this.router.navigate(["dashboard"]).then(() => {
+            window.location.reload();
+            this.afStorage.storage.ref(this.filePath + "placeholder.jpg").getDownloadURL().then((res) => {
+              this.userData.photoURL = res;
+              console.log(this.editUser(this.userData));
+            });
+          });
         });
       }).catch((error) => {
         this.alertService.nextAlert({type: "danger", message: error.message});
@@ -139,14 +159,13 @@ export class AuthService {
 
   async getUserData(): Promise<void> {
     return new Promise((resolve) => {
-      if(this.userData){
+      if (this.userData) {
         resolve();
-      }
-      else{
+      } else {
         this.authState.asObservable().subscribe(async (res) => {
           if (res) {
             this.userFirebase = res;
-            await this.afs.doc(`users/${this.userFirebase.uid}`).get().subscribe(async(res) => {
+            await this.afs.doc(`users/${this.userFirebase.uid}`).get().subscribe(async (res) => {
               if (res) {
                 this.userData = {
                   uid: await res.get("uid"),
@@ -173,9 +192,9 @@ export class AuthService {
 
   // Sign out
   signOut() {
-    return this.afAuth.signOut().then(() => {
+    return this.afAuth.signOut().then(async () => {
       localStorage.removeItem("token");
-      this.router.navigate(["sign-in"]);
+      await this.router.navigate(["sign-in"]);
     });
   }
 
@@ -193,7 +212,7 @@ export class AuthService {
   }
 
   // ugly
-  async getUserRating():Promise<void> {
+  async getUserRating(): Promise<void> {
     new Promise<void>((resolve) => {
       const queryRatings = query(collection(this.afs.firestore, "cases"),
         where("publisher_uid", "==", this.userData.uid),
@@ -204,7 +223,7 @@ export class AuthService {
         querySnapshot.forEach((doc) => {
           ratings.push((doc.data() as Case).rating);
         });
-        if(ratings.length > 0) {
+        if (ratings.length > 0) {
           this.userData.ratings = ratings.length;
           this.userData.rating = ratings.reduce((a, b) => a + b) / ratings.length;
         }
@@ -214,10 +233,37 @@ export class AuthService {
   }
 
   async uploadProfilePic(file: any) {
-    this.afStorage.upload("/images" + this.userData.uid, file);
+    this.afStorage.upload(this.filePath + this.userData.uid, file).then((task) => {
+      task.ref.getDownloadURL().then(async (res) => {
+        this.userData.photoURL = res;
+        await this.editUser(this.userData);
+      });
+    });
   }
 
-  async deleteProfilePic(){
+  async deleteProfilePic() {
+    this.afStorage.storage.ref(this.filePath + this.userData.uid).delete().then(() => {
+      this.afStorage.storage.ref(this.filePath + "placeholder.jpg").getDownloadURL().then((res) => {
+        this.userData.photoURL = res;
+        this.editUser(this.userData);
+      });
+    });
+  }
+
+  // circular dependency in creditService?
+  async payPending() {
+    let publisherPending = await this.afs.firestore.collection("pendingCredits").doc(this.userData.uid).get();
+    let pendingCredit = publisherPending.data()!["pending"];
+    console.log(pendingCredit);
+    await this.afs.collection("/pendingCredits").doc(this.userData.uid).update({
+      pending: 0
+    });
+    let publisher = await this.afs.firestore.collection("/users").doc(this.userData.uid).get();
+    let publisherCredit = publisher.data()!["credit"];
+    console.log(publisherCredit);
+    await this.afs.collection("/users").doc(this.userData.uid).update({
+      credit: publisherCredit + pendingCredit
+    });
   }
 
 

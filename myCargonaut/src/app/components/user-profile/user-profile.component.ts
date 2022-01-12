@@ -36,8 +36,11 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  ngAfterView() {
+  }
+
   async init() {
-    return new Promise<void>(async(resolve)=> {
+    return new Promise<void>(async (resolve) => {
       await this.authService.getUserData();
       await this.vehicleService.readVehicles();
       await this.authService.getUserRating();
@@ -50,11 +53,27 @@ export class UserProfileComponent implements OnInit {
   }
 
   public async uploadProfilePic() {
-    await this.authService.uploadProfilePic(this.file);
+    this.confirmService.confirmDialog().then(async res => {
+      if (res) {
+        await this.authService.uploadProfilePic(this.file).then(
+          () => this.alertService.nextAlert({type: "success", message: "Profile Picture successfully added"})
+        );
+      } else {
+        this.alertService.nextAlert({type: "warning", message: "Adding profile picture cancelled"});
+      }
+    });
   }
 
   public async deleteProfilePic() {
-    await this.authService.deleteProfilePic();
+    this.confirmService.confirmDialog().then(async res => {
+      if (res) {
+        await this.authService.deleteProfilePic().then(
+          () => this.alertService.nextAlert({type: "success", message: "Profile Picture successfully deleted"})
+        );
+      } else {
+        this.alertService.nextAlert({type: "warning", message: "Deleting profile picture cancelled"});
+      }
+    });
   }
 
   public async addCredits() {
@@ -62,7 +81,7 @@ export class UserProfileComponent implements OnInit {
     try {
       const resultVehicle: Vehicle = await modalReference.result;
       await this.vehicleService.createVehicle(resultVehicle).then(
-        () => this.alertService.nextAlert({type: "success", message: "Vehicle successful added"})
+        () => this.alertService.nextAlert({type: "success", message: "Vehicle successfully added"})
       );
     } catch (error) {
       console.log(error);
@@ -130,7 +149,7 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  public async deleteUser(){
+  public async deleteUser() {
     this.confirmService.confirmDialog().then(async res => {
       if (res) {
         await this.authService.deleteUser();

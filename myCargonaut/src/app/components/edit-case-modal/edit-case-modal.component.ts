@@ -31,6 +31,7 @@ export class EditCaseModalComponent implements OnInit {
       end: "",
       seats:0,
       capacity:0,
+      description: "",
       dateTime: null,
       id: "",
       accepter_uid: "",

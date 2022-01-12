@@ -5,7 +5,7 @@
 
 <!-- Content -->
 <div style="overflow-y: scroll; overflow-x:hidden; height: 71vh">
-  <div class="my-cases-main case-list"  >
+  <div class="my-cases-main case-list">
     <div class="row">
       <!-- Main content -->
       <div
@@ -23,9 +23,11 @@
           </label>
         </div>
         <button type="button" class="btn  btn-add-case" (click)="create()">
-          <svg  class="add-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <svg class="add-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" fill="#005B52"/>
-          </svg> Add Case</button>
+          </svg>
+          Add Case
+        </button>
       </div>
       <div class="pricing-header mx-auto">
         <div *ngFor="let c of this.selectCases(); let i = index;">
@@ -45,7 +47,13 @@
                       c-2.943,0-5.328-2.385-5.328-5.327c0-2.943,2.385-5.328,5.328-5.328c2.943,0,5.328,2.385,5.328,5.328
                       C15.328,9.982,12.943,12.367,10,12.367z"></path>
 						   </svg>
-                 <span >{{c.publisher_name}}</span>
+                 <span>{{c.publisher_name}}</span>
+              </span>
+
+              <!--              // TODO -->
+              <span>
+                <br>
+                <span class="description">{{c.description}}</span>
               </span>
 
             </span>
@@ -60,7 +68,8 @@
                 <div class="case-destination">
                   <span class="destination-start">{{c.start}}</span>
                   <span>
-                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0yMS44ODMgMTJsLTcuNTI3IDYuMjM1LjY0NC43NjUgOS03LjUyMS05LTcuNDc5LS42NDUuNzY0IDcuNTI5IDYuMjM2aC0yMS44ODR2MWgyMS44ODN6Ii8+PC9zdmc+">
+                <img
+                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0yMS44ODMgMTJsLTcuNTI3IDYuMjM1LjY0NC43NjUgOS03LjUyMS05LTcuNDc5LS42NDUuNzY0IDcuNTI5IDYuMjM2aC0yMS44ODR2MWgyMS44ODN6Ii8+PC9zdmc+">
               </span>
                   <span class="destination-end">{{c.end}}</span>
                 </div>
@@ -73,14 +82,16 @@
                   <button *ngIf="c.status === 'booked'" type="button" class="btn btn-warning" (click)="cancel(c)">Cancel
                   </button>
                   <div *ngIf="c.status === 'open'" class="pOpen">
-                    <button  type="button" class="btn btn-edit" (click)="edit(c)">
+                    <button type="button" class="btn btn-edit" (click)="edit(c)">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                        <path fill="#373F68" d="M1.439 16.873l-1.439 7.127 7.128-1.437 16.873-16.872-5.69-5.69-16.872 16.872zm4.702 3.848l-3.582.724.721-3.584 2.861 2.86zm15.031-15.032l-13.617 13.618-2.86-2.861 10.825-10.826 2.846 2.846 1.414-1.414-2.846-2.846 1.377-1.377 2.861 2.86z"/>
+                        <path fill="#373F68"
+                              d="M1.439 16.873l-1.439 7.127 7.128-1.437 16.873-16.872-5.69-5.69-16.872 16.872zm4.702 3.848l-3.582.724.721-3.584 2.861 2.86zm15.031-15.032l-13.617 13.618-2.86-2.861 10.825-10.826 2.846 2.846 1.414-1.414-2.846-2.846 1.377-1.377 2.861 2.86z"/>
                       </svg>
                     </button>
                     <button type="button" class="btn  btn-delete" (click)="delete(c)">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                        <path fill="red" d="M9 19c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5-17v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712zm-3 4v16h-14v-16h-2v18h18v-18h-2z"/>
+                        <path fill="red"
+                              d="M9 19c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5-17v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712zm-3 4v16h-14v-16h-2v18h18v-18h-2z"/>
                       </svg>
                     </button>
                   </div>
@@ -90,7 +101,7 @@
                   <button type="button" class="btn btn-success" (click)="finish(c)">Finish</button>
                 </div>
                 <div *ngIf="this.list === 'finished'">
-                  <ngb-rating [(rate)]="c.rating"  [readonly]="true" [max]="5"></ngb-rating>
+                  <ngb-rating [(rate)]="c.rating" [readonly]="true" [max]="5"></ngb-rating>
                 </div>
               </div>
             </div>

@@ -30,6 +30,9 @@ h5 {
 
 img {
   border-radius: 30%;
+  width: 10em;
+  height: 10em;
+/*  TODO size*/
 }
 .editor {
   margin-top: 240px;

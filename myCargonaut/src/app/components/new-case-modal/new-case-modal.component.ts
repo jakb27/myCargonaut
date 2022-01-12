@@ -28,6 +28,7 @@ export class NewCaseModalComponent implements OnInit {
       status: "open",
       seats: 0,
       capacity: 0,
+      description: "",
       start: "",
       end: "",
       dateTime: null,

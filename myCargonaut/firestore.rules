@@ -7,6 +7,9 @@ service cloud.firestore {
     match /cases/{documents=**}{
     	allow read, write
     }
+    match /pendingCredits/{documents=**}{
+      allow read, write: if request.auth != null
+    }
   }
 }
 
