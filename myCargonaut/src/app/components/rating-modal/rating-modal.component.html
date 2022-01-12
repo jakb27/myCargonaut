@@ -16,6 +16,10 @@
       <div *ngIf="ctrl.valid" class="text-success">Thanks!</div>
       <div *ngIf="ctrl.invalid" class="text-danger">Please rate your case!</div>
     </div>
+
+      <label for="description">Comment</label>
+      <textarea id="description" rows="3" cols="60" maxlength="50" [(ngModel)]="case.ratingComment"></textarea>
+
   </div>
 
 </div>
