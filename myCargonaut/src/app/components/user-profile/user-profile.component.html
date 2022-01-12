@@ -10,7 +10,7 @@
       <div class="img-fluid text-center pt-2 pb-5">
         <img src="http://via.placeholder.com/240x240?text=Avatar+Photo" alt="User.photoURL">
       </div>
-      <input type="file" (change)="upload($event)" accept=".png, .jpg">
+      <input id="fileInput" type="file" (change)="upload($event)" accept=".png, .jpg">
       <button class="btn btn-outline-success" (click)="this.uploadProfilePic()"> UPLOAD PIC</button>
       <button class="btn btn-outline-danger" (click)="this.deleteProfilePic()"> DELETE PIC</button>
       <div id="userProfile" class="text-center p-5">

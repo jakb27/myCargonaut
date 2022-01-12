@@ -69,7 +69,6 @@ export class AuthService {
 
           // TODO
           await this.router.navigate(["dashboard"]);
-          console.log("test");
           await this.payPending();
 
         }
@@ -224,10 +223,18 @@ export class AuthService {
   }
 
   async uploadProfilePic(file: any) {
-    this.afStorage.upload("/images" + this.userData.uid, file);
+    let filePath = "/profilePictures" + this.userData.uid;
+    this.afStorage.upload(filePath, file).then( (task) => {
+
+    });
+
   }
 
   async deleteProfilePic() {
+
+  }
+
+  async getProfilePic() {
 
   }
 
