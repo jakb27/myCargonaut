@@ -21,6 +21,9 @@ export class AuthService {
   userData!: User;
   private readonly authState = new Subject<firebase.User | null>();
 
+  profilePic: any;
+  filePath = "/profilePictures/";
+
   storage = getStorage(); //TODO
 
   constructor(
@@ -102,7 +105,14 @@ export class AuthService {
           await this.afs.collection("/pendingCredits").doc(uid).set({
             pending: 0
           });
-          this.router.navigate(["dashboard"]).then(() => window.location.reload());
+          // TODO standard pic setzen
+          await this.router.navigate(["dashboard"]).then(() => {
+            window.location.reload();
+            this.afStorage.storage.ref(this.filePath + "placeholder.jpg").getDownloadURL().then((res) => {
+              this.userData.photoURL = res;
+              console.log(this.editUser(this.userData));
+            });
+          });
         });
       }).catch((error) => {
         this.alertService.nextAlert({type: "danger", message: error.message});
@@ -182,9 +192,9 @@ export class AuthService {
 
   // Sign out
   signOut() {
-    return this.afAuth.signOut().then(() => {
+    return this.afAuth.signOut().then(async () => {
       localStorage.removeItem("token");
-      this.router.navigate(["sign-in"]);
+      await this.router.navigate(["sign-in"]);
     });
   }
 
@@ -223,23 +233,25 @@ export class AuthService {
   }
 
   async uploadProfilePic(file: any) {
-    let filePath = "/profilePictures" + this.userData.uid;
-    this.afStorage.upload(filePath, file).then( (task) => {
-
+    this.afStorage.upload(this.filePath + this.userData.uid, file).then((task) => {
+      task.ref.getDownloadURL().then(async (res) => {
+        this.userData.photoURL = res;
+        await this.editUser(this.userData);
+      });
     });
-
   }
 
   async deleteProfilePic() {
-
-  }
-
-  async getProfilePic() {
-
+    this.afStorage.storage.ref(this.filePath + this.userData.uid).delete().then(() => {
+      this.afStorage.storage.ref(this.filePath + "placeholder.jpg").getDownloadURL().then((res) => {
+        this.userData.photoURL = res;
+        this.editUser(this.userData);
+      });
+    });
   }
 
   // circular dependency in creditService?
-  async payPending(){
+  async payPending() {
     let publisherPending = await this.afs.firestore.collection("pendingCredits").doc(this.userData.uid).get();
     let pendingCredit = publisherPending.data()!["pending"];
     console.log(pendingCredit);

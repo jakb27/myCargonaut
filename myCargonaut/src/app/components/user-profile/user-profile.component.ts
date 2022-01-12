@@ -36,6 +36,9 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  ngAfterView() {
+  }
+
   async init() {
     return new Promise<void>(async (resolve) => {
       await this.authService.getUserData();

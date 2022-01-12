@@ -8,7 +8,7 @@
     <div class="col-12 cols col-lg-2">
       <h3>Your Profile:</h3>
       <div class="img-fluid text-center pt-2 pb-5">
-        <img src="http://via.placeholder.com/240x240?text=Avatar+Photo" alt="User.photoURL">
+        <img id="pic" src="{{this.user.photoURL}}" alt="User.photoURL">
       </div>
       <input id="fileInput" type="file" (change)="upload($event)" accept=".png, .jpg">
       <button class="btn btn-outline-success" (click)="this.uploadProfilePic()"> UPLOAD PIC</button>
