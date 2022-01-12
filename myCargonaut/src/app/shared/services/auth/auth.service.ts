@@ -11,6 +11,7 @@ import {getStorage} from "@angular/fire/storage";
 import {collection, onSnapshot, query, where} from "@angular/fire/firestore";
 import {Case} from "../../models/case";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {getAuth, sendEmailVerification} from "@angular/fire/auth";
 
 @Injectable({
   providedIn: "root"
@@ -60,7 +61,6 @@ export class AuthService {
   signIn(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then(async (result) => {
-        console.log(result);
         if (result.user) {
           const token = result.user.getIdToken(true);
           localStorage.setItem("token", JSON.stringify(token));
@@ -84,7 +84,7 @@ export class AuthService {
   signUp(firstname: string, lastname: string, birthday: string, email: string, password: string) {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then(async (result) => {
-        // this.SendVerificationMail(); //TODO verification email
+        await this.SendVerificationMail(); //TODO verification email
         const token = result.user!.getIdToken(true);
         localStorage.setItem("token", JSON.stringify(token));
         const {emailVerified, uid} = result.user!;
@@ -119,13 +119,11 @@ export class AuthService {
       });
   }
 
-  // Send email verfificaiton when new user sign up
-  // SendVerificationMail() {
-  //   return this.afAuth.currentUser.sendEmailVerification()
-  //     .then(() => {
-  //       this.router.navigate(['verify-email-address']);
-  //     })
-  // }
+  // Send email verification when new user sign up
+  async SendVerificationMail() {
+    sendEmailVerification(getAuth().currentUser!).then(() => {
+    });
+  }
 
   // Reset Forgot password
   forgotPassword(passwordResetEmail: string) {
