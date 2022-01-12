@@ -299,7 +299,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &quot;@angular/core&quot;;
-import {AuthService} from &quot;../../shared/services/auth.service&quot;;
+import {AuthService} from &quot;../../shared/services/auth/auth.service&quot;;
 
 @Component({
   selector: &quot;app-sign-in&quot;,
@@ -325,6 +325,7 @@ export class SignInComponent implements OnInit {
         &lt;img src&#x3D;&quot;assets/images/logo.png&quot;&gt;
       &lt;/div&gt;
       &lt;div class&#x3D;&quot;authBlock pt-5&quot;&gt;
+
         &lt;h3 class&#x3D;&quot;d-flex justify-content-center fw-bold&quot;&gt;Sign In&lt;/h3&gt;
         &lt;div class&#x3D;&quot;form-group&quot;&gt;
           &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;username&quot; class&#x3D;&quot;form-control&quot; placeholder&#x3D;&quot;E-Mail&quot; #userName required&gt;
@@ -336,7 +337,7 @@ export class SignInComponent implements OnInit {
 
         &lt;div class&#x3D;&quot;form-group d-flex justify-content-center&quot;&gt;
           &lt;input type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-log-in btn-lg bg-darkgreen text-white&quot; value&#x3D;&quot;Log in&quot;
-                 (click)&#x3D;&quot;authService.SignIn(userName.value, userPassword.value)&quot;&gt;
+                 (click)&#x3D;&quot;authService.signIn(userName.value, userPassword.value)&quot;&gt;
         &lt;/div&gt;
 
         &lt;div class&#x3D;&quot;forgotPassword d-flex justify-content-center pt-5&quot;&gt;
@@ -348,6 +349,7 @@ export class SignInComponent implements OnInit {
         &lt;span&gt;Don&#x27;t have an account?&lt;a class&#x3D;&quot;redirect sign-in-link fw-bold&quot;
                                        routerLink&#x3D;&quot;/register-user&quot;&gt; Sign Up&lt;/a&gt;&lt;/span&gt;
       &lt;/div&gt;
+      &lt;app-alert&gt;&lt;/app-alert&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
@@ -407,12 +409,13 @@ img {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">  <div class="row justify-content-center">    <div class="col-4 col-lg-3">      <div class="img-fluid pt-5">        <img src="assets/images/logo.png">      </div>      <div class="authBlock pt-5">        <h3 class="d-flex justify-content-center fw-bold">Sign In</h3>        <div class="form-group">          <input type="text" id="username" class="form-control" placeholder="E-Mail" #userName required>        </div>        <div class="form-group">          <input type="password" class="form-control" placeholder="Password" #userPassword required>        </div>        <div class="form-group d-flex justify-content-center">          <input type="button" class="btn btn-log-in btn-lg bg-darkgreen text-white" value="Log in"                 (click)="authService.SignIn(userName.value, userPassword.value)">        </div>        <div class="forgotPassword d-flex justify-content-center pt-5">          <a routerLink="/forgot-password" class="sign-in-link">Forgot Password?</a>        </div>      </div>      <div class="redirectToLogin d-flex justify-content-center pb-5">        <span>Don\'t have an account?<a class="redirect sign-in-link fw-bold"                                       routerLink="/register-user"> Sign Up</a></span>      </div>    </div>  </div></div><app-footer></app-footer></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CaseListComponent', 'selector': 'app-case-list'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DateTimePickerComponent', 'selector': 'app-ngb-date-time-picker'},{'name': 'EditCaseModalComponent', 'selector': 'app-edit-case-modal'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MyCasesComponent', 'selector': 'app-my-cases'},{'name': 'NewCaseModalComponent', 'selector': 'app-new-offer-modal'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">  <div class="row justify-content-center">    <div class="col-4 col-lg-3">      <div class="img-fluid pt-5">        <img src="assets/images/logo.png">      </div>      <div class="authBlock pt-5">        <h3 class="d-flex justify-content-center fw-bold">Sign In</h3>        <div class="form-group">          <input type="text" id="username" class="form-control" placeholder="E-Mail" #userName required>        </div>        <div class="form-group">          <input type="password" class="form-control" placeholder="Password" #userPassword required>        </div>        <div class="form-group d-flex justify-content-center">          <input type="button" class="btn btn-log-in btn-lg bg-darkgreen text-white" value="Log in"                 (click)="authService.signIn(userName.value, userPassword.value)">        </div>        <div class="forgotPassword d-flex justify-content-center pt-5">          <a routerLink="/forgot-password" class="sign-in-link">Forgot Password?</a>        </div>      </div>      <div class="redirectToLogin d-flex justify-content-center pb-5">        <span>Don\'t have an account?<a class="redirect sign-in-link fw-bold"                                       routerLink="/register-user"> Sign Up</a></span>      </div>      <app-alert></app-alert>    </div>  </div></div><app-footer></app-footer></div>'
+    var COMPONENTS = [{'name': 'AddCreditModalComponent', 'selector': 'app-add-credit-modal'},{'name': 'AlertComponent', 'selector': 'app-alert'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CaseListComponent', 'selector': 'app-case-list'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DateTimePickerComponent', 'selector': 'app-ngb-date-time-picker'},{'name': 'EditCaseModalComponent', 'selector': 'app-edit-case-modal'},{'name': 'EditUserModalComponent', 'selector': 'app-edit-user-modal'},{'name': 'EditVehicleModalComponent', 'selector': 'app-edit-vehicle-modal'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MyCasesComponent', 'selector': 'app-my-cases'},{'name': 'NewCaseModalComponent', 'selector': 'app-new-offer-modal'},{'name': 'NewVehicleModalComponent', 'selector': 'app-new-vehicle-modal'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'RatingModalComponent', 'selector': 'app-rating-modal'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SignInComponent'};
 </script>
 <script src="../js/tree.js"></script>
+
 
 
 

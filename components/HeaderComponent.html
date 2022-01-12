@@ -299,7 +299,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &quot;@angular/core&quot;;
-import {AuthService} from &quot;../../shared/services/auth.service&quot;;
+import {AuthService} from &quot;../../shared/services/auth/auth.service&quot;;
 
 @Component({
   selector: &quot;app-header&quot;,
@@ -338,14 +338,16 @@ export class HeaderComponent implements OnInit {
         &lt;a class&#x3D;&quot;nav-link&quot; routerLink&#x3D;&quot;/user-profile&quot;&gt;Profile&lt;/a&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
-    &lt;form class&#x3D;&quot;form-inline my-2 my-lg-0 nav-action&quot;&gt;
-      &lt;input class&#x3D;&quot;form-control mr-sm-2&quot; type&#x3D;&quot;search&quot; placeholder&#x3D;&quot;Search&quot; aria-label&#x3D;&quot;Search&quot;&gt;
-      &lt;button class&#x3D;&quot;btn  btn-search my-2 my-sm-0&quot; type&#x3D;&quot;submit&quot;&gt;Search&lt;/button&gt;
-    &lt;/form&gt;
+&lt;!--    &lt;form class&#x3D;&quot;form-inline my-2 my-lg-0 nav-action&quot;&gt;--&gt;
+&lt;!--      &lt;input class&#x3D;&quot;form-control mr-sm-2&quot; type&#x3D;&quot;search&quot; placeholder&#x3D;&quot;Search&quot; aria-label&#x3D;&quot;Search&quot;&gt;--&gt;
+&lt;!--      &lt;button class&#x3D;&quot;btn  btn-search my-2 my-sm-0&quot; type&#x3D;&quot;submit&quot;&gt;Search&lt;/button&gt;--&gt;
+&lt;!--    &lt;/form&gt;--&gt;
     &lt;ul class&#x3D;&quot;navbar-nav mr-auto&quot;&gt;
       &lt;li class&#x3D;&quot;nav-item&quot;&gt;
-        &lt;a class&#x3D;&quot;nav-link log-out&quot; (click)&#x3D;&quot;authService.SignOut()&quot;&gt;
-          &lt;i class&#x3D;&quot;fa fa-sign-out-alt&quot;&gt;&lt;/i&gt;Log out
+        &lt;a class&#x3D;&quot;nav-link&quot; (click)&#x3D;&quot;authService.signOut()&quot;&gt;
+          &lt;svg class&#x3D;&quot;log-out&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; width&#x3D;&quot;24&quot; height&#x3D;&quot;24&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;
+            &lt;path fill&#x3D;&quot;white&quot; d&#x3D;&quot;M10 2v2h12v16h-12v2h14v-20h-14zm0 7.408l2.963 2.592-2.963 2.592v-1.592h-8v-2h8v-1.592zm-2-4.408v4h-8v6h8v4l8-7-8-7z&quot;/&gt;
+          &lt;/svg&gt;
         &lt;/a&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
@@ -387,6 +389,7 @@ export class HeaderComponent implements OnInit {
 }
 .nav-link:hover {
   color: black !important;
+  cursor: pointer;
 }
 .nav-action {
   display: flex;
@@ -397,6 +400,10 @@ export class HeaderComponent implements OnInit {
   margin-left: 10px;
   background: lightslategrey;
   color: white;
+}
+
+svg:hover path {
+  fill:black;
 }
 
 
@@ -433,12 +440,13 @@ export class HeaderComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nav class="navbar navbar-expand-lg navbar-light app-header">  <a class="navbar-brand app-name" >MyCargonaut</a>  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">    <span class="navbar-toggler-icon"></span>  </button>  <div class="collapse navbar-collapse navItems" id="navbarSupportedContent">    <ul class="navbar-nav mr-auto">      <li class="nav-item active">        <a class="nav-link" routerLink="/dashboard">Dashboard</a>      </li>      <li class="nav-item active">        <a class="nav-link" routerLink="/my-cases">My Cases</a>      </li>      <li class="nav-item active">        <a class="nav-link" routerLink="/user-profile">Profile</a>      </li>    </ul>    <form class="form-inline my-2 my-lg-0 nav-action">      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">      <button class="btn  btn-search my-2 my-sm-0" type="submit">Search</button>    </form>    <ul class="navbar-nav mr-auto">      <li class="nav-item">        <a class="nav-link log-out" (click)="authService.SignOut()">          <i class="fa fa-sign-out-alt"></i>Log out        </a>      </li>    </ul>  </div></nav></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CaseListComponent', 'selector': 'app-case-list'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DateTimePickerComponent', 'selector': 'app-ngb-date-time-picker'},{'name': 'EditCaseModalComponent', 'selector': 'app-edit-case-modal'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MyCasesComponent', 'selector': 'app-my-cases'},{'name': 'NewCaseModalComponent', 'selector': 'app-new-offer-modal'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
+        var COMPONENT_TEMPLATE = '<div><nav class="navbar navbar-expand-lg navbar-light app-header">  <a class="navbar-brand app-name" >MyCargonaut</a>  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">    <span class="navbar-toggler-icon"></span>  </button>  <div class="collapse navbar-collapse navItems" id="navbarSupportedContent">    <ul class="navbar-nav mr-auto">      <li class="nav-item active">        <a class="nav-link" routerLink="/dashboard">Dashboard</a>      </li>      <li class="nav-item active">        <a class="nav-link" routerLink="/my-cases">My Cases</a>      </li>      <li class="nav-item active">        <a class="nav-link" routerLink="/user-profile">Profile</a>      </li>    </ul><!--    <form class="form-inline my-2 my-lg-0 nav-action">--><!--      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">--><!--      <button class="btn  btn-search my-2 my-sm-0" type="submit">Search</button>--><!--    </form>-->    <ul class="navbar-nav mr-auto">      <li class="nav-item">        <a class="nav-link" (click)="authService.signOut()">          <svg class="log-out" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">            <path fill="white" d="M10 2v2h12v16h-12v2h14v-20h-14zm0 7.408l2.963 2.592-2.963 2.592v-1.592h-8v-2h8v-1.592zm-2-4.408v4h-8v6h8v4l8-7-8-7z"/>          </svg>        </a>      </li>    </ul>  </div></nav></div>'
+    var COMPONENTS = [{'name': 'AddCreditModalComponent', 'selector': 'app-add-credit-modal'},{'name': 'AlertComponent', 'selector': 'app-alert'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CaseListComponent', 'selector': 'app-case-list'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DateTimePickerComponent', 'selector': 'app-ngb-date-time-picker'},{'name': 'EditCaseModalComponent', 'selector': 'app-edit-case-modal'},{'name': 'EditUserModalComponent', 'selector': 'app-edit-user-modal'},{'name': 'EditVehicleModalComponent', 'selector': 'app-edit-vehicle-modal'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MyCasesComponent', 'selector': 'app-my-cases'},{'name': 'NewCaseModalComponent', 'selector': 'app-new-offer-modal'},{'name': 'NewVehicleModalComponent', 'selector': 'app-new-vehicle-modal'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'RatingModalComponent', 'selector': 'app-rating-modal'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'HeaderComponent'};
 </script>
 <script src="../js/tree.js"></script>
+
 
 
 

@@ -37,6 +37,7 @@
 
 
 
+
 <ol class="breadcrumb">
   <li>Injectables</li>
   <li >CaseService</li>
@@ -57,7 +58,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/shared/services/case.service.ts</code>
+            <code>src/app/shared/services/case/case.service.ts</code>
         </p>
 
 
@@ -68,6 +69,33 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_casesDashboard" >_casesDashboard</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_myCasesA" >_myCasesA</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_myCasesF" >_myCasesF</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_myCasesP" >_myCasesP</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -84,13 +112,10 @@
                                 <a href="#deleteCase" >deleteCase</a>
                             </li>
                             <li>
-                                <a href="#readCasesByIDA" >readCasesByIDA</a>
-                            </li>
-                            <li>
-                                <a href="#readCasesByIDP" >readCasesByIDP</a>
-                            </li>
-                            <li>
                                 <a href="#readCasesDashboard" >readCasesDashboard</a>
+                            </li>
+                            <li>
+                                <a href="#readMyCases" >readMyCases</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -107,6 +132,29 @@
 
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#casesDashboard" >casesDashboard</a>
+                                </li>
+                                <li>
+                                    <a href="#myCasesP" >myCasesP</a>
+                                </li>
+                                <li>
+                                    <a href="#myCasesA" >myCasesA</a>
+                                </li>
+                                <li>
+                                    <a href="#myCasesF" >myCasesF</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
         </tbody>
     </table>
 </section>
@@ -117,12 +165,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(fs: AngularFirestore)</code>
+<code>constructor(fs: AngularFirestore, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/shared/services/case.service.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/shared/services/case/case.service.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -144,6 +192,18 @@
                                                   
                                                         <td>
                                                                     <code>AngularFirestore</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -185,8 +245,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/app/shared/services/case.service.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/app/shared/services/case/case.service.ts:20</a></div>
                 </td>
             </tr>
 
@@ -254,8 +314,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/app/shared/services/case.service.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="88"
+                            class="link-to-prism">src/app/shared/services/case/case.service.ts:88</a></div>
                 </td>
             </tr>
 
@@ -307,144 +367,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="readCasesByIDA"></a>
-                    <span class="name">
-                        <span ><b>readCasesByIDA</b></span>
-                        <a href="#readCasesByIDA"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>readCasesByIDA(uid: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/app/shared/services/case.service.ts:31</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>uid</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="readCasesByIDP"></a>
-                    <span class="name">
-                        <span ><b>readCasesByIDP</b></span>
-                        <a href="#readCasesByIDP"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>readCasesByIDP(uid: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/app/shared/services/case.service.ts:27</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>uid</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="readCasesDashboard"></a>
                     <span class="name">
                         <span ><b>readCasesDashboard</b></span>
@@ -461,8 +383,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/app/shared/services/case.service.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/app/shared/services/case/case.service.ts:25</a></div>
                 </td>
             </tr>
 
@@ -471,7 +393,44 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="readMyCases"></a>
+                    <span class="name">
+                        <span ><b>readMyCases</b></span>
+                        <a href="#readMyCases"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>readMyCases()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/app/shared/services/case/case.service.ts:36</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                     </div>
                 </td>
@@ -500,8 +459,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">src/app/shared/services/case.service.ts:44</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">src/app/shared/services/case/case.service.ts:108</a></div>
                 </td>
             </tr>
 
@@ -569,8 +528,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/app/shared/services/case.service.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">src/app/shared/services/case/case.service.ts:84</a></div>
                 </td>
             </tr>
 
@@ -619,22 +578,255 @@
         </tbody>
     </table>
 </section>
+            <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_casesDashboard"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_casesDashboard</b></span>
+                        <a href="#_casesDashboard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Case.html" target="_self" >Case[]</a></code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/shared/services/case/case.service.ts:12</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_myCasesA"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_myCasesA</b></span>
+                        <a href="#_myCasesA"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Case.html" target="_self" >Case[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/shared/services/case/case.service.ts:14</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_myCasesF"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_myCasesF</b></span>
+                        <a href="#_myCasesF"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Case.html" target="_self" >Case[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/shared/services/case/case.service.ts:15</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_myCasesP"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_myCasesP</b></span>
+                        <a href="#_myCasesP"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Case.html" target="_self" >Case[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/shared/services/case/case.service.ts:13</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="casesDashboard"></a>
+                        <span class="name"><b>casesDashboard</b><a href="#casesDashboard"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>casesDashboard()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/shared/services/case/case.service.ts:92</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="myCasesP"></a>
+                        <span class="name"><b>myCasesP</b><a href="#myCasesP"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>myCasesP()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/shared/services/case/case.service.ts:96</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="myCasesA"></a>
+                        <span class="name"><b>myCasesA</b><a href="#myCasesA"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>myCasesA()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/shared/services/case/case.service.ts:100</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="myCasesF"></a>
+                        <span class="name"><b>myCasesF</b><a href="#myCasesF"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>myCasesF()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/shared/services/case/case.service.ts:104</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Injectable} from &quot;@angular/core&quot;;
-import {Case} from &quot;../models/case&quot;;
+import {Case} from &quot;../../models/case&quot;;
 import {AngularFirestore} from &quot;@angular/fire/compat/firestore&quot;;
-import {collection, query, where} from &quot;@angular/fire/firestore&quot;;
+import {collection, onSnapshot, query, where} from &quot;@angular/fire/firestore&quot;;
+import {AuthService} from &quot;../auth/auth.service&quot;;
 
 @Injectable({
   providedIn: &quot;root&quot;
 })
 export class CaseService {
 
-  constructor(private fs: AngularFirestore) {
+  private _casesDashboard: Case[] &#x3D; [];
+  private _myCasesP: Case[] &#x3D; [];
+  private _myCasesA: Case[] &#x3D; [];
+  private _myCasesF: Case[] &#x3D; [];
+
+  constructor(private fs: AngularFirestore, private authService: AuthService) {
   }
 
   createCase(c: Case) {
@@ -643,19 +835,62 @@ export class CaseService {
   }
 
   readCasesDashboard() {
-    return query(collection(this.fs.firestore, &quot;cases&quot;), where(&quot;accepter_uid&quot;, &quot;&#x3D;&#x3D;&quot;, &quot;&quot;));
+    const q &#x3D; query(collection(this.fs.firestore, &quot;cases&quot;), where(&quot;accepter_uid&quot;, &quot;&#x3D;&#x3D;&quot;, &quot;&quot;));
+
+    onSnapshot(q, (querySnapshot) &#x3D;&gt; {
+      this._casesDashboard &#x3D; [];
+      querySnapshot.forEach((doc) &#x3D;&gt; {
+        this._casesDashboard.push(doc.data() as Case);
+      });
+    });
   }
 
-  // readCasesByID(uid: string) {
-  //   return query(collection(this.fs.firestore, &#x27;cases&#x27;), where(&quot;publisher_uid&quot;, &quot;&#x3D;&#x3D;&quot;, uid), where(&quot;accepter_uid&quot;, &quot;&#x3D;&#x3D;&quot;, uid));
-  // }
+  readMyCases() {
+    if(this.authService.userData) {
+      const queryPublished &#x3D; query(collection(this.fs.firestore, &quot;cases&quot;),
+        where(&quot;publisher_uid&quot;, &quot;&#x3D;&#x3D;&quot;, this.authService.userData.uid),
+        where(&quot;status&quot;, &quot;!&#x3D;&quot;, &quot;finished&quot;));
+      const queryAccepted &#x3D; query(collection(this.fs.firestore, &quot;cases&quot;),
+        where(&quot;accepter_uid&quot;, &quot;&#x3D;&#x3D;&quot;, this.authService.userData.uid),
+        where(&quot;status&quot;, &quot;!&#x3D;&quot;, &quot;finished&quot;));
+      const queryFinished &#x3D; query(collection(this.fs.firestore, &quot;cases&quot;),
+        where(&quot;status&quot;, &quot;&#x3D;&#x3D;&quot;, &quot;finished&quot;));
 
-  readCasesByIDP(uid: string) {
-    return query(collection(this.fs.firestore, &quot;cases&quot;), where(&quot;publisher_uid&quot;, &quot;&#x3D;&#x3D;&quot;, uid));
-  }
+      onSnapshot(queryPublished, (querySnapshot) &#x3D;&gt; {
+        this._myCasesP &#x3D; [];
+        querySnapshot.forEach((doc) &#x3D;&gt; {
+          this.myCasesP.push(doc.data() as Case);
+        });
+      });
+      onSnapshot(queryAccepted, (querySnapshot) &#x3D;&gt; {
+        this._myCasesA &#x3D; [];
+        querySnapshot.forEach((doc) &#x3D;&gt; {
+          this.myCasesA.push(doc.data() as Case);
+        });
+      });
+      onSnapshot(queryFinished, (querySnapshot) &#x3D;&gt; {
+        this._myCasesF &#x3D; [];
+        querySnapshot.forEach((doc) &#x3D;&gt; {
+          this.myCasesF.push(doc.data() as Case);
+        });
+      });
+    }
 
-  readCasesByIDA(uid: string) {
-    return query(collection(this.fs.firestore, &quot;cases&quot;), where(&quot;accepter_uid&quot;, &quot;&#x3D;&#x3D;&quot;, uid));
+    //TODO 2 queries as 1 with where(uid in published/accepted) ?
+
+    // const q &#x3D; this.caseService.readCasesByID(this.authService.userData.uid);
+    // onSnapshot(q, (querySnapshot) &#x3D;&gt; {
+    //   this.myCasesP &#x3D; [];
+    //   this.myCasesA &#x3D; [];
+    //   querySnapshot.forEach((doc) &#x3D;&gt; {
+    //     let d &#x3D; doc.data() as Case;
+    //     if(d.accepter_uid !&#x3D; &quot;&quot;) {
+    //       this.myCasesA.push(d);
+    //     } else {
+    //       this.myCasesP.push(d);
+    //     }
+    //   });
+    // });
   }
 
   updateCase(c: Case) {
@@ -663,8 +898,23 @@ export class CaseService {
   }
 
   deleteCase(c: Case) {
-    console.log(c.id);
     return this.fs.doc(&quot;cases/&quot; + c.id).delete();
+  }
+
+  get casesDashboard(): Case[] {
+    return this._casesDashboard;
+  }
+
+  get myCasesP(): Case[] {
+    return this._myCasesP;
+  }
+
+  get myCasesA(): Case[] {
+    return this._myCasesA;
+  }
+
+  get myCasesF(): Case[] {
+    return this._myCasesF;
   }
 
   public timeConverter(UNIX_timestamp: any){

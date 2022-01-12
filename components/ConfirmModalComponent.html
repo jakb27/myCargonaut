@@ -38,7 +38,7 @@
   <li>Components</li>
   <li
   >
-  DashboardComponent</li>
+  ConfirmModalComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -64,7 +64,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/components/dashboard/dashboard.component.ts</code>
+    <code>src/app/components/confirm-modal/confirm-modal.component.ts</code>
 </p>
 
 
@@ -95,19 +95,19 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-dashboard</code></td>
+                <td class="col-md-9"><code>app-confirm-modal</code></td>
             </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./dashboard.component.css</code></td>
+                <td class="col-md-9"><code>./confirm-modal.component.css</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./dashboard.component.html</code></td>
+                <td class="col-md-9"><code>./confirm-modal.component.html</code></td>
             </tr>
 
 
@@ -135,7 +135,7 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#authService" >authService</a>
+                                <a href="#activeModal" >activeModal</a>
                             </li>
                         </ul>
                     </td>
@@ -150,8 +150,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#init" >init</a>
+                                <a href="#confirm" >confirm</a>
+                            </li>
+                            <li>
+                                <a href="#decline" >decline</a>
                             </li>
                             <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
@@ -174,12 +176,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, vehicleService: <a href="../injectables/VehicleService.html" target="_self">VehicleService</a>)</code>
+<code>constructor(activeModal: NgbActiveModal)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/components/confirm-modal/confirm-modal.component.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -197,22 +199,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>authService</td>
+                                                        <td>activeModal</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>vehicleService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/VehicleService.html" target="_self" >VehicleService</a></code>
+                                                                    <code>NgbActiveModal</code>
                                                         </td>
                                                   
                                                     <td>
@@ -242,26 +232,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="init"></a>
+                    <a name="confirm"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>init</b></span>
-                        <a href="#init"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>confirm</b></span>
+                        <a href="#confirm"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>init()</code>
+<code>confirm()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="16"
+                            class="link-to-prism">src/app/components/confirm-modal/confirm-modal.component.ts:16</a></div>
                 </td>
             </tr>
 
@@ -270,7 +258,44 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="decline"></a>
+                    <span class="name">
+                        <span ><b>decline</b></span>
+                        <a href="#decline"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>decline()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/app/components/confirm-modal/confirm-modal.component.ts:20</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                     </div>
                 </td>
@@ -297,8 +322,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="15"
-                            class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:15</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="13"
+                            class="link-to-prism">src/app/components/confirm-modal/confirm-modal.component.ts:13</a></div>
                 </td>
             </tr>
 
@@ -324,23 +349,23 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="authService"></a>
+                    <a name="activeModal"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
-                        <span ><b>authService</b></span>
-                        <a href="#authService"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>activeModal</b></span>
+                        <a href="#activeModal"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                        <i>Type : </i>    <code>NgbActiveModal</code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/components/confirm-modal/confirm-modal.component.ts:11</a></div>
                         </td>
                     </tr>
 
@@ -353,27 +378,27 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, OnInit} from &quot;@angular/core&quot;;
-import {AuthService} from &quot;../../shared/services/auth/auth.service&quot;;
-import {VehicleService} from &quot;../../shared/services/vehicle/vehicle.service&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &quot;@angular/core&quot;;
+import {NgbActiveModal} from &quot;@ng-bootstrap/ng-bootstrap&quot;;
 
 @Component({
-  selector: &quot;app-dashboard&quot;,
-  templateUrl: &quot;./dashboard.component.html&quot;,
-  styleUrls: [&quot;./dashboard.component.css&quot;]
+  selector: &quot;app-confirm-modal&quot;,
+  templateUrl: &quot;./confirm-modal.component.html&quot;,
+  styleUrls: [&quot;./confirm-modal.component.css&quot;]
 })
-export class DashboardComponent implements OnInit {
+export class ConfirmModalComponent implements OnInit {
 
-  constructor(public authService: AuthService, private vehicleService: VehicleService) {
-  }
+  constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
-    this.init();
   }
 
-  async init(): Promise&lt;void&gt; {
-    await this.authService.getUserData();
-    await this.vehicleService.readVehicles();
+  confirm() {
+    this.activeModal.close(true);
+  }
+
+  decline() {
+    this.activeModal.close(false);
   }
 
 }
@@ -381,72 +406,32 @@ export class DashboardComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;!-- Top navigation --&gt;
-&lt;app-header&gt;&lt;/app-header&gt;
-
-&lt;app-alert&gt;&lt;/app-alert&gt;
-
-&lt;!-- Main --&gt;
-&lt;div class&#x3D;&quot;app-dashboard&quot; style&#x3D;&quot;overflow-y: scroll; overflow-x:hidden; height: 71vh&quot; &gt;
-  &lt;div class&#x3D;&quot;row cases&quot;&gt;
-    &lt;!-- Main content --&gt;
-    &lt;main role&#x3D;&quot;main&quot; class&#x3D;&quot;main-case-list&quot; &gt;
-
-      &lt;app-case-list&gt;&lt;/app-case-list&gt;
-
-    &lt;/main&gt;
-
-  &lt;/div&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;modal-header&quot;&gt;
+  &lt;h4 class&#x3D;&quot;modal-title&quot;&gt;Confirmation&lt;/h4&gt;
+  &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;close btn-close&quot; aria-label&#x3D;&quot;Close&quot; (click)&#x3D;&quot;decline(); activeModal.dismiss()&quot;&gt;
+  &lt;/button&gt;
 &lt;/div&gt;
 
+&lt;div class&#x3D;&quot;modal-body&quot;&gt;
 
-&lt;!-- Footer --&gt;
-&lt;app-footer&gt;&lt;/app-footer&gt;
+  &lt;p&gt;Are you sure?&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;div class&#x3D;&quot;modal-footer&quot;&gt;
+  &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-outline-dark&quot;
+          (click)&#x3D;&quot;decline(); activeModal.dismiss()&quot;&gt;No
+  &lt;/button&gt;
+  &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-danger&quot; (click)&#x3D;&quot;confirm()&quot;&gt;Yes&lt;/button&gt;
+&lt;/div&gt;
+
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
                 <p class="comment">
-                    <code>./dashboard.component.css</code>
+                    <code>./confirm-modal.component.css</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">row.cases {
-  display: flex;
-  flex-flow: row;
-  justify-content: center;
-}
-.main-case-list {
-  flex:0 0 50%;
-  margin-left: 25%;
-  margin-right: 25%;
-}
-
-@media only screen and (max-width: 1400px) {
-  .main-case-list {
-    flex:0 0 60%;
-    margin-left: 20%;
-    margin-right: 20%;
-
-  }
-
-}
-
-@media only screen and (max-width: 1100px) {
-  .main-case-list {
-    flex:0 0 90%;
-    margin-left: 5%;
-    margin-right: 5%;
-  }
-
-}
-@media only screen and (max-width: 500px) {
-  .main-case-list {
-    flex:0 0 98%;
-    margin-left: 1%;
-    margin-right: 1%;
-  }
-
-}
-</code></pre>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -474,10 +459,10 @@ export class DashboardComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- Top navigation --><app-header></app-header><app-alert></app-alert><!-- Main --><div class="app-dashboard" style="overflow-y: scroll; overflow-x:hidden; height: 71vh" >  <div class="row cases">    <!-- Main content -->    <main role="main" class="main-case-list" >      <app-case-list></app-case-list>    </main>  </div></div><!-- Footer --><app-footer></app-footer></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="modal-header">  <h4 class="modal-title">Confirmation</h4>  <button type="button" class="close btn-close" aria-label="Close" (click)="decline(); activeModal.dismiss()">  </button></div><div class="modal-body">  <p>Are you sure?</p></div><div class="modal-footer">  <button type="button" class="btn btn-outline-dark"          (click)="decline(); activeModal.dismiss()">No  </button>  <button type="button" class="btn btn-danger" (click)="confirm()">Yes</button></div></div>'
     var COMPONENTS = [{'name': 'AddCreditModalComponent', 'selector': 'app-add-credit-modal'},{'name': 'AlertComponent', 'selector': 'app-alert'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CaseListComponent', 'selector': 'app-case-list'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DateTimePickerComponent', 'selector': 'app-ngb-date-time-picker'},{'name': 'EditCaseModalComponent', 'selector': 'app-edit-case-modal'},{'name': 'EditUserModalComponent', 'selector': 'app-edit-user-modal'},{'name': 'EditVehicleModalComponent', 'selector': 'app-edit-vehicle-modal'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MyCasesComponent', 'selector': 'app-my-cases'},{'name': 'NewCaseModalComponent', 'selector': 'app-new-offer-modal'},{'name': 'NewVehicleModalComponent', 'selector': 'app-new-vehicle-modal'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'RatingModalComponent', 'selector': 'app-rating-modal'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
     var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'DashboardComponent'};
+    var ACTUAL_COMPONENT = {'name': 'ConfirmModalComponent'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -522,7 +507,7 @@ export class DashboardComponent implements OnInit {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'DashboardComponent.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ConfirmModalComponent.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

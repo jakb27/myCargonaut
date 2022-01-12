@@ -37,6 +37,7 @@
 
 
 
+
 <ol class="breadcrumb">
   <li>Injectables</li>
   <li >AuthService</li>
@@ -57,7 +58,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/shared/services/auth.service.ts</code>
+            <code>src/app/shared/services/auth/auth.service.ts</code>
         </p>
 
 
@@ -86,14 +87,35 @@
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
+                                <a href="#alertService" >alertService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#authState" >authState</a>
+                            </li>
+                            <li>
+                                <a href="#filePath" >filePath</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#ngZone" >ngZone</a>
+                            </li>
+                            <li>
+                                <a href="#profilePic" >profilePic</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
                                 <a href="#router" >router</a>
                             </li>
                             <li>
+                                <a href="#storage" >storage</a>
+                            </li>
+                            <li>
                                 <a href="#userData" >userData</a>
+                            </li>
+                            <li>
+                                <a href="#userFirebase" >userFirebase</a>
                             </li>
                         </ul>
                     </td>
@@ -108,19 +130,44 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#ForgotPassword" >ForgotPassword</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteProfilePic" >deleteProfilePic</a>
                             </li>
                             <li>
-                                <a href="#SetUserData" >SetUserData</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteUser" >deleteUser</a>
                             </li>
                             <li>
-                                <a href="#SignIn" >SignIn</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#editUser" >editUser</a>
                             </li>
                             <li>
-                                <a href="#SignOut" >SignOut</a>
+                                <a href="#forgotPassword" >forgotPassword</a>
                             </li>
                             <li>
-                                <a href="#SignUp" >SignUp</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#getUserData" >getUserData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getUserRating" >getUserRating</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#payPending" >payPending</a>
+                            </li>
+                            <li>
+                                <a href="#signIn" >signIn</a>
+                            </li>
+                            <li>
+                                <a href="#signOut" >signOut</a>
+                            </li>
+                            <li>
+                                <a href="#signUp" >signUp</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#uploadProfilePic" >uploadProfilePic</a>
                             </li>
                         </ul>
                     </td>
@@ -154,12 +201,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(afs: AngularFirestore, afAuth: AngularFireAuth, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, ngZone: <a href="https://angular.io/api/core/NgZone" target="_blank">NgZone</a>)</code>
+<code>constructor(afs: AngularFirestore, afAuth: AngularFireAuth, afStorage: AngularFireStorage, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, ngZone: <a href="https://angular.io/api/core/NgZone" target="_blank">NgZone</a>, alertService: <a href="../injectables/AlertService.html" target="_self">AlertService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/shared/services/auth.service.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/shared/services/auth/auth.service.ts:27</a></div>
                             </td>
                         </tr>
 
@@ -201,6 +248,18 @@
                                                     
                                                 </tr>
                                                 <tr>
+                                                        <td>afStorage</td>
+                                                  
+                                                        <td>
+                                                                    <code>AngularFireStorage</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
                                                         <td>router</td>
                                                   
                                                         <td>
@@ -217,6 +276,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="https://angular.io/api/core/NgZone" target="_blank" >NgZone</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>alertService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AlertService.html" target="_self" >AlertService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -242,24 +313,173 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="ForgotPassword"></a>
+                    <a name="deleteProfilePic"></a>
                     <span class="name">
-                        <span ><b>ForgotPassword</b></span>
-                        <a href="#ForgotPassword"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteProfilePic</b></span>
+                        <a href="#deleteProfilePic"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>ForgotPassword(passwordResetEmail: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteProfilePic()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/app/shared/services/auth.service.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="244"
+                            class="link-to-prism">src/app/shared/services/auth/auth.service.ts:244</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteUser"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteUser</b></span>
+                        <a href="#deleteUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteUser()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="201"
+                            class="link-to-prism">src/app/shared/services/auth/auth.service.ts:201</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editUser"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>editUser</b></span>
+                        <a href="#editUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>editUser(u: <a href="../interfaces/User.html" target="_self">User</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="208"
+                            class="link-to-prism">src/app/shared/services/auth/auth.service.ts:208</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>u</td>
+                                    <td>
+                                                <code><a href="../interfaces/User.html" target="_self" >User</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="forgotPassword"></a>
+                    <span class="name">
+                        <span ><b>forgotPassword</b></span>
+                        <a href="#forgotPassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>forgotPassword(passwordResetEmail: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="131"
+                            class="link-to-prism">src/app/shared/services/auth/auth.service.ts:131</a></div>
                 </td>
             </tr>
 
@@ -311,24 +531,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="SetUserData"></a>
+                    <a name="getUserData"></a>
                     <span class="name">
-                        <span ><b>SetUserData</b></span>
-                        <a href="#SetUserData"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Async</span>
+                        <span ><b>getUserData</b></span>
+                        <a href="#getUserData"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>SetUserData(user: <a href="../interfaces/User.html" target="_self">firebase.User</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getUserData()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="109"
-                            class="link-to-prism">src/app/shared/services/auth.service.ts:109</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="160"
+                            class="link-to-prism">src/app/shared/services/auth/auth.service.ts:160</a></div>
                 </td>
             </tr>
 
@@ -337,40 +559,8 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>user</td>
-                                    <td>
-                                                <code><a href="../interfaces/User.html" target="_self" >firebase.User</a></code>
-                                    </td>
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
                     </div>
                 </td>
             </tr>
@@ -380,24 +570,102 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="SignIn"></a>
+                    <a name="getUserRating"></a>
                     <span class="name">
-                        <span ><b>SignIn</b></span>
-                        <a href="#SignIn"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Async</span>
+                        <span ><b>getUserRating</b></span>
+                        <a href="#getUserRating"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>SignIn(email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, password: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getUserRating()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/app/shared/services/auth.service.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="215"
+                            class="link-to-prism">src/app/shared/services/auth/auth.service.ts:215</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="payPending"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>payPending</b></span>
+                        <a href="#payPending"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>payPending()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="254"
+                            class="link-to-prism">src/app/shared/services/auth/auth.service.ts:254</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="signIn"></a>
+                    <span class="name">
+                        <span ><b>signIn</b></span>
+                        <a href="#signIn"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>signIn(email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, password: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/app/shared/services/auth/auth.service.ts:60</a></div>
                 </td>
             </tr>
 
@@ -461,24 +729,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="SignOut"></a>
+                    <a name="signOut"></a>
                     <span class="name">
-                        <span ><b>SignOut</b></span>
-                        <a href="#SignOut"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>signOut</b></span>
+                        <a href="#signOut"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>SignOut()</code>
+<code>signOut()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="139"
-                            class="link-to-prism">src/app/shared/services/auth.service.ts:139</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="194"
+                            class="link-to-prism">src/app/shared/services/auth/auth.service.ts:194</a></div>
                 </td>
             </tr>
 
@@ -498,24 +766,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="SignUp"></a>
+                    <a name="signUp"></a>
                     <span class="name">
-                        <span ><b>SignUp</b></span>
-                        <a href="#SignUp"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>signUp</b></span>
+                        <a href="#signUp"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>SignUp(firstname: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, lastname: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, birthday: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, password: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>signUp(firstname: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, lastname: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, birthday: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, password: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="56"
-                            class="link-to-prism">src/app/shared/services/auth.service.ts:56</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">src/app/shared/services/auth/auth.service.ts:84</a></div>
                 </td>
             </tr>
 
@@ -611,6 +879,77 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="uploadProfilePic"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>uploadProfilePic</b></span>
+                        <a href="#uploadProfilePic"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>uploadProfilePic(file: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="235"
+                            class="link-to-prism">src/app/shared/services/auth/auth.service.ts:235</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>file</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
             <section>
     
@@ -637,7 +976,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/shared/services/auth.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/shared/services/auth/auth.service.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -664,7 +1003,92 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/shared/services/auth.service.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/shared/services/auth/auth.service.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="alertService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>alertService</b></span>
+                        <a href="#alertService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/AlertService.html" target="_self" >AlertService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/shared/services/auth/auth.service.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authState"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>authState</b></span>
+                        <a href="#authState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Subject&lt;firebase.User | null&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/shared/services/auth/auth.service.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filePath"></a>
+                    <span class="name">
+                        <span ><b>filePath</b></span>
+                        <a href="#filePath"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;/profilePictures/&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/shared/services/auth/auth.service.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -691,7 +1115,33 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/shared/services/auth.service.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/shared/services/auth/auth.service.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="profilePic"></a>
+                    <span class="name">
+                        <span ><b>profilePic</b></span>
+                        <a href="#profilePic"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/shared/services/auth/auth.service.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -718,7 +1168,32 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/shared/services/auth.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/shared/services/auth/auth.service.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="storage"></a>
+                    <span class="name">
+                        <span ><b>storage</b></span>
+                        <a href="#storage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>getStorage()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/shared/services/auth/auth.service.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -738,13 +1213,44 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <i>Type : </i>        <code><a href="../interfaces/User.html" target="_self" >User</a></code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/shared/services/auth.service.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/shared/services/auth/auth.service.ts:21</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="userFirebase"></a>
+                    <span class="name">
+                        <span ><b>userFirebase</b></span>
+                        <a href="#userFirebase"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/User.html" target="_self" >firebase.User | null</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/shared/services/auth/auth.service.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -773,7 +1279,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/shared/services/auth.service.ts:87</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/shared/services/auth/auth.service.ts:141</a></div>
                                 </td>
                             </tr>
 
@@ -785,69 +1291,123 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Injectable, NgZone} from &quot;@angular/core&quot;;
-import {AngularFirestore, AngularFirestoreDocument} from &quot;@angular/fire/compat/firestore&quot;;
+import {AngularFirestore} from &quot;@angular/fire/compat/firestore&quot;;
 import {AngularFireAuth} from &quot;@angular/fire/compat/auth&quot;;
 import {Router} from &quot;@angular/router&quot;;
-import {User} from &quot;../models/user&quot;;
-import firebase from &quot;firebase/compat&quot;;
-import {environment} from &quot;../../../environments/environment&quot;;
+import {User} from &quot;../../models/user&quot;;
+import firebase from &quot;firebase/compat/app&quot;;
+import {environment} from &quot;../../../../environments/environment&quot;;
+import {AlertService} from &quot;../alerts/alerts.service&quot;;
+import {Subject} from &quot;rxjs&quot;;
+import {getStorage} from &quot;@angular/fire/storage&quot;;
+import {collection, onSnapshot, query, where} from &quot;@angular/fire/firestore&quot;;
+import {Case} from &quot;../../models/case&quot;;
+import {AngularFireStorage} from &quot;@angular/fire/compat/storage&quot;;
 
 @Injectable({
   providedIn: &quot;root&quot;
 })
 export class AuthService {
 
-  userData: any;
+  userFirebase: firebase.User | null &#x3D; null;
+  userData!: User;
+  private readonly authState &#x3D; new Subject&lt;firebase.User | null&gt;();
+
+  profilePic: any;
+  filePath &#x3D; &quot;/profilePictures/&quot;;
+
+  storage &#x3D; getStorage(); //TODO
 
   constructor(
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
+    private afStorage: AngularFireStorage,
     public router: Router,
-    public ngZone: NgZone
+    public ngZone: NgZone,
+    public alertService: AlertService
   ) {
-    
-    if(!environment.production){
+
+    if (!environment.production) {
       afAuth.useEmulator(&quot;http://localhost:9099&quot;);
+      firebase.storage().useEmulator(&quot;localhost&quot;, 9199);
     }
 
     /* Saving user data in localstorage when
     logged in and setting up empty when logged out */
     this.afAuth.authState.subscribe(user &#x3D;&gt; {
       if (user) {
-        this.userData &#x3D; user;
-        localStorage.setItem(&quot;user&quot;, JSON.stringify(this.userData));
-        JSON.parse(&lt;string&gt;localStorage.getItem(&quot;user&quot;));
+        this.userFirebase &#x3D; user;
+        const token &#x3D; this.userFirebase.getIdToken(true);
+        localStorage.setItem(&quot;token&quot;, JSON.stringify(token));
+        this.authState.next(user);
       } else {
-        localStorage.setItem(&quot;user&quot;, &quot;&quot;);
-        JSON.parse(&lt;string&gt;localStorage.getItem(&quot;user&quot;));
+        this.userFirebase &#x3D; null;
+        localStorage.clear();
+        this.authState.next(null);
       }
     });
   }
 
   // Sign in with email/password
-  SignIn(email: string, password: string) {
+  signIn(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
-      .then((result) &#x3D;&gt; {
+      .then(async (result) &#x3D;&gt; {
         console.log(result);
-        this.ngZone.run(() &#x3D;&gt; {
-          this.router.navigate([&quot;dashboard&quot;]);
-        });
-        this.SetUserData(result.user!);
+        if (result.user) {
+          const token &#x3D; result.user.getIdToken(true);
+          localStorage.setItem(&quot;token&quot;, JSON.stringify(token));
+          // this.ngZone.run(() &#x3D;&gt; {
+          //   this.router.navigate([&quot;dashboard&quot;]).then( () &#x3D;&gt; {
+          //     // window.location.reload();
+          //   });
+          // });
+
+          // TODO
+          await this.router.navigate([&quot;dashboard&quot;]);
+          await this.payPending();
+
+        }
       }).catch((error) &#x3D;&gt; {
-        window.alert(error.message);
+        this.alertService.nextAlert({type: &quot;danger&quot;, message: error.message});
       });
   }
 
   // Sign up with email/password
-  SignUp(firstname:string, lastname: string, birthday: string, email: string, password: string) {
+  signUp(firstname: string, lastname: string, birthday: string, email: string, password: string) {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
-      .then((result) &#x3D;&gt; {
+      .then(async (result) &#x3D;&gt; {
         // this.SendVerificationMail(); //TODO verification email
-        this.router.navigate([&quot;dashboard&quot;]);
-        // this.SetUserData(result.user!, firstname, lastname, birthday);
-        this.SetUserData(result.user!);
+        const token &#x3D; result.user!.getIdToken(true);
+        localStorage.setItem(&quot;token&quot;, JSON.stringify(token));
+        const {emailVerified, uid} &#x3D; result.user!;
+        const user &#x3D; {
+          uid,
+          firstname,
+          lastname,
+          birthday,
+          email,
+          emailVerified,
+          displayName: firstname + &quot; &quot; + lastname,
+          photoURL: &quot;&quot;,
+          rating: 0,
+          ratings: 0,
+          credit: 0
+        };
+        await this.afs.collection(&quot;/users&quot;).doc(uid).set(user).then(async () &#x3D;&gt; {
+          await this.afs.collection(&quot;/pendingCredits&quot;).doc(uid).set({
+            pending: 0
+          });
+          // TODO standard pic setzen
+          await this.router.navigate([&quot;dashboard&quot;]).then(() &#x3D;&gt; {
+            window.location.reload();
+            this.afStorage.storage.ref(this.filePath + &quot;placeholder.jpg&quot;).getDownloadURL().then((res) &#x3D;&gt; {
+              this.userData.photoURL &#x3D; res;
+              console.log(this.editUser(this.userData));
+            });
+          });
+        });
       }).catch((error) &#x3D;&gt; {
-        window.alert(error.message);
+        this.alertService.nextAlert({type: &quot;danger&quot;, message: error.message});
       });
   }
 
@@ -860,7 +1420,7 @@ export class AuthService {
   // }
 
   // Reset Forgot password
-  ForgotPassword(passwordResetEmail: string) {
+  forgotPassword(passwordResetEmail: string) {
     return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
       .then(() &#x3D;&gt; {
         window.alert(&quot;Password reset email sent, check your inbox.&quot;);
@@ -871,9 +1431,9 @@ export class AuthService {
 
   // Returns true when user is logged in and email is verified
   get isLoggedIn(): boolean {
-    const user &#x3D; JSON.parse(&lt;string&gt;localStorage.getItem(&quot;user&quot;));
+    const token &#x3D; JSON.parse(&lt;string&gt;localStorage.getItem(&quot;token&quot;));
     // return (user !&#x3D;&#x3D; null &amp;&amp; user.emailVerified !&#x3D;&#x3D; false); // TODO
-    return (user !&#x3D;&#x3D; null);
+    return (token !&#x3D;&#x3D; null);
   }
 
   // Auth logic to run auth providers
@@ -889,46 +1449,114 @@ export class AuthService {
   //     })
   // }
 
-  /* Setting up user data when sign in with username/password,
-  sign up with username/password and sign in with social auth
-  provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
-  SetUserData(user: firebase.User) {
-    const userRef: AngularFirestoreDocument&lt;any&gt; &#x3D; this.afs.doc(&#x60;users/${user.uid}&#x60;);
-    const userData: User &#x3D; {
-      uid: user.uid,
-      email: user.email!,
-      displayName: user.displayName!,
-      emailVerified: user.emailVerified,
-    };
-    return userRef.set(userData, {
+  async getUserData(): Promise&lt;void&gt; {
+    return new Promise((resolve) &#x3D;&gt; {
+      if (this.userData) {
+        resolve();
+      } else {
+        this.authState.asObservable().subscribe(async (res) &#x3D;&gt; {
+          if (res) {
+            this.userFirebase &#x3D; res;
+            await this.afs.doc(&#x60;users/${this.userFirebase.uid}&#x60;).get().subscribe(async (res) &#x3D;&gt; {
+              if (res) {
+                this.userData &#x3D; {
+                  uid: await res.get(&quot;uid&quot;),
+                  firstname: await res.get(&quot;firstname&quot;),
+                  lastname: await res.get(&quot;lastname&quot;),
+                  birthday: await res.get(&quot;birthday&quot;),
+                  email: await res.get(&quot;email&quot;),
+                  emailVerified: await res.get(&quot;emailVerified&quot;),
+                  displayName: await res.get(&quot;displayName&quot;),
+                  rating: await res.get(&quot;rating&quot;),
+                  ratings: await res.get(&quot;ratings&quot;),
+                  photoURL: await res.get(&quot;photoURL&quot;),
+                  credit: await res.get(&quot;credit&quot;)
+                };
+              }
+              resolve();
+            });
+          }
+        });
+      }
+    });
+
+  }
+
+  // Sign out
+  signOut() {
+    return this.afAuth.signOut().then(async () &#x3D;&gt; {
+      localStorage.removeItem(&quot;token&quot;);
+      await this.router.navigate([&quot;sign-in&quot;]);
+    });
+  }
+
+  async deleteUser() {
+    await this.afs.collection(&quot;/users&quot;).doc(this.userData!.uid).delete();
+    // await this.afs.doc(&quot;/users&quot; + this.userData!.uid + &quot;/vehicles&quot;).delete();
+    await firebase.auth().currentUser?.delete();
+    await this.signOut();
+  }
+
+  async editUser(u: User) {
+    await this.afs.collection(&quot;/users&quot;).doc(this.userData!.uid).set(u, {
       merge: true
     });
   }
 
-  // SetUserData(user: firebase.User, firstname: string, lastname: string, birthday: string) {
-  //   const userRef: AngularFirestoreDocument&lt;any&gt; &#x3D; this.afs.doc(&#x60;users/${user.uid}&#x60;);
-  //   const userData: User &#x3D; {
-  //     uid: user.uid,
-  //     email: user.email!,
-  //     displayName: firstname + &quot; &quot; + lastname,
-  //     emailVerified: user.emailVerified,
-  //     firstname: firstname,
-  //     lastname: lastname,
-  //     birthday: birthday
-  //   }
-  //   return userRef.set(userData, {
-  //     merge: true
-  //   })
-  // }
+  // ugly
+  async getUserRating(): Promise&lt;void&gt; {
+    new Promise&lt;void&gt;((resolve) &#x3D;&gt; {
+      const queryRatings &#x3D; query(collection(this.afs.firestore, &quot;cases&quot;),
+        where(&quot;publisher_uid&quot;, &quot;&#x3D;&#x3D;&quot;, this.userData.uid),
+        where(&quot;status&quot;, &quot;&#x3D;&#x3D;&quot;, &quot;finished&quot;));
 
-  // Sign out
-  SignOut() {
-    return this.afAuth.signOut().then(() &#x3D;&gt; {
-      localStorage.removeItem(&quot;user&quot;);
-      this.router.navigate([&quot;sign-in&quot;]);
+      onSnapshot(queryRatings, (querySnapshot) &#x3D;&gt; {
+        let ratings: number[] &#x3D; [];
+        querySnapshot.forEach((doc) &#x3D;&gt; {
+          ratings.push((doc.data() as Case).rating);
+        });
+        if (ratings.length &gt; 0) {
+          this.userData.ratings &#x3D; ratings.length;
+          this.userData.rating &#x3D; ratings.reduce((a, b) &#x3D;&gt; a + b) / ratings.length;
+        }
+        resolve();
+      });
     });
   }
 
+  async uploadProfilePic(file: any) {
+    this.afStorage.upload(this.filePath + this.userData.uid, file).then((task) &#x3D;&gt; {
+      task.ref.getDownloadURL().then(async (res) &#x3D;&gt; {
+        this.userData.photoURL &#x3D; res;
+        await this.editUser(this.userData);
+      });
+    });
+  }
+
+  async deleteProfilePic() {
+    this.afStorage.storage.ref(this.filePath + this.userData.uid).delete().then(() &#x3D;&gt; {
+      this.afStorage.storage.ref(this.filePath + &quot;placeholder.jpg&quot;).getDownloadURL().then((res) &#x3D;&gt; {
+        this.userData.photoURL &#x3D; res;
+        this.editUser(this.userData);
+      });
+    });
+  }
+
+  // circular dependency in creditService?
+  async payPending() {
+    let publisherPending &#x3D; await this.afs.firestore.collection(&quot;pendingCredits&quot;).doc(this.userData.uid).get();
+    let pendingCredit &#x3D; publisherPending.data()![&quot;pending&quot;];
+    console.log(pendingCredit);
+    await this.afs.collection(&quot;/pendingCredits&quot;).doc(this.userData.uid).update({
+      pending: 0
+    });
+    let publisher &#x3D; await this.afs.firestore.collection(&quot;/users&quot;).doc(this.userData.uid).get();
+    let publisherCredit &#x3D; publisher.data()![&quot;credit&quot;];
+    console.log(publisherCredit);
+    await this.afs.collection(&quot;/users&quot;).doc(this.userData.uid).update({
+      credit: publisherCredit + pendingCredit
+    });
+  }
 
 
 }
