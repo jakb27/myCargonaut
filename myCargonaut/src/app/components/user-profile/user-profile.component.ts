@@ -56,6 +56,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   public async uploadProfilePic() {
+    console.log(this.file);
     if (this.file != undefined) {
       this.confirmService.confirmDialog().then(async res => {
         if (res) {
@@ -66,10 +67,14 @@ export class UserProfileComponent implements OnInit {
           this.alertService.nextAlert({type: "warning", message: "Adding profile picture cancelled"});
         }
         this.inputVar.nativeElement.value = "";
+        this.file = null;
       });
     } else {
       this.alertService.nextAlert({type: "danger", message: "Please choose file to upload"});
+      this.inputVar.nativeElement.value = "";
+      this.file = null;
     }
+
   }
 
   public async deleteProfilePic() {
