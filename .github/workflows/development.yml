@@ -57,7 +57,7 @@ jobs:
       - name: Run Build-Production (Only in dev-Branch)
         if:  (github.ref == 'refs/heads/dev')
         run: (cd myCargonaut && npm run build)  
-      - name: Upload Production Build for Deploy
+      - name: Upload Build
         uses: actions/upload-artifact@v2
         with:
           name: Production-Build
