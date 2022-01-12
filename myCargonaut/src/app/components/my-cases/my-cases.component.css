@@ -123,7 +123,7 @@ svg.icon-user {
   background: white;
   font-weight: bold;
 }
-.btn-add-case:hover {
+.btn-add-case:hover , .btn-cancel:hover, .btn-finish:hover{
   background: #ededed;
 }
 .btn {
@@ -243,4 +243,12 @@ fieldset[disabled] .radiobutton.active {
 .radiobutton .badge {
   color: #FFFFFF;
   background-color: #005B52;
+}
+
+.star {
+  font-size: 2rem;
+  color: #b0c4de;
+}
+.filled {
+  color: #dcb425;
 }
