@@ -479,7 +479,11 @@ export class RatingModalComponent implements OnInit {
 &lt;div class&#x3D;&quot;modal-body&quot;&gt;
 
   &lt;div class&#x3D;&quot;form-group&quot;&gt;
-    &lt;ngb-rating [formControl]&#x3D;&quot;ctrl&quot; [max]&#x3D;&quot;5&quot;&gt;&lt;/ngb-rating&gt;
+    &lt;ngb-rating id&#x3D;&quot;rating&quot; [formControl]&#x3D;&quot;ctrl&quot; [max]&#x3D;&quot;5&quot;&gt;
+      &lt;ng-template let-fill&#x3D;&quot;fill&quot; let-index&#x3D;&quot;index&quot;&gt;
+        &lt;span class&#x3D;&quot;star&quot; [class.filled]&#x3D;&quot;fill &#x3D;&#x3D;&#x3D; 100&quot;&gt;&amp;#9733;&lt;/span&gt;
+      &lt;/ng-template&gt;
+    &lt;/ngb-rating&gt;
     &lt;div class&#x3D;&quot;form-text small&quot;&gt;
       &lt;div *ngIf&#x3D;&quot;ctrl.valid&quot; class&#x3D;&quot;text-success&quot;&gt;Thanks!&lt;/div&gt;
       &lt;div *ngIf&#x3D;&quot;ctrl.invalid&quot; class&#x3D;&quot;text-danger&quot;&gt;Please rate your case!&lt;/div&gt;
@@ -500,7 +504,15 @@ export class RatingModalComponent implements OnInit {
                 <p class="comment">
                     <code>./rating-modal.component.css</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
+                <pre class="line-numbers"><code class="language-scss">.star {
+  font-size: 2.5rem;
+  color: #b0c4de;
+}
+.filled {
+  color: #dcb425;
+}
+
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -528,7 +540,7 @@ export class RatingModalComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="modal-header">  <h4 class="modal-title">Rate your Case</h4>  <button type="button" class="close btn-close" aria-label="Close" (click)="activeModal.dismiss()">  </button></div><div class="modal-body">  <div class="form-group">    <ngb-rating [formControl]="ctrl" [max]="5"></ngb-rating>    <div class="form-text small">      <div *ngIf="ctrl.valid" class="text-success">Thanks!</div>      <div *ngIf="ctrl.invalid" class="text-danger">Please rate your case!</div>    </div>  </div></div><div class="modal-footer">  <button type="button" class="btn btn-outline-dark"          (click)="activeModal.dismiss()">Close  </button>  <button type="button" class="btn btn-success" (click)="save()">Save</button></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="modal-header">  <h4 class="modal-title">Rate your Case</h4>  <button type="button" class="close btn-close" aria-label="Close" (click)="activeModal.dismiss()">  </button></div><div class="modal-body">  <div class="form-group">    <ngb-rating id="rating" [formControl]="ctrl" [max]="5">      <ng-template let-fill="fill" let-index="index">        <span class="star" [class.filled]="fill === 100">&#9733;</span>      </ng-template>    </ngb-rating>    <div class="form-text small">      <div *ngIf="ctrl.valid" class="text-success">Thanks!</div>      <div *ngIf="ctrl.invalid" class="text-danger">Please rate your case!</div>    </div>  </div></div><div class="modal-footer">  <button type="button" class="btn btn-outline-dark"          (click)="activeModal.dismiss()">Close  </button>  <button type="button" class="btn btn-success" (click)="save()">Save</button></div></div>'
     var COMPONENTS = [{'name': 'AddCreditModalComponent', 'selector': 'app-add-credit-modal'},{'name': 'AlertComponent', 'selector': 'app-alert'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CaseListComponent', 'selector': 'app-case-list'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DateTimePickerComponent', 'selector': 'app-ngb-date-time-picker'},{'name': 'EditCaseModalComponent', 'selector': 'app-edit-case-modal'},{'name': 'EditUserModalComponent', 'selector': 'app-edit-user-modal'},{'name': 'EditVehicleModalComponent', 'selector': 'app-edit-vehicle-modal'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MyCasesComponent', 'selector': 'app-my-cases'},{'name': 'NewCaseModalComponent', 'selector': 'app-new-offer-modal'},{'name': 'NewVehicleModalComponent', 'selector': 'app-new-vehicle-modal'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'RatingModalComponent', 'selector': 'app-rating-modal'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'RatingModalComponent'};

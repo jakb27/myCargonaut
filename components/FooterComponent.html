@@ -239,15 +239,15 @@ export class FooterComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;footer class&#x3D;&quot;bg-light text-center p-4 border-top site-footer fixed-bottom&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;footer class&#x3D;&quot;bg-light text-center border-top site-footer fixed-bottom&quot;&gt;
 
   &lt;div class&#x3D;&quot;footer-link-element&quot;&gt;
-    &lt;a href&#x3D;&quot;#!&quot; class&#x3D;&quot; footer-element&quot;&gt;About&lt;/a&gt;
-    &lt;a href&#x3D;&quot;#!&quot; class&#x3D;&quot; footer-element&quot;&gt;Credits&lt;/a&gt;
-    &lt;a href&#x3D;&quot;#!&quot; class&#x3D;&quot; footer-element&quot;&gt;Customer Service&lt;/a&gt;
-    &lt;a href&#x3D;&quot;#!&quot; class&#x3D;&quot; footer-element&quot;&gt;Payment Options&lt;/a&gt;
+    &lt;a routerLink &#x3D;&quot;/dashboard&quot; class&#x3D;&quot; footer-element&quot;&gt;About&lt;/a&gt;
+    &lt;a routerLink &#x3D;&quot;/dashboard&quot; class&#x3D;&quot; footer-element&quot;&gt;Credits&lt;/a&gt;
+    &lt;a routerLink &#x3D;&quot;/dashboard&quot; class&#x3D;&quot; footer-element&quot;&gt;Customer Service&lt;/a&gt;
+    &lt;a routerLink &#x3D;&quot;/dashboard&quot; class&#x3D;&quot; footer-element&quot;&gt;Payment Options&lt;/a&gt;
     &lt;a routerLink &#x3D;&quot;/privacy-policy&quot; routerLinkActive&#x3D;&quot;active&quot; class&#x3D;&quot; footer-element&quot;&gt;Privacy Policy&lt;/a&gt;
-    &lt;a href&#x3D;&quot;#!&quot; class&#x3D;&quot; footer-element&quot;&gt;Contact&lt;/a&gt;
+    &lt;a routerLink &#x3D;&quot;/dashboard&quot; class&#x3D;&quot; footer-element&quot;&gt;Contact&lt;/a&gt;
   &lt;/div&gt;
 
   &lt;div class&#x3D;&quot;text-center p-3 footer-git border-top&quot;&gt;
@@ -264,8 +264,7 @@ export class FooterComponent implements OnInit {
                 <p class="comment">
                     <code>./footer.component.css</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">
-.footer-element {
+                <pre class="line-numbers"><code class="language-scss">.footer-element {
   text-decoration: none;
 }
 
@@ -290,8 +289,8 @@ li {
 
 
 .footer-link-element &gt; a {
-  flex: 0 0 45%;
-  margin-bottom: 0.8em;
+  flex: 0 0 33%;
+  margin-top: 0.8em;
   color: white;
 }
 .footer-link-element &gt; a:hover{
@@ -325,7 +324,7 @@ li {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><footer class="bg-light text-center p-4 border-top site-footer fixed-bottom">  <div class="footer-link-element">    <a href="#!" class=" footer-element">About</a>    <a href="#!" class=" footer-element">Credits</a>    <a href="#!" class=" footer-element">Customer Service</a>    <a href="#!" class=" footer-element">Payment Options</a>    <a routerLink ="/privacy-policy" routerLinkActive="active" class=" footer-element">Privacy Policy</a>    <a href="#!" class=" footer-element">Contact</a>  </div>  <div class="text-center p-3 footer-git border-top">    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" color="white" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>    </svg>  </div></footer></div>'
+        var COMPONENT_TEMPLATE = '<div><footer class="bg-light text-center border-top site-footer fixed-bottom">  <div class="footer-link-element">    <a routerLink ="/dashboard" class=" footer-element">About</a>    <a routerLink ="/dashboard" class=" footer-element">Credits</a>    <a routerLink ="/dashboard" class=" footer-element">Customer Service</a>    <a routerLink ="/dashboard" class=" footer-element">Payment Options</a>    <a routerLink ="/privacy-policy" routerLinkActive="active" class=" footer-element">Privacy Policy</a>    <a routerLink ="/dashboard" class=" footer-element">Contact</a>  </div>  <div class="text-center p-3 footer-git border-top">    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" color="white" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>    </svg>  </div></footer></div>'
     var COMPONENTS = [{'name': 'AddCreditModalComponent', 'selector': 'app-add-credit-modal'},{'name': 'AlertComponent', 'selector': 'app-alert'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CaseListComponent', 'selector': 'app-case-list'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DateTimePickerComponent', 'selector': 'app-ngb-date-time-picker'},{'name': 'EditCaseModalComponent', 'selector': 'app-edit-case-modal'},{'name': 'EditUserModalComponent', 'selector': 'app-edit-user-modal'},{'name': 'EditVehicleModalComponent', 'selector': 'app-edit-vehicle-modal'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MyCasesComponent', 'selector': 'app-my-cases'},{'name': 'NewCaseModalComponent', 'selector': 'app-new-offer-modal'},{'name': 'NewVehicleModalComponent', 'selector': 'app-new-vehicle-modal'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'RatingModalComponent', 'selector': 'app-rating-modal'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'FooterComponent'};
