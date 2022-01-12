@@ -1,8 +1,9 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {Case} from "../../shared/models/case";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {AuthService} from "../../shared/services/auth.service";
+import {AuthService} from "../../shared/services/auth/auth.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {VehicleService} from "../../shared/services/vehicle/vehicle.service";
 
 @Component({
   selector: "app-edit-case-modal",
@@ -20,32 +21,36 @@ export class EditCaseModalComponent implements OnInit {
     control: new FormControl(new Date(), Validators.required)
   });
 
-  constructor(public activeModal: NgbActiveModal, private authService: AuthService) {
+  constructor(public activeModal: NgbActiveModal, private authService: AuthService, public vehicleService: VehicleService) {
     this.case = {
       publisher_uid: authService.userData.uid,
+      publisher_name: authService.userData.displayName,
       type: "",
       status: "open",
       start: "",
       end: "",
+      seats:0,
+      capacity:0,
+      description: "",
       dateTime: null,
       id: "",
       accepter_uid: "",
-      price: 0
+      price: 0,
+      rating: 0,
+      vehicle: {v_id: "", name: "", seats: 0, capacity: 0, owner_id: ""}
     };
   }
 
   ngOnInit(): void {
-    this.case.start = this.c.start;
-    this.case.end = this.c.end;
-    this.case.id = this.c.id;
-    this.case.price = this.c.price;
-    this.case.dateTime = this.c.dateTime; // TODO
+    this.vehicleService.readVehicles();
+    this.case = this.c; //TODO request/offer + date + vehicle (name) wird nicht übernommen
   }
 
   save(): void {
     if (EditCaseModalComponent.isNotEmpty(this.case.start) && EditCaseModalComponent.isNotEmpty(this.case.end)) {
       this.case.type = this.type;
       this.case.dateTime = this.form.value.control;
+      console.log(this.case);
       this.activeModal.close(this.case);
     }
   }
@@ -55,6 +60,13 @@ export class EditCaseModalComponent implements OnInit {
       return str.trim().length > 0;
     }
     return false;
+  }
+
+  setCapacity(): void {
+    if(this.case.vehicle != undefined) {
+      this.case.seats = this.case.vehicle.seats;
+      this.case.capacity = this.case.vehicle.capacity;
+    }
   }
 
 }

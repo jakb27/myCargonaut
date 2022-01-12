@@ -1,0 +1,68 @@
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: 2rem;
+  color: #d3d3d3;
+}
+.full {
+  color: #dcb425;
+}
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: #dcb425;
+}
+
+.cols {
+  min-width: 27%;
+}
+
+h3 {
+  margin-top: 3%;
+  margin-bottom: 5%;
+}
+
+h5 {
+  margin-bottom: 10%;
+  color: #005B52;
+}
+
+img {
+  border-radius: 30%;
+  width: 10em;
+  height: 10em;
+/*  TODO size*/
+}
+.editor {
+  margin-top: 240px;
+  margin-left: 80%;
+}
+
+.deleteUser {
+  margin-top: 240px;
+}
+
+.editorVehicle {
+
+}
+
+
+.vehiclecard {
+  border-radius: 5%;
+  margin-left: 25%;
+  margin-top: 5%;
+  background: lightgrey;
+}
+
+#userInfo {
+  height: 100%;
+  background-color: #f4f4f4;
+  border-radius: 10%;
+}
+
+#userVehicles {
+  height: 100%;
+  background-color: #f4f4f4;
+  border-radius: 10%;
+}

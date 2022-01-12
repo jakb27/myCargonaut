@@ -3,22 +3,95 @@ name: Development
 on:
   push:
     branches-ignore: [main]
-    
+  
 jobs:
-  build_test_and_linter:
+  Unit-Tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Set up Node and cache Dependencies
+        uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '16'
+          cache: 'npm'
+          cache-dependency-path: myCargonaut/package-lock.json
       - name: Install Dependencies
         run: (cd myCargonaut && npm ci)
-      - name: Install Angular-CLI
-        run: (cd myCargonaut && npm i -g @angular/cli)
-      - name: Run Build
-        run: (cd myCargonaut && npm run build)
+      - name: Run Unit-Tests
+        run: (cd myCargonaut && npm run test:ci)
+
+  Linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Set up Node and cache Dependencies
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+          cache-dependency-path: myCargonaut/package-lock.json
+      - name: Install Dependencies
+        run: (cd myCargonaut && npm ci)
       - name: Run Linter
         run: (cd myCargonaut && npm run lint)
-      - name: Run Tests
-        run: (cd myCargonaut && npm run test:ci)
+
+  Build:
+    runs-on: ubuntu-latest
+    needs: [Unit-Tests, Linter]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Set up Node and cache Dependencies
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+          cache-dependency-path: myCargonaut/package-lock.json
+      - name: Install Dependencies
+        run: (cd myCargonaut && npm ci)
+      - name: Run Build-Development (Only in Feature-Branches)
+        if:  (github.ref != 'refs/heads/dev')
+        run: (cd myCargonaut && npm run build-dev) 
+      - name: Run Build-Production (Only in dev-Branch)
+        if:  (github.ref == 'refs/heads/dev')
+        run: (cd myCargonaut && npm run build)  
+      - name: Upload Build
+        uses: actions/upload-artifact@v2
+        with:
+          name: Production-Build
+          path: myCargonaut/dist/myCargonaut
+  
+  E2E_Tests:
+    runs-on: ubuntu-latest
+    needs: [Build]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Cache firebase emulators
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/firebase/emulators
+          key: ${{ runner.os }}-firebase-emulators-${{ hashFiles('~/.cache/firebase/emulators/**') }}
+      - name: Download Production-Build for Deploy
+        uses: actions/download-artifact@v2
+        with:
+          name: Production-Build
+          path: myCargonaut/dist/myCargonaut
+      - name: Set up Node and cache Dependencies
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+          cache-dependency-path: myCargonaut/package-lock.json
+      - name: Install Dependencies
+        run: (cd myCargonaut && npm ci)
+      - name: Install Firebase-Tools
+        run:  (cd myCargonaut && npm install -g firebase-tools)
+      - name: Run E2E Tests with Firebase-Emulator (Only in Feature-Branches)
+        if: (github.ref != 'refs/heads/dev')
+        run: (cd myCargonaut && firebase emulators:exec "npm run cypress-run:ci")
+      - name: Run E2E Tests with Firebase-Database (Only in dev-Branch)
+        if: (github.ref == 'refs/heads/dev')
+        run: (cd myCargonaut && npm run cypress-run:ci)

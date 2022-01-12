@@ -1,33 +1,196 @@
-.my-cases {
-  margin: 2em 5em 2em 10em;
-}
-.case-display {
-  min-height: 100px;
-  background:white ;
-  min-width: 200px;
-  margin-top: 1.5em;
-  color: #373F68;
-  border-radius: 0.8em;
-  display: flex;
-  flex-font: row;
-  transition: transfrom .2s ease-in;
+.my-cases-main {
+  flex:0 0 50%;
+  margin-left: 25%;
+  margin-right: 25%;
 }
 .case-offer {
   border:2px solid #005B52;
 }
 .case-request {
-  border:2px solid #506ae7;
+  border: 2px solid #506ae7;
 }
-.case-display:hover {
-  transform: scale(1.04);
+.case-display {
+  min-height: 100px;
+  background: white;
+  min-width: 200px;
+  margin-top: 1.5em;
+  color: #373F68;
+  border-radius: 0.8em;
+  display: flex;
+  flex-flow: column;
+  transition: transfrom .2s ease-in;
+  padding: 0.5em 1em 0.2em 1em;
 }
-.case-start-end {
-  flex: 0 0 15%;
-  margin-right: 5%;
+.user-vehicle-info {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.case-type-from {
+  flex: 0 0 65%;
+  margin-right: 3%;
   margin-left: 2%;
+}
+.vehicle-info {
+  flex: 0 0 30%;
+  font-size: 20px;
+  background: #f4f4f4;
+  border-radius: 0.8em;
+  padding: 0.5em;
+}
+.vehicle-info > p {
+  margin-bottom: 5px;
+}
+.case-type {
+  font-size: 30px;
   font-weight: bold;
+  margin-right: 3%;
+}
+.from {
+  font-style: italic;
+}
+.user-name {
+  margin-left: 5%;
+  font-size: 20px;
+  font-style: italic;
+}
+.case-info {
+  display: flex;
+  flex-flow: row;
+  margin-bottom: 1em;
+  margin-top: 0.4em;
+}
+.case-destination-time {
+  flex: 0 0 45%;
+  display: flex;
+  flex-flow: column;
+  background: #f4f4f4;
+  padding: 10px;
+  border-radius: 0.8em;
+}
+
+.destination-start, .destination-end {
+  font-size: 15px;
+  font-weight: bold;
+  margin-right: 5%;
+
+}
+span > img {
+  margin-left: 7%;
+  margin-right: 7%;
 }
 .case-action {
+  display: flex;
+  flex: 0 0 55%;
+  justify-content: right;
+}
+
+.your-case {
+  background: #373F68;
+  color: white;
+}
+.others-case {
+  background: #005B52;
+  color: white;
+}
+.case-price {
+  background: #f2f4ff;
+  color:#506ae7;
+  font-weight: bold;
+}
+.case-action  {
+  padding: 1em 1em 1em 1em;
+}
+.btn-edit:hover, .btn-delete:hover {
+  background:#f4f4f4 ;
+}
+svg {
+  height: 25px;
+  font-weight: bold;
+  margin-top: -5px;
+}
+.btn-add-case > svg {
+  height: 15px;
+}
+
+svg.icon-user {
+  height: 25px;
+  font-weight: bolder;
+  margin-top: -7px;
+  margin-right: 2%;
+}
+.btn-add-case {
+  color:#005B52 ;
+  background: white;
+  font-weight: bold;
+}
+.btn-add-case:hover {
+  background: #ededed;
+}
+.btn {
+  box-shadow: none;
+}
+@media only screen and (max-width: 500px) {
+  .my-cases-main {
+    flex:0 0 98%;
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+  .case-destination-time {
+    flex: 0 0 65%;
+  }
+  .case-action {
+    display: flex;
+    flex: 0 0 25%;
+    justify-content: right;
+    margin-left: 3%;
+  }
+  .case-type {
+    font-size: 20px;
+    margin-right: 1%;
+  }
+  .vehicle-info {
+    flex: 0 0 30%;
+    font-size: 20px;
+    background: #f4f4f4;
+    border-radius: 0.8em;
+    padding: 0.1em;
+  }
+  span > img {
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+  .case-type-from {
+    flex: 0 0 65%;
+    display: flex;
+    flex-flow: column;
+    margin-right: 1%;
+    margin-left: 1%;
+  }
+  svg {
+    height: 15px;
+  }
+
+}
+@media only screen and (max-width: 1400px) {
+  .my-cases-main {
+    flex:0 0 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+
+  }
+
+}
+
+@media only screen and (max-width: 1100px) {
+  .my-cases-main {
+    flex:0 0 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+}
+
+.pOpen {
   flex: 0 0 15%;
   align-self: center;
   border-radius: 0.3em;
@@ -35,63 +198,49 @@
   display: flex;
   flex-flow: row;
 }
-.case-action > .btn {
-  color: white;
-  margin-left: 2px;
+
+.radiobutton {
+  color: #005B52;
+  background-color: #FFFFFF;
+  border-color: #005B52;
 }
-.case-info {
-  flex: 0 0 50%;
-  margin-left: 5%;
+
+.radiobutton:hover,
+.radiobutton:focus,
+.radiobutton:active,
+.radiobutton.active,
+.open .dropdown-toggle.radiobutton {
+  color: #FFFFFF;
+  background-color: #005B52;
+  border-color: #005B52;
 }
-.btn-edit {
-  background:#373F68 ;
+
+.radiobutton:active,
+.radiobutton.active,
+.open .dropdown-toggle.btn-sample {
+  background-image: none;
 }
-.booked-cases {
-  margin-top: 2em;
+
+.radiobutton.disabled,
+.radiobutton[disabled],
+fieldset[disabled] .radiobutton,
+.radiobutton.disabled:hover,
+.radiobutton[disabled]:hover,
+fieldset[disabled] .radiobutton:hover,
+.radiobutton.disabled:focus,
+.radiobutton[disabled]:focus,
+fieldset[disabled] .radiobutton:focus,
+.radiobutton.disabled:active,
+.radiobutton[disabled]:active,
+fieldset[disabled] .radiobutton:active,
+.radiobutton.disabled.active,
+.radiobutton[disabled].active,
+fieldset[disabled] .radiobutton.active {
+  background-color: #FFFFFF;
+  border-color: #005B52;
 }
-.case-date {
-  font-weight: bold;
-}
-.case-category-status {
-  display: flex;
-  flex-flow: row;
-  margin-top: 0.5em;
-}
-.case-category {
-  margin-right: 10px;
-  background: #f2f4ff;
-  border-radius: 0.3em;
-  border: none;
-  color: #506ae7;
-  font-weight: bold;
-}
-.case-status {
-  margin-right: 10px;
-  background: #f2f4ff;
-  border-radius: 0.3em;
-  border: none;
-  color: #373F68;
-  font-weight: bold;
-}
-.your-case {
-  background: #373F68;
-}
-.others-case {
-  background: #005B52;
-}
-.btn-add-case {
-  color: white;
-  background: #005B52;
-}
-.btn {
-  box-shadow: none;
-}
-.form-check-input {
-  background: #373F68;
-  color: white;
-}
-@media only screen and (max-width: 800px) {
-  .my-cases {
-    margin: 1em 1em 1em 1em;
-  }
+
+.radiobutton .badge {
+  color: #FFFFFF;
+  background-color: #005B52;
 }

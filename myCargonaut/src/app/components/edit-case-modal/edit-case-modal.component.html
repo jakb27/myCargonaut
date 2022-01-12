@@ -1,23 +1,25 @@
 <div class="modal-header">
   <h4 class="modal-title">Edit Your Offer</h4>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
-    <span aria-hidden="true">&times;</span>
+  <button type="button" class="close btn-close" aria-label="Close" (click)="activeModal.dismiss()">
   </button>
 </div>
 
 <div class="modal-body">
-  <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="type" >
-    <label ngbButtonLabel class="btn-primary">
-      <input ngbButton type="radio" value="request"> Request
-    </label>
-    <label ngbButtonLabel class="btn-primary">
-      <input ngbButton type="radio" value="offer"> Offer
-    </label>
+  <div class="row justify-content-center">
+    <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="type" >
+      <label ngbButtonLabel class="radiobutton">
+        <input ngbButton type="radio" value="request"> Request
+      </label>
+      <label ngbButtonLabel class="radiobutton">
+        <input ngbButton type="radio" value="offer"> Offer
+      </label>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="userIdInput">User ID</label>
-    <input type="text" class="form-control" id="userIdInput" [(ngModel)]="case.publisher_uid" readonly>
-  </div>
+
+<!--  <div class="form-group">-->
+<!--    <label for="userIdInput">User ID</label>-->
+<!--    <input type="text" class="form-control" id="userIdInput" [(ngModel)]="case.publisher_uid" readonly>-->
+<!--  </div>-->
   <div class="form-group">
     <label for="startInput">Start</label>
     <input type="text" class="form-control" id="startInput" [(ngModel)]="case.start">
@@ -30,6 +32,28 @@
     <label for="endInput">Price</label>
     <input type="number" class="form-control" id="price" min="0" [(ngModel)]="case.price">
   </div>
+  <div class="form-group">
+    <label for="endInput">Seats</label>
+    <input type="number" class="form-control" id="seats" min="0" [(ngModel)]="case.seats">
+  </div>
+
+  <div class="form-group">
+    <label for="endInput">Capacity</label>
+    <input type="number" class="form-control" id="capacity" min="0" [(ngModel)]="case.capacity">
+  </div>
+
+  <div class="form-group">
+    <label for="endInput">Description</label>
+    <textarea id="description" rows="4" cols="60" maxlength="100" [(ngModel)]="case.description"></textarea>
+  </div>
+
+  <div *ngIf="type ==='offer' && this.vehicleService.vehicles.length>0">
+    <label>Choose a Vehicle</label><br>
+    <select class="form-select" [(ngModel)]="case.vehicle">
+      <option></option>
+      <option *ngFor="let v of this.vehicleService.vehicles" [ngValue]="v" (click)="setCapacity()">{{v.name}}</option>
+    </select>
+  </div>
 
   <div class="form-group">
     <label>Pick Date and Time</label>
@@ -38,11 +62,12 @@
     </form>
   </div>
 
+
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark"
           (click)="activeModal.dismiss()">Close
   </button>
-  <button type="button" class="btn btn-success" (click)="save()">Edit</button>
+  <button type="button" class="btn btn-savemodal" (click)="save()">Edit</button>
 </div>
 

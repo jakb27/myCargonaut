@@ -1,11 +1,13 @@
 <!-- Top navigation -->
 <app-header></app-header>
 
+<app-alert></app-alert>
+
 <!-- Main -->
-<div class="app-dashboard">
-  <div class="row">
+<div class="app-dashboard" style="overflow-y: scroll; overflow-x:hidden; height: 71vh" >
+  <div class="row cases">
     <!-- Main content -->
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <main role="main" class="main-case-list" >
 
       <app-case-list></app-case-list>
 

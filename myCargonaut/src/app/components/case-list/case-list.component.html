@@ -1,41 +1,73 @@
 <div class="case-list">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h2 class="h2">Case List</h2>
-    <button type="button" class="btn  btn-add-case" (click)="create()">Add Case</button>
     <div class="form-check">
       <input type="checkbox" class="form-check-input" checked autocomplete="off" (click)="toggleShowOwn()">
       <label class="form-check-label active">Show Own</label>
     </div>
+    <button type="button" class="btn  btn-add-case" (click)="create()">
+      <svg  class="add-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" fill="#005B52"/>
+      </svg> Add Case</button>
   </div>
 
   <div class="pricing-header mx-auto">
-    <div *ngFor="let c of this.cases; let i = index;">
+    <div *ngFor="let c of this.caseService.casesDashboard; let i = index;">
       <ng-container *ngIf="showOwn || c.publisher_uid !== this.authService.userData.uid">
-      <div [ngClass]="c.type === this.type_offer ? 'case-display case-offer' : 'case-display case-request'">
-        <div class="case-start-end">
-          <p>{{c.start}}</p>
-          <p> to </p>
-          <p>{{c.end}}</p>
-        </div>
-        <div class="case-info">
-          <div class="case-date">
-            <p>Date: {{this.caseService.timeConverter(c.dateTime)}}</p>
+        <div [ngClass]="c.type === this.type_offer ? 'case-display case-offer' : 'case-display case-request'">
+          <div class="user-vehicle-info">
+            <span class="case-type-from">
+              <span>
+                  <span class="case-type">{{c.type === this.type_offer ? 'Offer ' : 'Request '}}</span>
+                  <span class="from"> from  </span>
+              </span>
+              <span class="user-name">
+                <svg class="svg-icon icon-user" viewBox="0 0 20 20">
+                    <path fill="black" d="M14.023,12.154c1.514-1.192,2.488-3.038,2.488-5.114c0-3.597-2.914-6.512-6.512-6.512
+                      c-3.597,0-6.512,2.916-6.512,6.512c0,2.076,0.975,3.922,2.489,5.114c-2.714,1.385-4.625,4.117-4.836,7.318h1.186
+                      c0.229-2.998,2.177-5.512,4.86-6.566c0.853,0.41,1.804,0.646,2.813,0.646c1.01,0,1.961-0.236,2.812-0.646
+                      c2.684,1.055,4.633,3.568,4.859,6.566h1.188C18.648,16.271,16.736,13.539,14.023,12.154z M10,12.367
+                      c-2.943,0-5.328-2.385-5.328-5.327c0-2.943,2.385-5.328,5.328-5.328c2.943,0,5.328,2.385,5.328,5.328
+                      C15.328,9.982,12.943,12.367,10,12.367z"></path>
+						   </svg>
+                 <span >{{c.publisher_name}}</span>
+              </span>
+
+<!--              // TODO -->
+              <span>
+                <br>
+                <span class="description">{{c.description}}</span>
+              </span>
+
+            </span>
+            <div class="vehicle-info">
+              <p>Vehicle: {{c.vehicle!.name === "" ? "not specified" : c.vehicle!.name}}</p>
+              <p>Seats: {{c.seats}}</p>
+              <p>Capacity: {{c.capacity}}</p>
+            </div>
           </div>
-          <div class="case-user">User: {{c.publisher_uid}}</div>
-          <div class="case-category-status">
-            <span class="btn case-category">{{c.type}}</span>
-            <span class="btn case-status">{{c.status}}</span>
-            <span class="btn case-status">{{c.price}}€</span>
+          <div class="case-info">
+            <div class="case-destination-time">
+              <div class="case-destination">
+                <span class="destination-start">{{c.start}}</span>
+                <span>
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0yMS44ODMgMTJsLTcuNTI3IDYuMjM1LjY0NC43NjUgOS03LjUyMS05LTcuNDc5LS42NDUuNzY0IDcuNTI5IDYuMjM2aC0yMS44ODR2MWgyMS44ODN6Ii8+PC9zdmc+">
+              </span>
+                <span class="destination-end">{{c.end}}</span>
+              </div>
+              <div class="case-time">
+                {{this.caseService.timeConverter(c.dateTime)}}
+              </div>
+            </div>
+            <div class="case-action">
+              <button class="btn case-price">{{c.price}}$</button>
+              <button class="btn btn-action others-case" type="button" *ngIf="this.authService.userData?.uid !== c.publisher_uid" (click)="accept(c)">Book</button>
+              <button class="btn btn-action  your-case" type="button" *ngIf="this.authService.userData?.uid === c.publisher_uid" >Own</button>
+            </div>
           </div>
         </div>
-        <div class="case-action">
-          <button class="btn btn-action others-case" type="button" *ngIf="this.authService.userData.uid !== c.publisher_uid" (click)="accept(c)">Book</button>
-          <button class="btn btn-action  your-case" type="button" *ngIf="this.authService.userData.uid === c.publisher_uid" >Own</button>
-        </div>
-      </div>
       </ng-container>
     </div>
 
   </div>
 </div>
-
