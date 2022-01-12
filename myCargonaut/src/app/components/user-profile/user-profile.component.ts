@@ -53,15 +53,19 @@ export class UserProfileComponent implements OnInit {
   }
 
   public async uploadProfilePic() {
-    this.confirmService.confirmDialog().then(async res => {
-      if (res) {
-        await this.authService.uploadProfilePic(this.file).then(
-          () => this.alertService.nextAlert({type: "success", message: "Profile Picture successfully added"})
-        );
-      } else {
-        this.alertService.nextAlert({type: "warning", message: "Adding profile picture cancelled"});
-      }
-    });
+    if(this.file != undefined){
+      this.confirmService.confirmDialog().then(async res => {
+        if (res) {
+          await this.authService.uploadProfilePic(this.file).then(
+            () => this.alertService.nextAlert({type: "success", message: "Profile Picture successfully added"})
+          );
+        } else {
+          this.alertService.nextAlert({type: "warning", message: "Adding profile picture cancelled"});
+        }
+      });
+    } else {
+      this.alertService.nextAlert({type: "danger", message: "Please choose file to upload"});
+    }
   }
 
   public async deleteProfilePic() {
