@@ -1,4 +1,3 @@
-
 .footer-element {
   text-decoration: none;
 }
@@ -24,8 +23,8 @@ li {
 
 
 .footer-link-element > a {
-  flex: 0 0 45%;
-  margin-bottom: 0.8em;
+  flex: 0 0 33%;
+  margin-top: 0.8em;
   color: white;
 }
 .footer-link-element > a:hover{

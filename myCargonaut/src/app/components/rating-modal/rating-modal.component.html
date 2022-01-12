@@ -7,7 +7,11 @@
 <div class="modal-body">
 
   <div class="form-group">
-    <ngb-rating [formControl]="ctrl" [max]="5"></ngb-rating>
+    <ngb-rating id="rating" [formControl]="ctrl" [max]="5">
+      <ng-template let-fill="fill" let-index="index">
+        <span class="star" [class.filled]="fill === 100">&#9733;</span>
+      </ng-template>
+    </ngb-rating>
     <div class="form-text small">
       <div *ngIf="ctrl.valid" class="text-success">Thanks!</div>
       <div *ngIf="ctrl.invalid" class="text-danger">Please rate your case!</div>

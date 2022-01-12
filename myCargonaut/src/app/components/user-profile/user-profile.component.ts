@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import {AuthService} from "../../shared/services/auth/auth.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Vehicle} from "../../shared/models/vehicle";
@@ -30,6 +30,9 @@ export class UserProfileComponent implements OnInit {
               public confirmService: ConfirmService) {
   }
 
+  @ViewChild("fileInput")
+    inputVar!: ElementRef;
+
   ngOnInit(): void {
     this.init().then(() => {
       this.user = this.authService.userData;
@@ -53,15 +56,25 @@ export class UserProfileComponent implements OnInit {
   }
 
   public async uploadProfilePic() {
-    this.confirmService.confirmDialog().then(async res => {
-      if (res) {
-        await this.authService.uploadProfilePic(this.file).then(
-          () => this.alertService.nextAlert({type: "success", message: "Profile Picture successfully added"})
-        );
-      } else {
-        this.alertService.nextAlert({type: "warning", message: "Adding profile picture cancelled"});
-      }
-    });
+    console.log(this.file);
+    if (this.file != undefined) {
+      this.confirmService.confirmDialog().then(async res => {
+        if (res) {
+          await this.authService.uploadProfilePic(this.file).then(
+            () => this.alertService.nextAlert({type: "success", message: "Profile Picture successfully added"})
+          );
+        } else {
+          this.alertService.nextAlert({type: "warning", message: "Adding profile picture cancelled"});
+        }
+        this.inputVar.nativeElement.value = "";
+        this.file = null;
+      });
+    } else {
+      this.alertService.nextAlert({type: "danger", message: "Please choose file to upload"});
+      this.inputVar.nativeElement.value = "";
+      this.file = null;
+    }
+
   }
 
   public async deleteProfilePic() {
