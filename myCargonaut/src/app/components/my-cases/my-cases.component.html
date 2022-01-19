@@ -31,12 +31,13 @@
         <div *ngFor="let c of this.selectCases(); let i = index;">
           <div [ngClass]="c.type === this.type_offer ? 'case-display case-offer' : 'case-display case-request'">
             <div class="user-vehicle-info">
-            <span class="case-type-from">
-              <span>
+            <span class="case-type-description" >
+              <span class="case-type-from">
+                <span>
                   <span class="case-type">{{c.type === this.type_offer ? 'Offer ' : 'Request '}}</span>
                   <span class="from"> from  </span>
-              </span>
-              <span class="user-name">
+                </span>
+               <span class="user-name">
                 <svg class="svg-icon icon-user" viewBox="0 0 20 20">
                     <path fill="black" d="M14.023,12.154c1.514-1.192,2.488-3.038,2.488-5.114c0-3.597-2.914-6.512-6.512-6.512
                       c-3.597,0-6.512,2.916-6.512,6.512c0,2.076,0.975,3.922,2.489,5.114c-2.714,1.385-4.625,4.117-4.836,7.318h1.186
@@ -47,12 +48,8 @@
 						   </svg>
                  <span >{{c.publisher_name}}</span>
               </span>
-
-              <!--              // TODO -->
-              <span>
-                <br>
-                <span class="description">{{c.description}}</span>
               </span>
+              <div class="case-description">{{c.description}}</div>
 
             </span>
               <div class="vehicle-info">
@@ -114,14 +111,13 @@
                     </span>
                   </button>
                 </div>
-                <div *ngIf="this.list === 'finished'">
+                <div *ngIf="this.list === 'finished'" class="rating-star-comment">
                   <ngb-rating [(rate)]="c.rating"  [readonly]="true" [max]="5">
                     <ng-template let-fill="fill" let-index="index">
                       <span class="star" [class.filled]="fill === 100">&#9733;</span>
                     </ng-template>
                   </ngb-rating>
-<!--                  TODO comment-->
-                  <p>{{c.ratingComment}}</p>
+                  <div>{{c.ratingComment}}</div>
                 </div>
               </div>
             </div>

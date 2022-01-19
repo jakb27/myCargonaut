@@ -24,18 +24,24 @@
   flex-flow: row nowrap;
 }
 
-.case-type-from {
-  flex: 0 0 65%;
-  margin-right: 3%;
-  margin-left: 2%;
-}
-
 .vehicle-info {
   flex: 0 0 30%;
   font-size: 20px;
   background: #f4f4f4;
   border-radius: 0.8em;
   padding: 0.5em;
+}
+
+.case-type-description {
+  display: flex;
+  flex-flow: column;
+  flex: 0 0 65%;
+  margin-right: 5%;
+}
+.case-description {
+  margin-right: 10%;
+  font-style: italic;
+  font-size: 15px;
 }
 
 .vehicle-info > p {
@@ -58,9 +64,6 @@
   font-style: italic;
 }
 
-.description {
-
-}
 
 .case-info {
   display: flex;
@@ -143,7 +146,8 @@ svg.icon-user {
   margin-right: 2%;
 }
 
-@media only screen and (max-width: 500px) {
+
+@media only screen and (max-width: 600px) {
   .case-destination-time {
     flex: 0 0 65%;
   }
@@ -173,8 +177,7 @@ svg.icon-user {
     margin-right: 3%;
   }
 
-  .case-type-from {
-    flex: 0 0 65%;
+  .case-type-from {;
     display: flex;
     flex-flow: column;
     margin-right: 1%;

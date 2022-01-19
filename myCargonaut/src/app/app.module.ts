@@ -28,13 +28,14 @@ import {EditCaseModalComponent} from "./components/edit-case-modal/edit-case-mod
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {DateTimePickerComponent} from "./components/custom/datetime-picker.component";
 import {PrivacyPolicyComponent} from "./components/privacy-policy/privacy-policy.component";
-import { NewVehicleModalComponent } from "./components/new-vehicle-modal/new-vehicle-modal.component";
-import { EditVehicleModalComponent } from "./components/edit-vehicle-modal/edit-vehicle-modal.component";
-import { AlertComponent } from "./components/alert/alert.component";
-import { EditUserModalComponent } from "./components/edit-user-modal/edit-user-modal.component";
-import { RatingModalComponent } from "./components/rating-modal/rating-modal.component";
-import { AddCreditModalComponent } from "./components/add-credit-modal/add-credit-modal.component";
-import { ConfirmModalComponent } from "./components/confirm-modal/confirm-modal.component";
+import {NewVehicleModalComponent} from "./components/new-vehicle-modal/new-vehicle-modal.component";
+import {EditVehicleModalComponent} from "./components/edit-vehicle-modal/edit-vehicle-modal.component";
+import {AlertComponent} from "./components/alert/alert.component";
+import {EditUserModalComponent} from "./components/edit-user-modal/edit-user-modal.component";
+import {RatingModalComponent} from "./components/rating-modal/rating-modal.component";
+import {AddCreditModalComponent} from "./components/add-credit-modal/add-credit-modal.component";
+import {ConfirmModalComponent} from "./components/confirm-modal/confirm-modal.component";
+import {SimpleNotificationsModule} from "angular2-notifications";
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { ConfirmModalComponent } from "./components/confirm-modal/confirm-modal.
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    SimpleNotificationsModule.forRoot()
   ],
   providers: [
     ScreenTrackingService, UserTrackingService, AuthService, CaseService,
