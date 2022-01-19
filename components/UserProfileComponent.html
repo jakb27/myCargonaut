@@ -1376,126 +1376,94 @@ export class UserProfileComponent implements OnInit {
 &lt;app-alert&gt;&lt;/app-alert&gt;
 
 &lt;!-- New Main --&gt;
-&lt;div *ngIf&#x3D;&quot;this.user !&#x3D;&#x3D; undefined&quot; class&#x3D;&quot;container-fluid&quot; style&#x3D;&quot;overflow-y: scroll; overflow-x:hidden; height: 71vh&quot;&gt;
-  &lt;div class&#x3D;&quot;row text-center p-3&quot;&gt;
-    &lt;div class&#x3D;&quot;col-12 cols col-lg-2&quot;&gt;
-      &lt;h3&gt;Your Profile:&lt;/h3&gt;
-      &lt;div class&#x3D;&quot;img-fluid text-center pt-2 pb-5&quot;&gt;
-        &lt;img id&#x3D;&quot;pic&quot; src&#x3D;&quot;{{this.user.photoURL}}&quot; alt&#x3D;&quot;User.photoURL&quot;&gt;
-      &lt;/div&gt;
+
+&lt;div class&#x3D;&quot;user-profile-main&quot;&gt;
+  &lt;div class&#x3D;&quot;user-image&quot;&gt;
+    &lt;h3&gt;Your Profile&lt;/h3&gt;
+    &lt;div class&#x3D;&quot;img-fluid text-center pt-2  main-image&quot;&gt;
+      &lt;img id&#x3D;&quot;pic&quot; src&#x3D;&quot;{{this.user.photoURL}}&quot; alt&#x3D;&quot;User.photoURL&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;choose-profile&quot;&gt;
       &lt;input #fileInput type&#x3D;&quot;file&quot; (change)&#x3D;&quot;upload($event)&quot; accept&#x3D;&quot;.png, .jpg&quot;&gt;
-      &lt;button class&#x3D;&quot;btn btn-outline-success&quot; (click)&#x3D;&quot;this.uploadProfilePic()&quot;&gt; UPLOAD PIC&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;profile-upload&quot;&gt;
+      &lt;button class&#x3D;&quot;btn btn-upload btn-outline-success&quot; (click)&#x3D;&quot;this.uploadProfilePic()&quot;&gt; UPLOAD PIC&lt;/button&gt;
       &lt;button class&#x3D;&quot;btn btn-outline-danger&quot; (click)&#x3D;&quot;this.deleteProfilePic()&quot;&gt; DELETE PIC&lt;/button&gt;
-      &lt;div id&#x3D;&quot;userProfile&quot; class&#x3D;&quot;text-center p-5&quot;&gt;
-        &lt;h5&gt;Rating ({{this.user.ratings}})&lt;/h5&gt;
-        &lt;ng-template #t let-fill&#x3D;&quot;fill&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;profile-rating&quot;&gt;
+      &lt;h5&gt;Rating: {{this.user.ratings}}&lt;/h5&gt;
+      &lt;ng-template #t let-fill&#x3D;&quot;fill&quot;&gt;
           &lt;span class&#x3D;&quot;star&quot; [class.full]&#x3D;&quot;fill &#x3D;&#x3D;&#x3D; 100&quot;&gt;
           &lt;span class&#x3D;&quot;half&quot; [style.width.%]&#x3D;&quot;fill&quot;&gt;&amp;starf;&lt;/span&gt;&amp;starf;&lt;/span&gt;
-        &lt;/ng-template&gt;
-        &lt;ngb-rating [(rate)]&#x3D;&quot;this.user.rating&quot; [starTemplate]&#x3D;&quot;t&quot; [readonly]&#x3D;&quot;true&quot; [max]&#x3D;&quot;5&quot;&gt;&lt;/ngb-rating&gt;
-      &lt;/div&gt;
+      &lt;/ng-template&gt;
+      &lt;ngb-rating [(rate)]&#x3D;&quot;this.user.rating&quot; [starTemplate]&#x3D;&quot;t&quot; [readonly]&#x3D;&quot;true&quot; [max]&#x3D;&quot;5&quot;&gt;&lt;/ngb-rating&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;btn-add-credit&quot;&gt;
       &lt;button class&#x3D;&quot;btn btn-success&quot; (click)&#x3D;&quot;this.addCredits()&quot;&gt; ADD CREDIT&lt;/button&gt;
     &lt;/div&gt;
-    &lt;div class&#x3D;&quot;col-12 col-lg-4&quot;&gt;
-      &lt;div id&#x3D;&quot;userInfo&quot;&gt;
-        &lt;h3 class&#x3D;&quot;pb-2&quot;&gt;About you:&lt;/h3&gt;
-        &lt;h5&gt;Hello {{this.user.displayName}}!&lt;/h5&gt;
-        &lt;div class&#x3D;&quot;row&quot;&gt;
-          &lt;div class&#x3D;&quot;col-6&quot;&gt;
-            &lt;p class &#x3D;&quot;hl&quot;&gt;&lt;b&gt;Firstname:&lt;/b&gt; &lt;/p&gt;
-          &lt;/div&gt;
-          &lt;div class&#x3D;&quot;col-6&quot;&gt;
-            &lt;p&gt;{{this.user.firstname}}&lt;/p&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;div class&#x3D;&quot;row&quot;&gt;
-          &lt;div class&#x3D;&quot;col-6&quot;&gt;
-            &lt;p class &#x3D;&quot;hl&quot;&gt;&lt;b&gt;Lastname:&lt;/b&gt; &lt;/p&gt;
-          &lt;/div&gt;
-          &lt;div class&#x3D;&quot;col-6&quot;&gt;
-            &lt;p&gt;{{this.user.lastname}}&lt;/p&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;div class&#x3D;&quot;row&quot;&gt;
-          &lt;div class&#x3D;&quot;col-6&quot;&gt;
-            &lt;p class &#x3D;&quot;hl&quot;&gt;&lt;b&gt;Email: &lt;/b&gt;&lt;/p&gt;
-          &lt;/div&gt;
-          &lt;div class&#x3D;&quot;col-6&quot;&gt;
-            &lt;p&gt;{{this.user.email}} ({{this.user.emailVerified ? &quot;&amp;check;&quot; : &quot;&amp;cross;&quot;}})&lt;/p&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;div class&#x3D;&quot;row&quot;&gt;
-          &lt;div class&#x3D;&quot;col-6&quot;&gt;
-            &lt;p class &#x3D;&quot;hl&quot;&gt;&lt;b&gt;Birthday:&lt;/b&gt; &lt;/p&gt;
-          &lt;/div&gt;
-          &lt;div class&#x3D;&quot;col-6&quot;&gt;
-            &lt;p&gt;{{this.user.birthday}}&lt;/p&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;div class&#x3D;&quot;row&quot;&gt;
-          &lt;div class&#x3D;&quot;col-6&quot;&gt;
-            &lt;p class &#x3D;&quot;hl&quot;&gt;&lt;b&gt;Credit: &lt;/b&gt;&lt;/p&gt;
-          &lt;/div&gt;
-          &lt;div class&#x3D;&quot;col-6&quot;&gt;
-            &lt;p&gt;{{this.user.credit}} $&lt;/p&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;button  type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-edit editor&quot; (click)&#x3D;&quot;this.editUser()&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class&#x3D;&quot;user-info&quot;&gt;
+    &lt;div&gt;
+      &lt;div&gt;
+        &lt;h3 &gt;About you&lt;/h3&gt;
+        &lt;h5 class&#x3D;&quot;user-profile-name&quot;&gt;Hello {{this.user.displayName}}!&lt;/h5&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;user-info-details&quot;&gt;
+        &lt;p class &#x3D;&quot;hl&quot;&gt;&lt;b&gt;First name:&lt;/b&gt; &lt;/p&gt;
+        &lt;p&gt;{{this.user.firstname}}&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;user-info-details&quot;&gt;
+        &lt;p class &#x3D;&quot;hl&quot;&gt;&lt;b&gt;Last name:&lt;/b&gt; &lt;/p&gt;
+        &lt;p&gt;{{this.user.lastname}}&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;user-info-details&quot;&gt;
+        &lt;p class &#x3D;&quot;hl&quot;&gt;&lt;b&gt;Email:&lt;/b&gt; &lt;/p&gt;
+        &lt;p&gt;{{this.user.email}} ({{this.user.emailVerified ? &quot;&amp;check;&quot; : &quot;&amp;cross;&quot;}})&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;user-info-details&quot;&gt;
+        &lt;p class &#x3D;&quot;hl&quot;&gt;&lt;b&gt;Birthday:&lt;/b&gt; &lt;/p&gt;
+        &lt;p&gt;{{this.user.birthday}}&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;user-info-details&quot;&gt;
+        &lt;p class &#x3D;&quot;hl&quot;&gt;&lt;b&gt;Credit: &lt;/b&gt;&lt;/p&gt;
+        &lt;p&gt;{{this.user.credit}} $&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;user-info-action&quot;&gt;
+      &lt;button  type&#x3D;&quot;button&quot; class&#x3D;&quot;btn&quot; (click)&#x3D;&quot;this.editUser()&quot;&gt;
+        &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; width&#x3D;&quot;24&quot; height&#x3D;&quot;24&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;
+          &lt;path fill&#x3D;&quot;#373F68&quot; d&#x3D;&quot;M1.439 16.873l-1.439 7.127 7.128-1.437 16.873-16.872-5.69-5.69-16.872 16.872zm4.702 3.848l-3.582.724.721-3.584 2.861 2.86zm15.031-15.032l-13.617 13.618-2.86-2.861 10.825-10.826 2.846 2.846 1.414-1.414-2.846-2.846 1.377-1.377 2.861 2.86z&quot;/&gt;
+        &lt;/svg&gt;
+      &lt;/button&gt;
+      &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn&quot; (click)&#x3D;&quot;this.deleteUser()&quot;&gt;
+        &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; width&#x3D;&quot;24&quot; height&#x3D;&quot;24&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;
+          &lt;path fill&#x3D;&quot;red&quot; d&#x3D;&quot;M9 19c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5-17v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712zm-3 4v16h-14v-16h-2v18h18v-18h-2z&quot;/&gt;
+        &lt;/svg&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class&#x3D;&quot;user-vehicle&quot;&gt;
+    &lt;h3&gt;Your Vehicles&lt;/h3&gt;
+    &lt;div class&#x3D;&quot;user-vehicle-add-btn&quot;&gt;
+      &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn&quot; (click)&#x3D;&quot;createVehicle()&quot;&gt;
+        &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; width&#x3D;&quot;24&quot; height&#x3D;&quot;24&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;
+          &lt;path d&#x3D;&quot;M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z&quot; fill&#x3D;&quot;#005B52&quot;/&gt;
+        &lt;/svg&gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div *ngFor&#x3D;&quot;let v of this.vehicleService.vehicles&quot; class&#x3D;&quot;user-vehicle-info&quot;&gt;
+      &lt;h5 class&#x3D;&quot;user-vehicle-name&quot;&gt;&lt;b&gt;{{v.name}}&lt;/b&gt; ({{v.type}})&lt;/h5&gt;
+      &lt;p class&#x3D;&quot;user-vehicle-description&quot;&gt;Seats: {{v.seats}}, Capacity: {{v.capacity}}&lt;/p&gt;
+      &lt;div class&#x3D;&quot;user-vehicle-action&quot;&gt;
+        &lt;button  type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-edit&quot; (click)&#x3D;&quot;this.editVehicle(v)&quot;&gt;
           &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; width&#x3D;&quot;24&quot; height&#x3D;&quot;24&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;
             &lt;path fill&#x3D;&quot;#373F68&quot; d&#x3D;&quot;M1.439 16.873l-1.439 7.127 7.128-1.437 16.873-16.872-5.69-5.69-16.872 16.872zm4.702 3.848l-3.582.724.721-3.584 2.861 2.86zm15.031-15.032l-13.617 13.618-2.86-2.861 10.825-10.826 2.846 2.846 1.414-1.414-2.846-2.846 1.377-1.377 2.861 2.86z&quot;/&gt;
           &lt;/svg&gt;
         &lt;/button&gt;
-        &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn  btn-delete deleteUser&quot; (click)&#x3D;&quot;this.deleteUser()&quot;&gt;
+        &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn  btn-delete&quot; (click)&#x3D;&quot;this.deleteVehicle(v)&quot;&gt;
           &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; width&#x3D;&quot;24&quot; height&#x3D;&quot;24&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;
             &lt;path fill&#x3D;&quot;red&quot; d&#x3D;&quot;M9 19c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5-17v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712zm-3 4v16h-14v-16h-2v18h18v-18h-2z&quot;/&gt;
           &lt;/svg&gt;
         &lt;/button&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;div class&#x3D;&quot;col-12 col-lg-4 justify-content-center&quot;&gt;
-      &lt;div id&#x3D;&quot;userVehicles&quot;&gt;
-        &lt;h3&gt;Your Vehicles:&lt;/h3&gt;
-        &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
-          &lt;div class&#x3D;&quot;col-10 justify-content-center&quot;&gt;
-            &lt;div *ngFor&#x3D;&quot;let v of this.vehicleService.vehicles&quot;&gt;
-              &lt;div class&#x3D;&quot;card w-75 vehiclecard&quot;&gt;
-                &lt;div class&#x3D;&quot;card-body&quot;&gt;
-                  &lt;h5 class&#x3D;&quot;card-title&quot;&gt;&lt;b&gt;{{v.name}}&lt;/b&gt; ({{v.type}})&lt;/h5&gt;
-                  &lt;p class&#x3D;&quot;card-text&quot;&gt;Seats: {{v.seats}}, Capacity: {{v.capacity}}&lt;/p&gt;
-                  &lt;div class&#x3D;&quot;row justify-content-end&quot;&gt;
-                    &lt;div class&#x3D;&quot;col-8&quot;&gt;
-
-                    &lt;/div&gt;
-                    &lt;div class&#x3D;&quot;col-4&quot;&gt;
-                      &lt;button  type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-edit&quot; (click)&#x3D;&quot;this.editVehicle(v)&quot;&gt;
-                        &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; width&#x3D;&quot;24&quot; height&#x3D;&quot;24&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;
-                          &lt;path fill&#x3D;&quot;#373F68&quot; d&#x3D;&quot;M1.439 16.873l-1.439 7.127 7.128-1.437 16.873-16.872-5.69-5.69-16.872 16.872zm4.702 3.848l-3.582.724.721-3.584 2.861 2.86zm15.031-15.032l-13.617 13.618-2.86-2.861 10.825-10.826 2.846 2.846 1.414-1.414-2.846-2.846 1.377-1.377 2.861 2.86z&quot;/&gt;
-                        &lt;/svg&gt;
-                      &lt;/button&gt;
-                      &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn  btn-delete&quot; (click)&#x3D;&quot;this.deleteVehicle(v)&quot;&gt;
-                        &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; width&#x3D;&quot;24&quot; height&#x3D;&quot;24&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;
-                          &lt;path fill&#x3D;&quot;red&quot; d&#x3D;&quot;M9 19c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5-17v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712zm-3 4v16h-14v-16h-2v18h18v-18h-2z&quot;/&gt;
-                        &lt;/svg&gt;
-                      &lt;/button&gt;
-                    &lt;/div&gt;
-
-                  &lt;/div&gt;
-                &lt;/div&gt;
-              &lt;/div&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
-          &lt;div class&#x3D;&quot;col-2&quot;&gt;
-            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn&quot; (click)&#x3D;&quot;createVehicle()&quot;&gt;
-              &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; width&#x3D;&quot;24&quot; height&#x3D;&quot;24&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;
-                &lt;path d&#x3D;&quot;M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z&quot; fill&#x3D;&quot;#005B52&quot;/&gt;
-              &lt;/svg&gt;&lt;/button&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -1510,7 +1478,9 @@ export class UserProfileComponent implements OnInit {
                 <p class="comment">
                     <code>./user-profile.component.css</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">.star {
+                <pre class="line-numbers"><code class="language-scss">
+
+.star {
   position: relative;
   display: inline-block;
   font-size: 2rem;
@@ -1525,58 +1495,149 @@ export class UserProfileComponent implements OnInit {
   overflow: hidden;
   color: #dcb425;
 }
-
-.cols {
-  min-width: 27%;
+.btn {
+  box-shadow: none;
+}
+.user-vehicle-add-btn button:hover, .btn-edit:hover, .btn-delete:hover{
+  background: #ededed;
 }
 
-h3 {
-  margin-top: 3%;
-  margin-bottom: 5%;
-}
 
-h5 {
-  margin-bottom: 10%;
+.user-profile-main {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  padding: 5% 5% 15% 5%;
+}
+.user-image {
+  flex: 0 0 30%;
+  margin-right: 5%;
+  border-radius: 4em;
+  display: flex;
+  flex-flow: column;
+  background: #f4f4f4;
+  padding: 2%;
+  box-shadow:5px 5px #888888;
+  max-height: 600px;
+
+}
+.user-info {
+  flex: 0 0 30%;
+  margin-right: 5%;
+  background: #f4f4f4;
+  padding: 2%;
+  border-radius: 3em;
+  display: flex;
+  flex-flow: column;
+  box-shadow:5px 5px #888888;
+  max-height: 600px;
+}
+.user-vehicle {
+  flex: 0 0 30%;
+  background: #f4f4f4;
+  border-radius: 3em;
+  padding: 2%;
+  box-shadow:5px 5px #888888 ;
+}
+.main-image{
+  margin-bottom: 7%;
+}
+.main-image &gt; img {
+  border-radius: 50%;
+}
+h1,h3, h5 {
+  text-align: center;
+}
+.choose-profile, .profile-upload {
+  margin-bottom: 1em;
+}
+.btn-upload {
+  margin-right: 10%;
+}
+.btn-add-credit {
+  margin-top: 1em;
+}
+.user-profile-name {
   color: #005B52;
+  padding-bottom: 2em;
 }
-
-img {
-  border-radius: 30%;
-  width: 10em;
-  height: 10em;
-/*  TODO size*/
+.user-info-details {
+  display: flex;
+  flex-flow: row;
 }
-.editor {
-  margin-top: 240px;
-  margin-left: 80%;
+.user-info-details &gt; .hl {
+  flex: 0 0 50%;
 }
-
-.deleteUser {
-  margin-top: 240px;
+.user-info-action {
+  align-self: flex-end;
+  margin-top: 10%;
 }
-
-.editorVehicle {
-
+.user-info-action &gt; .btn:hover {
+  background: #ededed;
 }
-
-
-.vehiclecard {
-  border-radius: 5%;
-  margin-left: 25%;
-  margin-top: 5%;
+.user-vehicle-info {
   background: lightgrey;
+  margin: 2% 10% 2% 10%;
+  justify-content: center;
+  border-radius: 1.5em;
+}
+.user-vehicle-action {
+  display: flex;
+  align-items: flex-end;
+  flex-flow: row;
+}
+.user-vehicle-name {
+  padding-top: 2em;
+}
+.user-vehicle-description {
+  text-align: center;
+}
+.user-vehicle-action {
+  padding-left: 60%;
+}
+.user-vehicle-add-btn {
+  padding-left: 80%;
+}
+.profile-rating {
+  margin-top: 3%;
+}
+.profile-rating h5 {
+  text-align: left;
 }
 
-#userInfo {
-  height: 100%;
-  background-color: #f4f4f4;
-  border-radius: 10%;
-}
+@media only screen and (max-width: 700px) {
+  .user-profile-main {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    padding: 1% 1% 5% 1%;
+    justify-content: space-between;
+  }
+  .user-image {
+    margin-top: 5%;
+    flex: 0 0 30%;
+    margin-right: 1%;
+    border-radius: 1em;
+    padding: 1%;
 
-#userVehicles {
-  height: 100%;
-  background-color: #f4f4f4;
-  border-radius: 10%;
+  }
+  .user-info {
+    margin-top: 5%;
+    flex: 0 0 30%;
+    margin-right: 1%;
+    background: #f4f4f4;
+    padding: 1%;
+    border-radius: 1em;
+    display: flex;
+    flex-flow: column;
+  }
+  .user-vehicle {
+    margin-top: 5%;
+    background: #f4f4f4;
+    border-radius: 1em;
+    padding: 1%;
+  }
+
 }
 </code></pre>
     </div>
@@ -1606,7 +1667,7 @@ img {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- Top navigation --><app-header></app-header><app-alert></app-alert><!-- New Main --><div *ngIf="this.user !== undefined" class="container-fluid" style="overflow-y: scroll; overflow-x:hidden; height: 71vh">  <div class="row text-center p-3">    <div class="col-12 cols col-lg-2">      <h3>Your Profile:</h3>      <div class="img-fluid text-center pt-2 pb-5">        <img id="pic" src="{{this.user.photoURL}}" alt="User.photoURL">      </div>      <input #fileInput type="file" (change)="upload($event)" accept=".png, .jpg">      <button class="btn btn-outline-success" (click)="this.uploadProfilePic()"> UPLOAD PIC</button>      <button class="btn btn-outline-danger" (click)="this.deleteProfilePic()"> DELETE PIC</button>      <div id="userProfile" class="text-center p-5">        <h5>Rating ({{this.user.ratings}})</h5>        <ng-template #t let-fill="fill">          <span class="star" [class.full]="fill === 100">          <span class="half" [style.width.%]="fill">&starf;</span>&starf;</span>        </ng-template>        <ngb-rating [(rate)]="this.user.rating" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>      </div>      <button class="btn btn-success" (click)="this.addCredits()"> ADD CREDIT</button>    </div>    <div class="col-12 col-lg-4">      <div id="userInfo">        <h3 class="pb-2">About you:</h3>        <h5>Hello {{this.user.displayName}}!</h5>        <div class="row">          <div class="col-6">            <p class ="hl"><b>Firstname:</b> </p>          </div>          <div class="col-6">            <p>{{this.user.firstname}}</p>          </div>        </div>        <div class="row">          <div class="col-6">            <p class ="hl"><b>Lastname:</b> </p>          </div>          <div class="col-6">            <p>{{this.user.lastname}}</p>          </div>        </div>        <div class="row">          <div class="col-6">            <p class ="hl"><b>Email: </b></p>          </div>          <div class="col-6">            <p>{{this.user.email}} ({{this.user.emailVerified ? "&check;" : "&cross;"}})</p>          </div>        </div>        <div class="row">          <div class="col-6">            <p class ="hl"><b>Birthday:</b> </p>          </div>          <div class="col-6">            <p>{{this.user.birthday}}</p>          </div>        </div>        <div class="row">          <div class="col-6">            <p class ="hl"><b>Credit: </b></p>          </div>          <div class="col-6">            <p>{{this.user.credit}} $</p>          </div>        </div>        <button  type="button" class="btn btn-edit editor" (click)="this.editUser()">          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">            <path fill="#373F68" d="M1.439 16.873l-1.439 7.127 7.128-1.437 16.873-16.872-5.69-5.69-16.872 16.872zm4.702 3.848l-3.582.724.721-3.584 2.861 2.86zm15.031-15.032l-13.617 13.618-2.86-2.861 10.825-10.826 2.846 2.846 1.414-1.414-2.846-2.846 1.377-1.377 2.861 2.86z"/>          </svg>        </button>        <button type="button" class="btn  btn-delete deleteUser" (click)="this.deleteUser()">          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">            <path fill="red" d="M9 19c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5-17v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712zm-3 4v16h-14v-16h-2v18h18v-18h-2z"/>          </svg>        </button>      </div>    </div>    <div class="col-12 col-lg-4 justify-content-center">      <div id="userVehicles">        <h3>Your Vehicles:</h3>        <div class="row justify-content-center">          <div class="col-10 justify-content-center">            <div *ngFor="let v of this.vehicleService.vehicles">              <div class="card w-75 vehiclecard">                <div class="card-body">                  <h5 class="card-title"><b>{{v.name}}</b> ({{v.type}})</h5>                  <p class="card-text">Seats: {{v.seats}}, Capacity: {{v.capacity}}</p>                  <div class="row justify-content-end">                    <div class="col-8">                    </div>                    <div class="col-4">                      <button  type="button" class="btn btn-edit" (click)="this.editVehicle(v)">                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">                          <path fill="#373F68" d="M1.439 16.873l-1.439 7.127 7.128-1.437 16.873-16.872-5.69-5.69-16.872 16.872zm4.702 3.848l-3.582.724.721-3.584 2.861 2.86zm15.031-15.032l-13.617 13.618-2.86-2.861 10.825-10.826 2.846 2.846 1.414-1.414-2.846-2.846 1.377-1.377 2.861 2.86z"/>                        </svg>                      </button>                      <button type="button" class="btn  btn-delete" (click)="this.deleteVehicle(v)">                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">                          <path fill="red" d="M9 19c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5-17v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712zm-3 4v16h-14v-16h-2v18h18v-18h-2z"/>                        </svg>                      </button>                    </div>                  </div>                </div>              </div>            </div>          </div>          <div class="col-2">            <button type="button" class="btn" (click)="createVehicle()">              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">                <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" fill="#005B52"/>              </svg></button>          </div>        </div>      </div>    </div>  </div></div><!-- Footer --><app-footer></app-footer></div>'
+        var COMPONENT_TEMPLATE = '<div><!-- Top navigation --><app-header></app-header><app-alert></app-alert><!-- New Main --><div class="user-profile-main">  <div class="user-image">    <h3>Your Profile</h3>    <div class="img-fluid text-center pt-2  main-image">      <img id="pic" src="{{this.user.photoURL}}" alt="User.photoURL">    </div>    <div class="choose-profile">      <input #fileInput type="file" (change)="upload($event)" accept=".png, .jpg">    </div>    <div class="profile-upload">      <button class="btn btn-upload btn-outline-success" (click)="this.uploadProfilePic()"> UPLOAD PIC</button>      <button class="btn btn-outline-danger" (click)="this.deleteProfilePic()"> DELETE PIC</button>    </div>    <div class="profile-rating">      <h5>Rating: {{this.user.ratings}}</h5>      <ng-template #t let-fill="fill">          <span class="star" [class.full]="fill === 100">          <span class="half" [style.width.%]="fill">&starf;</span>&starf;</span>      </ng-template>      <ngb-rating [(rate)]="this.user.rating" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>    </div>    <div class="btn-add-credit">      <button class="btn btn-success" (click)="this.addCredits()"> ADD CREDIT</button>    </div>  </div>  <div class="user-info">    <div>      <div>        <h3 >About you</h3>        <h5 class="user-profile-name">Hello {{this.user.displayName}}!</h5>      </div>      <div class="user-info-details">        <p class ="hl"><b>First name:</b> </p>        <p>{{this.user.firstname}}</p>      </div>      <div class="user-info-details">        <p class ="hl"><b>Last name:</b> </p>        <p>{{this.user.lastname}}</p>      </div>      <div class="user-info-details">        <p class ="hl"><b>Email:</b> </p>        <p>{{this.user.email}} ({{this.user.emailVerified ? "&check;" : "&cross;"}})</p>      </div>      <div class="user-info-details">        <p class ="hl"><b>Birthday:</b> </p>        <p>{{this.user.birthday}}</p>      </div>      <div class="user-info-details">        <p class ="hl"><b>Credit: </b></p>        <p>{{this.user.credit}} $</p>      </div>    </div>    <div class="user-info-action">      <button  type="button" class="btn" (click)="this.editUser()">        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">          <path fill="#373F68" d="M1.439 16.873l-1.439 7.127 7.128-1.437 16.873-16.872-5.69-5.69-16.872 16.872zm4.702 3.848l-3.582.724.721-3.584 2.861 2.86zm15.031-15.032l-13.617 13.618-2.86-2.861 10.825-10.826 2.846 2.846 1.414-1.414-2.846-2.846 1.377-1.377 2.861 2.86z"/>        </svg>      </button>      <button type="button" class="btn" (click)="this.deleteUser()">        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">          <path fill="red" d="M9 19c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5-17v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712zm-3 4v16h-14v-16h-2v18h18v-18h-2z"/>        </svg>      </button>    </div>  </div>  <div class="user-vehicle">    <h3>Your Vehicles</h3>    <div class="user-vehicle-add-btn">      <button type="button" class="btn" (click)="createVehicle()">        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">          <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" fill="#005B52"/>        </svg></button>    </div>    <div *ngFor="let v of this.vehicleService.vehicles" class="user-vehicle-info">      <h5 class="user-vehicle-name"><b>{{v.name}}</b> ({{v.type}})</h5>      <p class="user-vehicle-description">Seats: {{v.seats}}, Capacity: {{v.capacity}}</p>      <div class="user-vehicle-action">        <button  type="button" class="btn btn-edit" (click)="this.editVehicle(v)">          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">            <path fill="#373F68" d="M1.439 16.873l-1.439 7.127 7.128-1.437 16.873-16.872-5.69-5.69-16.872 16.872zm4.702 3.848l-3.582.724.721-3.584 2.861 2.86zm15.031-15.032l-13.617 13.618-2.86-2.861 10.825-10.826 2.846 2.846 1.414-1.414-2.846-2.846 1.377-1.377 2.861 2.86z"/>          </svg>        </button>        <button type="button" class="btn  btn-delete" (click)="this.deleteVehicle(v)">          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">            <path fill="red" d="M9 19c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5-17v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712zm-3 4v16h-14v-16h-2v18h18v-18h-2z"/>          </svg>        </button>      </div>    </div>  </div></div><!-- Footer --><app-footer></app-footer></div>'
     var COMPONENTS = [{'name': 'AddCreditModalComponent', 'selector': 'app-add-credit-modal'},{'name': 'AlertComponent', 'selector': 'app-alert'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CaseListComponent', 'selector': 'app-case-list'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DateTimePickerComponent', 'selector': 'app-ngb-date-time-picker'},{'name': 'EditCaseModalComponent', 'selector': 'app-edit-case-modal'},{'name': 'EditUserModalComponent', 'selector': 'app-edit-user-modal'},{'name': 'EditVehicleModalComponent', 'selector': 'app-edit-vehicle-modal'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MyCasesComponent', 'selector': 'app-my-cases'},{'name': 'NewCaseModalComponent', 'selector': 'app-new-offer-modal'},{'name': 'NewVehicleModalComponent', 'selector': 'app-new-vehicle-modal'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'RatingModalComponent', 'selector': 'app-rating-modal'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'UserProfileComponent'};

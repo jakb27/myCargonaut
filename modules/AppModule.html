@@ -569,13 +569,14 @@ import {EditCaseModalComponent} from &quot;./components/edit-case-modal/edit-cas
 import {BrowserAnimationsModule} from &quot;@angular/platform-browser/animations&quot;;
 import {DateTimePickerComponent} from &quot;./components/custom/datetime-picker.component&quot;;
 import {PrivacyPolicyComponent} from &quot;./components/privacy-policy/privacy-policy.component&quot;;
-import { NewVehicleModalComponent } from &quot;./components/new-vehicle-modal/new-vehicle-modal.component&quot;;
-import { EditVehicleModalComponent } from &quot;./components/edit-vehicle-modal/edit-vehicle-modal.component&quot;;
-import { AlertComponent } from &quot;./components/alert/alert.component&quot;;
-import { EditUserModalComponent } from &quot;./components/edit-user-modal/edit-user-modal.component&quot;;
-import { RatingModalComponent } from &quot;./components/rating-modal/rating-modal.component&quot;;
-import { AddCreditModalComponent } from &quot;./components/add-credit-modal/add-credit-modal.component&quot;;
-import { ConfirmModalComponent } from &quot;./components/confirm-modal/confirm-modal.component&quot;;
+import {NewVehicleModalComponent} from &quot;./components/new-vehicle-modal/new-vehicle-modal.component&quot;;
+import {EditVehicleModalComponent} from &quot;./components/edit-vehicle-modal/edit-vehicle-modal.component&quot;;
+import {AlertComponent} from &quot;./components/alert/alert.component&quot;;
+import {EditUserModalComponent} from &quot;./components/edit-user-modal/edit-user-modal.component&quot;;
+import {RatingModalComponent} from &quot;./components/rating-modal/rating-modal.component&quot;;
+import {AddCreditModalComponent} from &quot;./components/add-credit-modal/add-credit-modal.component&quot;;
+import {ConfirmModalComponent} from &quot;./components/confirm-modal/confirm-modal.component&quot;;
+import {SimpleNotificationsModule} from &quot;angular2-notifications&quot;;
 
 @NgModule({
   declarations: [
@@ -614,6 +615,7 @@ import { ConfirmModalComponent } from &quot;./components/confirm-modal/confirm-m
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    SimpleNotificationsModule.forRoot()
   ],
   providers: [
     ScreenTrackingService, UserTrackingService, AuthService, CaseService,

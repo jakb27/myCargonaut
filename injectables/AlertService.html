@@ -133,7 +133,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/shared/services/alerts/alerts.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/shared/services/alerts/alerts.service.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -166,8 +166,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/app/shared/services/alerts/alerts.service.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/app/shared/services/alerts/alerts.service.ts:17</a></div>
                 </td>
             </tr>
 
@@ -246,7 +246,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/shared/services/alerts/alerts.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/shared/services/alerts/alerts.service.ts:11</a></div>
                         </td>
                     </tr>
 
@@ -275,7 +275,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/shared/services/alerts/alerts.service.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/shared/services/alerts/alerts.service.ts:21</a></div>
                                 </td>
                             </tr>
 
@@ -289,6 +289,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@angular/core&quot;;
 import {Alert} from &quot;../../models/alert&quot;;
 import {Subject} from &quot;rxjs&quot;;
+import {NotificationsService} from &quot;angular2-notifications&quot;;
 
 @Injectable({
   providedIn: &quot;root&quot;
@@ -297,7 +298,9 @@ export class AlertService {
 
   private _alert: Subject&lt;Alert&gt; &#x3D; new Subject&lt;Alert&gt;();
 
-  constructor() { }
+  //constructor(private service: NotificationsService) { }
+  constructor() {
+  }
 
   nextAlert(a: Alert) {
     this._alert.next(a);
@@ -306,6 +309,34 @@ export class AlertService {
   get alert(): Subject&lt;Alert&gt; {
     return this._alert;
   }
+
+
+  // onSuccess(message: string) {
+  //   this.service.success(&quot;Success&quot;, message, {
+  //     position: [&quot;top&quot;, &quot;center&quot;],
+  //     timeOut: 2000,
+  //     animate: &quot;fade&quot;,
+  //     showProgressBar: true
+  //   });
+  // }
+  //
+  // onError(message: string) {
+  //   this.service.error(&quot;Error&quot;, message, {
+  //     position: [&quot;top&quot;, &quot;center&quot;],
+  //     timeOut: 2000,
+  //     animate: &quot;fade&quot;,
+  //     showProgressBar: true
+  //   });
+  // }
+  //
+  // onCancel(message: string) {
+  //   this.service.info(&quot;Cancelled&quot;, message, {
+  //     position: [&quot;top&quot;, &quot;center&quot;],
+  //     timeOut: 2000,
+  //     animate: &quot;fade&quot;,
+  //     showProgressBar: true
+  //   });
+  // }
 }
 </code></pre>
     </div>

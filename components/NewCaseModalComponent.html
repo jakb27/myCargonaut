@@ -311,8 +311,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="57"
-                            class="link-to-prism">src/app/components/new-case-modal/new-case-modal.component.ts:57</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/app/components/new-case-modal/new-case-modal.component.ts:58</a></div>
                 </td>
             </tr>
 
@@ -380,8 +380,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/app/components/new-case-modal/new-case-modal.component.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/app/components/new-case-modal/new-case-modal.component.ts:44</a></div>
                 </td>
             </tr>
 
@@ -417,8 +417,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/app/components/new-case-modal/new-case-modal.component.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/app/components/new-case-modal/new-case-modal.component.ts:48</a></div>
                 </td>
             </tr>
 
@@ -454,8 +454,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="64"
-                            class="link-to-prism">src/app/components/new-case-modal/new-case-modal.component.ts:64</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">src/app/components/new-case-modal/new-case-modal.component.ts:65</a></div>
                 </td>
             </tr>
 
@@ -688,6 +688,7 @@ export class NewCaseModalComponent implements OnInit {
       accepter_uid: &quot;&quot;,
       price: 0,
       rating: 0,
+      ratingComment: &quot;&quot;,
       vehicle: {v_id: &quot;&quot;, name: &quot;&quot;, seats: 0, capacity: 0, owner_id: &quot;&quot;}
     };
   }
@@ -773,7 +774,7 @@ export class NewCaseModalComponent implements OnInit {
   &lt;/div&gt;
 
   &lt;div class&#x3D;&quot;form-group&quot;&gt;
-    &lt;label for&#x3D;&quot;endInput&quot;&gt;Description&lt;/label&gt;
+    &lt;label for&#x3D;&quot;description&quot;&gt;Description&lt;/label&gt;
     &lt;textarea id&#x3D;&quot;description&quot; rows&#x3D;&quot;4&quot; cols&#x3D;&quot;60&quot; maxlength&#x3D;&quot;100&quot; [(ngModel)]&#x3D;&quot;case.description&quot;&gt;&lt;/textarea&gt;
   &lt;/div&gt;
 
@@ -905,7 +906,7 @@ fieldset[disabled] .radiobutton.active {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="modal-header">  <h4 class="modal-title">Add A New Offer</h4>  <button type="button" class="close btn-close" aria-label="Close" (click)="activeModal.dismiss()">  </button></div><div class="modal-body">  <div class="row justify-content-center">    <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="type">      <label ngbButtonLabel class="btn-sample radiobutton">        <input ngbButton type="radio" value="request"> Request      </label>      <label ngbButtonLabel class="btn-sample radiobutton">        <input ngbButton type="radio" value="offer"> Offer      </label>    </div>  </div><!--  <div class="form-group">--><!--    <label for="userIdInput">User ID</label>--><!--    <input type="text" class="form-control" id="userIdInput" [(ngModel)]="case.publisher_uid" readonly>--><!--  </div>-->  <div class="form-group">    <label for="startInput">Start</label>    <input type="text" class="form-control" id="startInput" [(ngModel)]="case.start">  </div>  <div class="form-group">    <label for="endInput">End</label>    <input type="text" class="form-control" id="endInput" [(ngModel)]="case.end">  </div>  <div class="form-group">    <label for="endInput">Price</label>    <input type="number" class="form-control" id="price" min="0" [(ngModel)]="case.price">  </div>  <div class="form-group">    <label for="endInput">Seats</label>    <input type="number" class="form-control" id="seats" min="0" [(ngModel)]="case.seats">  </div>  <div class="form-group">    <label for="endInput">Capacity</label>    <input type="number" class="form-control" id="capacity" min="0" [(ngModel)]="case.capacity">  </div>  <div class="form-group">    <label for="endInput">Description</label>    <textarea id="description" rows="4" cols="60" maxlength="100" [(ngModel)]="case.description"></textarea>  </div>  <div *ngIf="type ===\'offer\' && this.vehicleService.vehicles.length>0">    <label>Choose a Vehicle</label><br>    <select class="form-select" [(ngModel)]="case.vehicle">      <option></option>      <option *ngFor="let v of this.vehicleService.vehicles" [ngValue]="v" (click)="setCapacity()">{{v.name}}</option>    </select>  </div>  <div class="form-group">    <label>Pick Date and Time</label>    <form [formGroup]="form">      <app-ngb-date-time-picker formControlName="control" [meridian]="true" [hourStep]="1"                                [minuteStep]="5"></app-ngb-date-time-picker>    </form>  </div>  <!--  TODO bei reload kein default wert drin--></div><div class="modal-footer">  <button type="button" class="btn btn-outline-dark"          (click)="activeModal.dismiss()">Close  </button>  <button type="button" class="btn btn-savemodal" (click)="save()">Submit</button></div><app-alert></app-alert></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="modal-header">  <h4 class="modal-title">Add A New Offer</h4>  <button type="button" class="close btn-close" aria-label="Close" (click)="activeModal.dismiss()">  </button></div><div class="modal-body">  <div class="row justify-content-center">    <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="type">      <label ngbButtonLabel class="btn-sample radiobutton">        <input ngbButton type="radio" value="request"> Request      </label>      <label ngbButtonLabel class="btn-sample radiobutton">        <input ngbButton type="radio" value="offer"> Offer      </label>    </div>  </div><!--  <div class="form-group">--><!--    <label for="userIdInput">User ID</label>--><!--    <input type="text" class="form-control" id="userIdInput" [(ngModel)]="case.publisher_uid" readonly>--><!--  </div>-->  <div class="form-group">    <label for="startInput">Start</label>    <input type="text" class="form-control" id="startInput" [(ngModel)]="case.start">  </div>  <div class="form-group">    <label for="endInput">End</label>    <input type="text" class="form-control" id="endInput" [(ngModel)]="case.end">  </div>  <div class="form-group">    <label for="endInput">Price</label>    <input type="number" class="form-control" id="price" min="0" [(ngModel)]="case.price">  </div>  <div class="form-group">    <label for="endInput">Seats</label>    <input type="number" class="form-control" id="seats" min="0" [(ngModel)]="case.seats">  </div>  <div class="form-group">    <label for="endInput">Capacity</label>    <input type="number" class="form-control" id="capacity" min="0" [(ngModel)]="case.capacity">  </div>  <div class="form-group">    <label for="description">Description</label>    <textarea id="description" rows="4" cols="60" maxlength="100" [(ngModel)]="case.description"></textarea>  </div>  <div *ngIf="type ===\'offer\' && this.vehicleService.vehicles.length>0">    <label>Choose a Vehicle</label><br>    <select class="form-select" [(ngModel)]="case.vehicle">      <option></option>      <option *ngFor="let v of this.vehicleService.vehicles" [ngValue]="v" (click)="setCapacity()">{{v.name}}</option>    </select>  </div>  <div class="form-group">    <label>Pick Date and Time</label>    <form [formGroup]="form">      <app-ngb-date-time-picker formControlName="control" [meridian]="true" [hourStep]="1"                                [minuteStep]="5"></app-ngb-date-time-picker>    </form>  </div>  <!--  TODO bei reload kein default wert drin--></div><div class="modal-footer">  <button type="button" class="btn btn-outline-dark"          (click)="activeModal.dismiss()">Close  </button>  <button type="button" class="btn btn-savemodal" (click)="save()">Submit</button></div><app-alert></app-alert></div>'
     var COMPONENTS = [{'name': 'AddCreditModalComponent', 'selector': 'app-add-credit-modal'},{'name': 'AlertComponent', 'selector': 'app-alert'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CaseListComponent', 'selector': 'app-case-list'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DateTimePickerComponent', 'selector': 'app-ngb-date-time-picker'},{'name': 'EditCaseModalComponent', 'selector': 'app-edit-case-modal'},{'name': 'EditUserModalComponent', 'selector': 'app-edit-user-modal'},{'name': 'EditVehicleModalComponent', 'selector': 'app-edit-vehicle-modal'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MyCasesComponent', 'selector': 'app-my-cases'},{'name': 'NewCaseModalComponent', 'selector': 'app-new-offer-modal'},{'name': 'NewVehicleModalComponent', 'selector': 'app-new-vehicle-modal'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'RatingModalComponent', 'selector': 'app-rating-modal'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'NewCaseModalComponent'};
