@@ -10,7 +10,9 @@ export class AlertService {
 
   private _alert: Subject<Alert> = new Subject<Alert>();
 
-  constructor(private service: NotificationsService) { }
+  //constructor(private service: NotificationsService) { }
+  constructor() {
+  }
 
   nextAlert(a: Alert) {
     this._alert.next(a);
@@ -21,30 +23,30 @@ export class AlertService {
   }
 
 
-  onSuccess(message: string) {
-    this.service.success("Success", message, {
-      position: ["top", "center"],
-      timeOut: 2000,
-      animate: "fade",
-      showProgressBar: true
-    });
-  }
-
-  onError(message: string) {
-    this.service.error("Error", message, {
-      position: ["top", "center"],
-      timeOut: 2000,
-      animate: "fade",
-      showProgressBar: true
-    });
-  }
-
-  onCancel(message: string) {
-    this.service.info("Cancelled", message, {
-      position: ["top", "center"],
-      timeOut: 2000,
-      animate: "fade",
-      showProgressBar: true
-    });
-  }
+  // onSuccess(message: string) {
+  //   this.service.success("Success", message, {
+  //     position: ["top", "center"],
+  //     timeOut: 2000,
+  //     animate: "fade",
+  //     showProgressBar: true
+  //   });
+  // }
+  //
+  // onError(message: string) {
+  //   this.service.error("Error", message, {
+  //     position: ["top", "center"],
+  //     timeOut: 2000,
+  //     animate: "fade",
+  //     showProgressBar: true
+  //   });
+  // }
+  //
+  // onCancel(message: string) {
+  //   this.service.info("Cancelled", message, {
+  //     position: ["top", "center"],
+  //     timeOut: 2000,
+  //     animate: "fade",
+  //     showProgressBar: true
+  //   });
+  // }
 }
