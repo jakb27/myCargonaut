@@ -25,10 +25,16 @@
   display: flex;
   flex-flow: row nowrap;
 }
-.case-type-from {
+.case-type-description {
   flex: 0 0 65%;
-  margin-right: 3%;
-  margin-left: 2%;
+  margin-right: 5%;
+  display: flex;
+  flex-flow: column;
+}
+.case-description {
+  margin-right: 10%;
+  font-style: italic;
+  font-size: 15px;
 }
 .vehicle-info {
   flex: 0 0 30%;
@@ -129,67 +135,6 @@ svg.icon-user {
 .btn {
   box-shadow: none;
 }
-@media only screen and (max-width: 500px) {
-  .my-cases-main {
-    flex:0 0 98%;
-    margin-left: 1%;
-    margin-right: 1%;
-  }
-  .case-destination-time {
-    flex: 0 0 65%;
-  }
-  .case-action {
-    display: flex;
-    flex: 0 0 25%;
-    justify-content: right;
-    margin-left: 3%;
-  }
-  .case-type {
-    font-size: 20px;
-    margin-right: 1%;
-  }
-  .vehicle-info {
-    flex: 0 0 30%;
-    font-size: 20px;
-    background: #f4f4f4;
-    border-radius: 0.8em;
-    padding: 0.1em;
-  }
-  span > img {
-    margin-left: 3%;
-    margin-right: 3%;
-  }
-  .case-type-from {
-    flex: 0 0 65%;
-    display: flex;
-    flex-flow: column;
-    margin-right: 1%;
-    margin-left: 1%;
-  }
-  svg {
-    height: 15px;
-  }
-
-}
-@media only screen and (max-width: 1400px) {
-  .my-cases-main {
-    flex:0 0 70%;
-    margin-left: 15%;
-    margin-right: 15%;
-
-  }
-
-}
-
-@media only screen and (max-width: 1100px) {
-  .my-cases-main {
-    flex:0 0 90%;
-    margin-left: 5%;
-    margin-right: 5%;
-  }
-
-}
-
 .pOpen {
   flex: 0 0 15%;
   align-self: center;
@@ -251,4 +196,82 @@ fieldset[disabled] .radiobutton.active {
 }
 .filled {
   color: #dcb425;
+}
+.rating-star-comment {
+  margin-left: 40%;
+  font-style: italic;
+  font-size: 15px;
+}
+.case-destination-time {
+  padding-top: 2%;
+}
+
+@media only screen and (max-width: 600px) {
+  .my-cases-main {
+    flex:0 0 98%;
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+  .case-destination-time {
+    flex: 0 0 65%;
+    padding-top: 0%;
+  }
+  .case-action {
+    display: flex;
+    flex: 0 0 25%;
+    justify-content: right;
+    margin-left: 3%;
+  }
+  .case-type {
+    font-size: 20px;
+    margin-right: 1%;
+  }
+  .vehicle-info {
+    flex: 0 0 30%;
+    font-size: 20px;
+    background: #f4f4f4;
+    border-radius: 0.8em;
+    padding: 0.1em;
+  }
+  span > img {
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+  .case-type-from {
+    display: flex;
+    flex-flow: column;
+    margin-right: 1%;
+    margin-left: 1%;
+  }
+  svg {
+    height: 15px;
+  }
+  .star {
+    font-size: 0.5rem;
+  }
+  .filled {
+    font-size: 1rem;
+  }
+  .rating-star-comment {
+    margin-left: 10%;
+  }
+
+}
+@media only screen and (max-width: 1400px) {
+  .my-cases-main {
+    flex:0 0 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+
+  }
+
+}
+
+@media only screen and (max-width: 1100px) {
+  .my-cases-main {
+    flex:0 0 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
 }

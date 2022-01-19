@@ -23,7 +23,8 @@ export class CaseListComponent implements OnInit {
               public authService: AuthService,
               public vehicleService: VehicleService,
               public alertService: AlertService,
-              public confirmService: ConfirmService) {
+              public confirmService: ConfirmService,
+              public notificationService: AlertService) {
   }
 
   ngOnInit(): void {
@@ -39,7 +40,10 @@ export class CaseListComponent implements OnInit {
       this.confirmService.confirmDialog().then(async (res) => {
         if (res) {
           await this.caseService.createCase(resultCase).then(
-            () => this.alertService.nextAlert({type: "success", message: "Case successful added"})
+            () => {
+              this.alertService.nextAlert({type: "success", message: "Case successfully added"});
+              //this.notificationService.onSuccess("Case successfully added");
+            }
           );
         } else {
           this.alertService.nextAlert({type: "warning", message: "Adding case cancelled"});

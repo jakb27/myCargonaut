@@ -37,6 +37,7 @@ export class EditCaseModalComponent implements OnInit {
       accepter_uid: "",
       price: 0,
       rating: 0,
+      ratingComment: "",
       vehicle: {v_id: "", name: "", seats: 0, capacity: 0, owner_id: ""}
     };
   }
