@@ -6,3 +6,12 @@
   color: #dcb425;
 }
 
+textarea {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-width: 1px;
+  border-radius: 3px;
+  border-color: lightgrey;
+  resize: none;
+}

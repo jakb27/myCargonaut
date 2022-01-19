@@ -15,5 +15,6 @@ export interface Case {
   dateTime: any,
   price: number,
   vehicle?: Vehicle,
-  rating: number
+  rating: number,
+  ratingComment?: string
 }
