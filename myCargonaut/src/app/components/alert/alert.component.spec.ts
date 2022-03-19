@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { AlertComponent } from "./alert.component";
+import {NgbAlert} from "@ng-bootstrap/ng-bootstrap";
 
 describe("AlertComponent", () => {
   let component: AlertComponent;
@@ -22,4 +23,6 @@ describe("AlertComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
+
+
 });

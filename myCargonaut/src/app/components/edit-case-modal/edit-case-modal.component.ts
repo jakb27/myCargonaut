@@ -21,7 +21,7 @@ export class EditCaseModalComponent implements OnInit {
     control: new FormControl(new Date(), Validators.required)
   });
 
-  constructor(public activeModal: NgbActiveModal, private authService: AuthService, public vehicleService: VehicleService) {
+  constructor(public activeModal: NgbActiveModal, public authService: AuthService, public vehicleService: VehicleService) {
     this.case = {
       publisher_uid: authService.userData.uid,
       publisher_name: authService.userData.displayName,

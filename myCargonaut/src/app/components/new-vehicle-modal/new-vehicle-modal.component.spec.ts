@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { NewVehicleModalComponent } from "./new-vehicle-modal.component";
+import {AngularFireModule} from "@angular/fire/compat";
+import {environment} from "../../../environments/environment";
+import {RouterTestingModule} from "@angular/router/testing";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 
 describe("NewVehicleModalComponent", () => {
   let component: NewVehicleModalComponent;
@@ -8,7 +12,12 @@ describe("NewVehicleModalComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NewVehicleModalComponent ]
+      declarations: [ NewVehicleModalComponent ],
+      imports: [
+        AngularFireModule.initializeApp(environment.firebase),
+        RouterTestingModule
+      ],
+      providers: [NgbActiveModal]
     })
       .compileComponents();
   });

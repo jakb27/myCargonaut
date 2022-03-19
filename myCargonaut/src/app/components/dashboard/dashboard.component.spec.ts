@@ -1,6 +1,10 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import {ComponentFixture, TestBed} from "@angular/core/testing";
 
-import { DashboardComponent } from "./dashboard.component";
+import {DashboardComponent} from "./dashboard.component";
+import {AngularFireModule} from "@angular/fire/compat";
+import {environment} from "../../../environments/environment";
+import {RouterTestingModule} from "@angular/router/testing";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 
 describe("DashboardComponent", () => {
   let component: DashboardComponent;
@@ -8,7 +12,12 @@ describe("DashboardComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ]
+      imports: [
+        AngularFireModule.initializeApp(environment.firebase),
+        RouterTestingModule
+      ],
+      declarations: [DashboardComponent],
+      providers: [NgbActiveModal]
     })
       .compileComponents();
   });
@@ -19,7 +28,7 @@ describe("DashboardComponent", () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it("should create", () => {
+    expect(component).toBeTruthy();
+  });
 });

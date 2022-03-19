@@ -1,6 +1,10 @@
 import {ComponentFixture, TestBed} from "@angular/core/testing";
 
 import {AddCreditModalComponent} from "./add-credit-modal.component";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {AngularFireModule} from "@angular/fire/compat";
+import {environment} from "../../../environments/environment";
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe("AddCreditModalComponent", () => {
   let component: AddCreditModalComponent;
@@ -8,7 +12,12 @@ describe("AddCreditModalComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AddCreditModalComponent]
+      imports: [
+        AngularFireModule.initializeApp(environment.firebase),
+        RouterTestingModule
+      ],
+      declarations: [AddCreditModalComponent],
+      providers: [NgbActiveModal]
     })
       .compileComponents();
   });
@@ -19,7 +28,7 @@ describe("AddCreditModalComponent", () => {
     fixture.detectChanges();
   });
 
-  //it("should create", () => {
-  //  expect(component).toBeTruthy();
-  //});
+  it("should create", () => {
+    expect(component).toBeTruthy();
+  });
 });
