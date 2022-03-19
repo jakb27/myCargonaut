@@ -31,4 +31,20 @@ describe("AddCreditModalComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
+
+  it("should save", async () => {
+    await component.save();
+    spyOn(component.confirmService, "confirmDialog").and.returnValue(Promise.resolve(true));
+    expect(component).toBeTruthy();
+  });
+
+  it("should display modal title", () => {
+    let title: HTMLElement = fixture.nativeElement.querySelector("h4");
+    expect(title.innerText).toMatch("Add Funds");
+  });
+
+  // it("should display modal body", () => {
+  //   let title: HTMLElement = fixture.nativeElement.querySelector("label");
+  //   expect(title.innerText).toMatch("Choose an amount to add to your credits ($)");
+  // });
 });

@@ -29,4 +29,9 @@ describe("ForgotPasswordComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
+
+  it("should display title", () => {
+    let title: HTMLElement = fixture.nativeElement.querySelector("h3");
+    expect(title.innerText).toMatch("Reset Password");
+  });
 });

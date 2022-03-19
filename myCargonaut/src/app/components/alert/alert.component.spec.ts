@@ -24,5 +24,4 @@ describe("AlertComponent", () => {
     expect(component).toBeTruthy();
   });
 
-
 });

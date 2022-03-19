@@ -22,4 +22,9 @@ describe("FooterComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
+
+  it("should display github logo", () => {
+    let svg: HTMLElement = fixture.nativeElement.querySelector("svg");
+    expect(svg).toBeTruthy();
+  });
 });

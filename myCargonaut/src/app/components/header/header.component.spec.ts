@@ -29,4 +29,14 @@ describe("HeaderComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
+
+  it("should display title", () => {
+    let title: HTMLElement = fixture.nativeElement.querySelector("a");
+    expect(title.innerText).toMatch("MyCargonaut");
+  });
+
+  it("should display logout svg", () => {
+    let svg: HTMLElement = fixture.nativeElement.querySelector("svg");
+    expect(svg).toBeTruthy();
+  });
 });

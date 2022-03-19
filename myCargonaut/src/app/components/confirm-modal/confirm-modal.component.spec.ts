@@ -31,4 +31,24 @@ describe("ConfirmModalComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
+
+  it("should confirm", () => {
+    component.confirm();
+    expect(component).toBeTruthy();
+  });
+
+  it("should decline", () => {
+    component.decline();
+    expect(component).toBeTruthy();
+  });
+
+  it("should display modal title", () => {
+    let title: HTMLElement = fixture.nativeElement.querySelector("h4");
+    expect(title.innerText).toMatch("Confirmation");
+  });
+
+  it("should display modal body", () => {
+    let title: HTMLElement = fixture.nativeElement.querySelector("p");
+    expect(title.innerText).toMatch("Are you sure?");
+  });
 });

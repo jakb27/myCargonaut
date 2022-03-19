@@ -28,6 +28,7 @@ describe("UserProfileComponent", () => {
     fixture.detectChanges();
   });
 
+  // TODO photourl?
   // it("should create", () => {
   //   expect(component).toBeTruthy();
   // });

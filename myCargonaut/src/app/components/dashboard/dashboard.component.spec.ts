@@ -17,7 +17,7 @@ describe("DashboardComponent", () => {
         RouterTestingModule
       ],
       declarations: [DashboardComponent],
-      providers: [NgbActiveModal]
+      providers: []
     })
       .compileComponents();
   });
@@ -30,5 +30,15 @@ describe("DashboardComponent", () => {
 
   it("should create", () => {
     expect(component).toBeTruthy();
+  });
+
+  it("should init", () => {
+    component.init();
+    expect(component).toBeTruthy();
+  });
+
+  it("should display main", () => {
+    let main: HTMLElement = fixture.nativeElement.querySelector("main");
+    expect(main).toBeTruthy();
   });
 });

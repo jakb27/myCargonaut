@@ -28,6 +28,7 @@ describe("RatingModalComponent", () => {
     fixture.detectChanges();
   });
 
+  // TODO undefined uid (auth?)
   // it("should create", () => {
   //   expect(component).toBeTruthy();
   // });

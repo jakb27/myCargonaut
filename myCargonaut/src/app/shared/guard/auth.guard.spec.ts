@@ -21,4 +21,10 @@ describe("AuthGuard", () => {
   it("should be created", () => {
     expect(guard).toBeTruthy();
   });
+
+  // it("should be activate", () => {
+  //   guard.authService.signIn("test", "test");
+  //   expect(guard.authService.isLoggedIn).toBe(true);
+  //   expect(guard).toBeTruthy();
+  // });
 });
