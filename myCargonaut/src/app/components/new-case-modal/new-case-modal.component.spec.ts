@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { NewCaseModalComponent } from "./new-case-modal.component";
+import {AngularFireModule} from "@angular/fire/compat";
+import {environment} from "../../../environments/environment";
+import {RouterTestingModule} from "@angular/router/testing";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 
 describe("NewCaseModalComponent", () => {
   let component: NewCaseModalComponent;
@@ -8,7 +12,12 @@ describe("NewCaseModalComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NewCaseModalComponent ]
+      declarations: [ NewCaseModalComponent ],
+      imports: [
+        AngularFireModule.initializeApp(environment.firebase),
+        RouterTestingModule
+      ],
+      providers: [NgbActiveModal]
     })
       .compileComponents();
   });
@@ -19,7 +28,7 @@ describe("NewCaseModalComponent", () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
+  // it("should create", () => {
   //   expect(component).toBeTruthy();
   // });
 });

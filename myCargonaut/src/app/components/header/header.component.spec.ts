@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { HeaderComponent } from "./header.component";
+import {AngularFireModule} from "@angular/fire/compat";
+import {environment} from "../../../environments/environment";
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe("HeaderComponent", () => {
   let component: HeaderComponent;
@@ -8,7 +11,11 @@ describe("HeaderComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
+      declarations: [ HeaderComponent ],
+      imports: [
+        AngularFireModule.initializeApp(environment.firebase),
+        RouterTestingModule
+      ],
     })
       .compileComponents();
   });
@@ -19,7 +26,17 @@ describe("HeaderComponent", () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it("should create", () => {
+    expect(component).toBeTruthy();
+  });
+
+  it("should display title", () => {
+    let title: HTMLElement = fixture.nativeElement.querySelector("a");
+    expect(title.innerText).toMatch("MyCargonaut");
+  });
+
+  it("should display logout svg", () => {
+    let svg: HTMLElement = fixture.nativeElement.querySelector("svg");
+    expect(svg).toBeTruthy();
+  });
 });
